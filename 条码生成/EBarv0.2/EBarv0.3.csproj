@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5FBCD54-23C2-44D7-9993-2E220E72FA5C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EBarv0._2</RootNamespace>
+    <AssemblyName>EBarv0.2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.0.0, Culture=neutral, PublicKeyToken=ad1060f781377a81, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\新建文件夹\icsharpcode.sharpziplib\icsharpcode.sharpziplib.dll_downyi.com\X86\0.86.0.518\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LTP.Common">
+      <HintPath>dll\LTP.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>dll\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>dll\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>dll\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>dll\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing">
+      <HintPath>..\lib\ZXing.Net4\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\lib\ZXing.Net4\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\tbMainScalCurve.cs" />
+    <Compile Include="BLL\tbProject.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Common\commands.cs" />
+    <Compile Include="Common\OperateIniFile.cs" />
+    <Compile Include="Common\ProjectXml.cs" />
+    <Compile Include="Common\SerializerHelper.cs" />
+    <Compile Include="Common\XmlOperation.cs" />
+    <Compile Include="DAL\tbMainScalCurve.cs" />
+    <Compile Include="DAL\tbProject.cs" />
+    <Compile Include="DBUtility\CommandInfo.cs" />
+    <Compile Include="DBUtility\DbHelperOleDb.cs" />
+    <Compile Include="DBUtility\DbHelperSQL.cs" />
+    <Compile Include="DBUtility\DESEncrypt.cs" />
+    <Compile Include="DBUtility\OracleHelper.cs" />
+    <Compile Include="DBUtility\PubConstant.cs" />
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDilute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDilute.Designer.cs">
+      <DependentUpon>frmDilute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmElectronicLabelEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmElectronicLabelEntry.Designer.cs">
+      <DependentUpon>frmElectronicLabelEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoadItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLoadItem.Designer.cs">
+      <DependentUpon>FrmLoadItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProject2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProject2.Designer.cs">
+      <DependentUpon>FrmProject2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQualityControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQualityControl.Designer.cs">
+      <DependentUpon>frmQualityControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubstrate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSubstrate.Designer.cs">
+      <DependentUpon>frmSubstrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SpCode.cs" />
+    <Compile Include="Model\tbMainScalCurve.cs" />
+    <Compile Include="Model\tbProject.cs" />
+    <Compile Include="NetCom3.cs" />
+    <Compile Include="Util\SaveBarCode.cs" />
+    <Compile Include="Util\Utils.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLightVal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLightVal.Designer.cs">
+      <DependentUpon>FrmLightVal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProject.Designer.cs">
+      <DependentUpon>FrmProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmScaling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmScaling.Designer.cs">
+      <DependentUpon>FrmScaling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDilute.resx">
+      <DependentUpon>frmDilute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmElectronicLabelEntry.resx">
+      <DependentUpon>frmElectronicLabelEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLightVal.resx">
+      <DependentUpon>FrmLightVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLoadItem.resx">
+      <DependentUpon>FrmLoadItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProject.resx">
+      <DependentUpon>FrmProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProject2.resx">
+      <DependentUpon>FrmProject2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQualityControl.resx">
+      <DependentUpon>frmQualityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmScaling.resx">
+      <DependentUpon>FrmScaling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubstrate.resx">
+      <DependentUpon>frmSubstrate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Number.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
