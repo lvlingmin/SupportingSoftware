@@ -1,0 +1,8 @@
+16:17:41:514->:EB 90 F1 02 00 00 00 00 00 00 00 00 00 00 00 00
+2020/8/27 16:17:41Send调用了EventStop
+2020/8/27 16:17:41异常类型：SocketException
+异常消息：由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。
+异常信息：   在 System.Net.Sockets.Socket.BeginSend(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags, AsyncCallback callback, Object state)
+   在 BioBase.HSCIADebug.NetCom3.Send(String order, Int32 orderType) 位置 E:\博科软件\轨道机\BioBase.HSCIADebug\BioBase.HSCIADebug\NetCom3.cs:行号 741
+
+MoverrorFlag = ： 0  *****当前 16 - 17 - 44

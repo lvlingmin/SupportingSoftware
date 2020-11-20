@@ -1,0 +1,380 @@
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.Cache
+E:\化学发光项目开发\2软件开发过程\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+E:\化学发光项目开发\2软件开发过程\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.exe
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.pdb
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.dll
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.dll
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.pdb
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.xml
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.pdb
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.xml
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojResolveAssemblyReference.cache
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.Cache
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+F:\二代机\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\6一维码生成程序(2)\6一维码生成程序(1)\6一维码生成程序\EBarv0.2\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\EBarv0.2.exe
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\EBarv0.2.pdb
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\NPOI.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\zxing.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\zxing.presentation.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\zxing.pdb
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\zxing.xml
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\zxing.presentation.pdb
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\zxing.presentation.xml
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\LTP.Common.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成0912\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\bin\Debug\LTP.Common.dll
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\LTP.Common.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\LTP.Common.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Form1.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\新建文件夹\条码生成-20200313-电子标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmQualityControl.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+E:\资料\2软件开发过程\二代机\1编码\条码生成\EBarv0.2\obj\x86\Debug\EBarv0._2.frmQualityControl.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\LTP.Common.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmLogin.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmParent.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmQualityControl.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmAdmin.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmInfo.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmUser.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmSpImport.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\LTP.Common.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\zxing.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\zxing.presentation.dll
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\zxing.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\zxing.xml
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\zxing.presentation.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\bin\Debug\zxing.presentation.xml
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmAdmin.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmInfo.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmUserList.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.frmLogin.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.frmParent.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.frmQualityControl.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmSpImport.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmUser.resources
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+C:\Users\Administrator\Desktop\2\条码生成-标签录入-20200708\EBarv0.2\obj\x86\Debug\EBarv0._2.Admin.frmQualityControl.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\EBarv0.2.exe
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\EBarv0.2.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\LTP.Common.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\NPOI.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\zxing.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\zxing.presentation.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\zxing.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\zxing.xml
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\zxing.presentation.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\bin\Debug\zxing.presentation.xml
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmAdmin.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmInfo.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Admin.frmQualityControl.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmUserList.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmLogin.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmParent.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.frmQualityControl.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmSpImport.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmUser.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\EBarv0.2.exe.config
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\EBarv0.2.exe
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\EBarv0.2.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\LTP.Common.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\NPOI.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\NPOI.OOXML.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\NPOI.OpenXml4Net.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\zxing.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\zxing.presentation.dll
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\zxing.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\zxing.xml
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\zxing.presentation.pdb
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\bin\Debug\zxing.presentation.xml
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0.3.csprojAssemblyReference.cache
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmAdmin.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmInfo.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.Admin.frmQualityControl.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.Administrator.frmUserList.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.Form2.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.frmElectronicLabelEntry.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLightVal.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmLoadItem.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.frmLogin.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmMain.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.frmParent.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmProject2.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.frmQualityControl.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.FrmScaling.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.Properties.Resources.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmSpImport.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0._2.user.frmUser.resources
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.GenerateResource.cache
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CoreCompileInputs.cache
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0.3.csproj.CopyComplete
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0.2.exe
+E:\资料\2软件开发过程\二代机\1编码\射频-标签录入 - 副本\EBarv0.2\obj\x86\Debug\EBarv0.2.pdb

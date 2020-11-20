@@ -1,0 +1,21 @@
+2020/8/24 15:00:32异常类型：SocketException
+异常消息：由于目标计算机积极拒绝，无法连接。 10.1.20.241:5000
+异常信息：   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Connect(EndPoint remoteEP)
+   在 System.Net.Sockets.TcpClient.Connect(IPEndPoint remoteEP)
+   在 BioBase.HSCIADebug.NetCom3.CheckPort(String myip, String myport) 位置 E:\博科软件\轨道机\BioBase.HSCIADebug\BioBase.HSCIADebug\NetCom3.cs:行号 275
+
+15:00:32:784->:EB 90 F1 01 00 00 00 00 00 00 00 00 00 00 00 00
+15:00:35:847<-:EB 90 F1 01 FF FF FF FF FF FF 00 00 00 00 00 00 
+15:00:35:849<-:DiagnostDone.Set释放信号之前
+15:00:35:903->:EB 90 F1 02 00 00 00 00 00 00 00 00 00 00 00 00
+15:00:38:908<-:EB 90 F1 02 FF FF FF FF FF FF FF FF FF FF FF FF 
+2020/8/24 15:00:38ReceiveCallback调用了EventStop,异常：值对于无符号的字节太大或太小。
+2020/8/24 15:00:38异常类型：OverflowException
+异常消息：值对于无符号的字节太大或太小。
+异常信息：   在 System.Convert.ToByte(String value, Int32 fromBase)
+   在 BioBase.HSCIADebug.NetCom3.ReceiveCallback(IAsyncResult ar) 位置 E:\博科软件\轨道机\BioBase.HSCIADebug\BioBase.HSCIADebug\NetCom3.cs:行号 1713
+
+15:00:41:470<-:isConnect退出
+03:01:35:908DiagnostSendCallback调试指令接收出现异常！
+MoverrorFlag = ： 0  *****当前 15 - 01 - 35

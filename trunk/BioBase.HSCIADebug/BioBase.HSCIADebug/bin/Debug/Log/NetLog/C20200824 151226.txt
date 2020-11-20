@@ -1,0 +1,21 @@
+2020/8/24 15:12:26异常类型：SocketException
+异常消息：由于目标计算机积极拒绝，无法连接。 10.1.20.241:8087
+异常信息：   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.Sockets.Socket.Connect(EndPoint remoteEP)
+   在 System.Net.Sockets.TcpClient.Connect(IPEndPoint remoteEP)
+   在 BioBase.HSCIADebug.NetCom3.CheckPort(String myip, String myport) 位置 E:\博科软件\轨道机\BioBase.HSCIADebug\BioBase.HSCIADebug\NetCom3.cs:行号 275
+
+15:12:26:075->:EB 90 F1 01 00 00 00 00 00 00 00 00 00 00 00 00
+15:12:29:119<-:EB 90 F1 01 FF FF FF FF FF FF 00 00 00 00 00 00 
+15:12:29:120<-:DiagnostDone.Set释放信号之前
+15:12:31:638->:EB 90 F1 02 00 00 00 00 00 00 00 00 00 00 00 00
+15:12:34:641<-:EB 90 F1 02 FF FF FF FF FF FF FF FF FF FF FF FF 
+03:14:22:893DiagnostSendCallback调试指令接收出现异常！
+15:14:38:280<-:DiagnostDone.Set释放信号之前
+15:14:47:032->:EB 90 F1 03 00 00 00 00 00 00 00 00 00 00 00 00
+15:14:50:036<-:EB 90 F1 03 FF FF FF FF 00 00 00 00 00 00 00 00 
+15:14:50:036<-:DiagnostDone.Set释放信号之前
+15:15:10:051->:EB 90 F1 03 00 00 00 00 00 00 00 00 00 00 00 00
+15:15:13:055<-:EB 90 F1 03 FF FF FF FF 00 00 00 00 00 00 00 00 
+15:15:13:055<-:DiagnostDone.Set释放信号之前
+15:15:33:083->:EB 90 F1 03 00 00 00 00 00 00 00 00 00 00 00 00
