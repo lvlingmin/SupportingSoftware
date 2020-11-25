@@ -272,5 +272,18 @@ namespace EBarv0._2
             panel.Controls.Clear();
             dt.Clear();
         }
+        public bool CheckFormIsOpen(string Forms)
+        {
+            bool bResult = false;
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm.Name == Forms)
+                {
+                    bResult = true;
+                    break;
+                }
+            }
+            return bResult;
+        }
     }
 }
