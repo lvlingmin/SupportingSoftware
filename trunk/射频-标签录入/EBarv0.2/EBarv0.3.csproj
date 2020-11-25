@@ -104,6 +104,7 @@
     <Compile Include="BLL\tbProject.cs" />
     <Compile Include="BLL\tbUser.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Common\BarCodeHook.cs" />
     <Compile Include="Common\commands.cs" />
     <Compile Include="Common\DataTableExcel.cs" />
     <Compile Include="Common\OperateExcel.cs" />
@@ -111,6 +112,18 @@
     <Compile Include="Common\ProjectXml.cs" />
     <Compile Include="Common\SerializerHelper.cs" />
     <Compile Include="Common\XmlOperation.cs" />
+    <Compile Include="CustomControl\defineButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl\defineButton.Designer.cs">
+      <DependentUpon>defineButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\frmMessageShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomControl\frmMessageShow.Designer.cs">
+      <DependentUpon>frmMessageShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\tbMainScalCurve.cs" />
     <Compile Include="DAL\tbProject.cs" />
     <Compile Include="DAL\tbUser.cs" />
@@ -167,6 +180,12 @@
     <Compile Include="Model\tbProject.cs" />
     <Compile Include="Model\tbUser.cs" />
     <Compile Include="NetCom3.cs" />
+    <Compile Include="user\frmBarImportSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user\frmBarImportSP.Designer.cs">
+      <DependentUpon>frmBarImportSP.cs</DependentUpon>
+    </Compile>
     <Compile Include="user\frmSpImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +232,9 @@
     <EmbeddedResource Include="Admin\frmUserList.resx">
       <DependentUpon>frmUserList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\frmMessageShow.resx">
+      <DependentUpon>frmMessageShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +275,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="user\frmBarImportSP.resx">
+      <DependentUpon>frmBarImportSP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="user\frmSpImport.resx">
       <DependentUpon>frmSpImport.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +300,7 @@
   <ItemGroup>
     <Content Include="rf.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
