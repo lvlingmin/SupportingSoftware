@@ -14,7 +14,7 @@ namespace EBarv0._2.Model
         string qualityControls1;
         string qualityControls2;
 
-        public SpCode(string reagent, string pro, string[] sca, string[] light, string QC1 = "", string QC2 = "")
+        public SpCode(string reagent, string pro, string[] sca , string[] light, string QC1 = "", string QC2 = "")
         {
             reagentInfo = reagent;
             projectFlow = pro;
