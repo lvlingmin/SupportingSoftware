@@ -19,8 +19,8 @@ namespace EBarv0._2
         //
         commands cmd = new commands();
         public static readonly NetCom3 Instance = new NetCom3();
-        //IPAddress ipAddress = IPAddress.Parse("192.168.1.146");
-        IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+        IPAddress ipAddress = IPAddress.Parse("192.168.1.146");
+        //IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
         IPEndPoint remoteEP;
         /// <summary>
         /// 服务器端口号
@@ -967,7 +967,7 @@ namespace EBarv0._2
             }
             if (errorFlag != (int)ErrorState.Success)
             {
-                LogFile.Instance.Write("MoverrorFlag = ： " + MoverrorFlag + "  *****当前 " + DateTime.Now.ToString("HH - mm - ss"));
+                LogFile.Instance.Write("errorFlag = ： " + errorFlag + "  *****当前 " + DateTime.Now.ToString("HH - mm - ss"));
                 return false;
             }
             else
