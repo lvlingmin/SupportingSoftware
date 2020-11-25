@@ -733,11 +733,5 @@ namespace EBarv0._2.Administrator
                 System.Environment.Exit(0);
             }
         }
-
-        private void num1_ValueChanged(object sender, EventArgs e)
-        {
-            num2.Minimum = num1.Value;
-
-        }
     }
 }
