@@ -147,11 +147,6 @@
             0,
             0,
             0});
-            this.num2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.num2.Name = "num2";
             this.num2.Size = new System.Drawing.Size(86, 26);
             this.num2.TabIndex = 18;
@@ -172,11 +167,6 @@
             0,
             0,
             0});
-            this.num1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.num1.Name = "num1";
             this.num1.Size = new System.Drawing.Size(85, 26);
             this.num1.TabIndex = 17;
@@ -185,7 +175,6 @@
             0,
             0,
             0});
-            this.num1.ValueChanged += new System.EventHandler(this.num1_ValueChanged);
             // 
             // reagentName
             // 

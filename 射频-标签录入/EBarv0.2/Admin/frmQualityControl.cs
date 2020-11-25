@@ -19,8 +19,8 @@ namespace EBarv0._2.Admin
         int itemIndex = -1;
 
         public static string spQcOrder = "";
-        public static string[] spQcLow = new string[2];
-        public static string[] spQcHigh = new string[2];
+        public static string[] spQcLow = new string[3];
+        public static string[] spQcHigh = new string[3];
         public static DateTime[] spQcDate = new DateTime[2];
         bool isLow = false;
         public frmQualityControl()
@@ -138,12 +138,14 @@ namespace EBarv0._2.Admin
             {
                 spQcLow[0] = txtX.Text.ToString().Trim();
                 spQcLow[1] = txtSD.Text.ToString().Trim();
+                spQcLow[2] = reagentName.Text;
                 spQcDate[0] = prodectTime.Value;
             }
             else
             {
                 spQcHigh[0] = txtX.Text.ToString().Trim();
                 spQcHigh[1] = txtSD.Text.ToString().Trim();
+                spQcHigh[2] = reagentName.Text;
                 spQcDate[1] = prodectTime.Value;
             }
             closedFlag = true;
