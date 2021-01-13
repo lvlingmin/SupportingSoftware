@@ -32,6 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\20210103-电化学\BioBaseCLIA(BKI4200)_理杯机\BioBaseCLIA\dlls\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\20210103-电化学\BioBaseCLIA(BKI4200)_理杯机\BioBaseCLIA\dlls\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\20210103-电化学\BioBaseCLIA(BKI4200)_理杯机\BioBaseCLIA\dlls\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\20210103-电化学\BioBaseCLIA(BKI4200)_理杯机\BioBaseCLIA\dlls\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="common\DataTableExcel.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +75,12 @@
     <Compile Include="frmIAP.Designer.cs">
       <DependentUpon>frmIAP.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLinearityTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLinearityTest.Designer.cs">
+      <DependentUpon>frmLinearityTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPhoton.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmIAP.resx">
       <DependentUpon>frmIAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLinearityTest.resx">
+      <DependentUpon>frmLinearityTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhoton.resx">
       <DependentUpon>frmPhoton.cs</DependentUpon>
