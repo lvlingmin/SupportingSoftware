@@ -214,5 +214,53 @@ namespace DebugTool
                 return;
             }));
         }
+
+        private void btnLinearityTest_Click(object sender, EventArgs e)
+        {
+            btnLinearityTest.Enabled = false;
+
+            if (!NetCom3.isConnect)
+            {
+                if (NetCom3.Instance.CheckMyIp_Port_Link())
+                {
+                    NetCom3.Instance.ConnectServer();
+
+                    if (!NetCom3.isConnect)
+                    {
+                        MessageBox.Show("仪器初始化失败！请确认仪器是否已经开启！", "开机提示");
+
+                        goto errorend;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("仪器初始化失败！请确认网线连接状态及仪器的连接地址是否正确！", "开机提示");
+
+                    goto errorend;
+                }
+            }
+
+            Thread.Sleep(2000);
+
+            BeginInvoke(new Action(() =>
+            {
+                frmLinearityTest f = new frmLinearityTest();
+                this.Hide();
+                f.Show();
+            }));
+            return;
+
+            errorend:
+            BeginInvoke(new Action(() =>
+            {
+                if (DialogResult.OK == MessageBox.Show("是否退出软件。", "握手失败", MessageBoxButtons.OKCancel))
+                    Close();
+                NetCom3.Instance.stopsendFlag = false;
+                NetCom3.isConnect = false;
+                btnLinearityTest.Enabled = true;
+                return;
+            }));
+        }
     }
 }

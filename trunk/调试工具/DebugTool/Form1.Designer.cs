@@ -32,6 +32,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnIAP = new System.Windows.Forms.Button();
             this.btnAttenuator = new System.Windows.Forms.Button();
+            this.btnLinearityTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -74,11 +75,22 @@
             this.btnAttenuator.UseVisualStyleBackColor = true;
             this.btnAttenuator.Click += new System.EventHandler(this.BtnAttenuator_Click);
             // 
+            // btnLinearityTest
+            // 
+            this.btnLinearityTest.Location = new System.Drawing.Point(69, 133);
+            this.btnLinearityTest.Name = "btnLinearityTest";
+            this.btnLinearityTest.Size = new System.Drawing.Size(122, 62);
+            this.btnLinearityTest.TabIndex = 6;
+            this.btnLinearityTest.Text = "计数器线性测试";
+            this.btnLinearityTest.UseVisualStyleBackColor = true;
+            this.btnLinearityTest.Click += new System.EventHandler(this.btnLinearityTest_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLinearityTest);
             this.Controls.Add(this.btnAttenuator);
             this.Controls.Add(this.btnIAP);
             this.Controls.Add(this.btnExit);
@@ -99,6 +111,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnIAP;
         private System.Windows.Forms.Button btnAttenuator;
+        private System.Windows.Forms.Button btnLinearityTest;
     }
 }
 
