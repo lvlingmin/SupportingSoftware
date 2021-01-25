@@ -87,6 +87,12 @@
     <Compile Include="frmPhoton.Designer.cs">
       <DependentUpon>frmPhoton.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWriteTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWriteTest.Designer.cs">
+      <DependentUpon>frmWriteTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="NetCom3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhoton.resx">
       <DependentUpon>frmPhoton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWriteTest.resx">
+      <DependentUpon>frmWriteTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
