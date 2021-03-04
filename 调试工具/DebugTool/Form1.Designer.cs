@@ -92,7 +92,7 @@
             this.btnWriteTest.Name = "btnWriteTest";
             this.btnWriteTest.Size = new System.Drawing.Size(122, 62);
             this.btnWriteTest.TabIndex = 7;
-            this.btnWriteTest.Text = "通讯板写入测试";
+            this.btnWriteTest.Text = "泵阀&&E2测试";
             this.btnWriteTest.UseVisualStyleBackColor = true;
             this.btnWriteTest.Click += new System.EventHandler(this.btnWriteTest_Click);
             // 
