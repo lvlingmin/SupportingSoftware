@@ -40,6 +40,8 @@
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabControl = new System.Windows.Forms.TabPage();
+            this.numMcontrol = new System.Windows.Forms.NumericUpDown();
+            this.label35 = new System.Windows.Forms.Label();
             this.btnSend = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.txtSingOrder = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -53,6 +55,7 @@
             this.btnCon1Reset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnConAllReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox44 = new System.Windows.Forms.GroupBox();
+            this.btnConSaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnConSave = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnConDsc = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnConInc = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -65,32 +68,10 @@
             this.cmbConPos = new System.Windows.Forms.ComboBox();
             this.label72 = new System.Windows.Forms.Label();
             this.tabOrbiter = new System.Windows.Forms.TabPage();
+            this.NumOrbiterID = new System.Windows.Forms.NumericUpDown();
+            this.label81 = new System.Windows.Forms.Label();
             this.cmbMOrbiter = new System.Windows.Forms.ComboBox();
             this.label61 = new System.Windows.Forms.Label();
-            this.groupBox33 = new System.Windows.Forms.GroupBox();
-            this.groupBox34 = new System.Windows.Forms.GroupBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.functionButton2 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.groupBox35 = new System.Windows.Forms.GroupBox();
-            this.functionButton3 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.functionButton4 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.groupBox36 = new System.Windows.Forms.GroupBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.functionButton13 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.groupBox37 = new System.Windows.Forms.GroupBox();
-            this.label55 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.functionButton14 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.groupBox38 = new System.Windows.Forms.GroupBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.functionButton15 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox39 = new System.Windows.Forms.GroupBox();
             this.btnHGOrbitReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnOrbP2Reset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -100,6 +81,7 @@
             this.btnCOrbitReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnOrbAllReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.btnOrbSaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox41 = new System.Windows.Forms.GroupBox();
             this.functionButton21 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.functionButton22 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -121,6 +103,8 @@
             this.cmbOrbPos = new System.Windows.Forms.ComboBox();
             this.label60 = new System.Windows.Forms.Label();
             this.tabAddSR = new System.Windows.Forms.TabPage();
+            this.numMAddSR = new System.Windows.Forms.NumericUpDown();
+            this.label82 = new System.Windows.Forms.Label();
             this.cmbMAddSR = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -158,6 +142,7 @@
             this.btnRReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnSRAllReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox42 = new System.Windows.Forms.GroupBox();
+            this.btnSRInaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnSRInave = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnSRDec = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnSRInc = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -170,6 +155,8 @@
             this.cmbAddSRPos = new System.Windows.Forms.ComboBox();
             this.label67 = new System.Windows.Forms.Label();
             this.tabMove = new System.Windows.Forms.TabPage();
+            this.numMMove = new System.Windows.Forms.NumericUpDown();
+            this.label83 = new System.Windows.Forms.Label();
             this.cmbMMove = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -195,6 +182,7 @@
             this.btnPutCupInit = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnMoveAllReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btnMoveSaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnMoveSave = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnMoveDec = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnMoveInc = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -207,6 +195,8 @@
             this.cmbMovePos = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.TabIncubation = new System.Windows.Forms.TabPage();
+            this.numMIncubation = new System.Windows.Forms.NumericUpDown();
+            this.label84 = new System.Windows.Forms.Label();
             this.GB1 = new System.Windows.Forms.GroupBox();
             this.groupBox46 = new System.Windows.Forms.GroupBox();
             this.fbtnInTubeCS = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -245,6 +235,8 @@
             this.cmbMIncubation = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TabWashTray = new System.Windows.Forms.TabPage();
+            this.numMWash = new System.Windows.Forms.NumericUpDown();
+            this.label85 = new System.Windows.Forms.Label();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.numPeristalticPVol = new System.Windows.Forms.NumericUpDown();
@@ -299,6 +291,8 @@
             this.cmbWashPara = new System.Windows.Forms.ComboBox();
             this.label31 = new System.Windows.Forms.Label();
             this.TabPhoton = new System.Windows.Forms.TabPage();
+            this.numMRead = new System.Windows.Forms.NumericUpDown();
+            this.label87 = new System.Windows.Forms.Label();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
             this.btnZx = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnReadNum = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -326,6 +320,7 @@
             this.label53 = new System.Windows.Forms.Label();
             this.txtSpCode = new System.Windows.Forms.TextBox();
             this.groupBox27 = new System.Windows.Forms.GroupBox();
+            this.fbtnReadEnd = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.chkInTubeClear = new System.Windows.Forms.CheckBox();
             this.chkWashTubeClear = new System.Windows.Forms.CheckBox();
             this.NumReadNum = new System.Windows.Forms.NumericUpDown();
@@ -337,6 +332,8 @@
             this.txtReadShow = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.tabTemperature = new System.Windows.Forms.TabPage();
+            this.numTem = new System.Windows.Forms.NumericUpDown();
+            this.label88 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox31 = new System.Windows.Forms.GroupBox();
             this.saveTo = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -383,22 +380,20 @@
             this.functionButton1 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.fbtnReadEnd = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
+            this.btnISaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
+            this.fbtnWashSaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.tabControl1.SuspendLayout();
             this.tabControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMcontrol)).BeginInit();
             this.groupBox43.SuspendLayout();
             this.groupBox44.SuspendLayout();
             this.tabOrbiter.SuspendLayout();
-            this.groupBox33.SuspendLayout();
-            this.groupBox34.SuspendLayout();
-            this.groupBox35.SuspendLayout();
-            this.groupBox36.SuspendLayout();
-            this.groupBox37.SuspendLayout();
-            this.groupBox38.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumOrbiterID)).BeginInit();
             this.groupBox39.SuspendLayout();
             this.groupBox40.SuspendLayout();
             this.groupBox41.SuspendLayout();
             this.tabAddSR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMAddSR)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -408,12 +403,14 @@
             this.groupBox45.SuspendLayout();
             this.groupBox42.SuspendLayout();
             this.tabMove.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMMove)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.TabIncubation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMIncubation)).BeginInit();
             this.GB1.SuspendLayout();
             this.groupBox46.SuspendLayout();
             this.groupBox14.SuspendLayout();
@@ -422,6 +419,7 @@
             this.groupBox13.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.TabWashTray.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMWash)).BeginInit();
             this.groupBox17.SuspendLayout();
             this.groupBox24.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPeristalticPVol)).BeginInit();
@@ -433,6 +431,7 @@
             this.groupBox22.SuspendLayout();
             this.groupBox23.SuspendLayout();
             this.TabPhoton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMRead)).BeginInit();
             this.groupBox28.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRepeat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numXz)).BeginInit();
@@ -443,6 +442,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumReadNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTubeNum)).BeginInit();
             this.tabTemperature.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox31.SuspendLayout();
             this.groupBox25.SuspendLayout();
@@ -476,6 +476,8 @@
             // 
             // tabControl
             // 
+            this.tabControl.Controls.Add(this.numMcontrol);
+            this.tabControl.Controls.Add(this.label35);
             this.tabControl.Controls.Add(this.btnSend);
             this.tabControl.Controls.Add(this.txtSingOrder);
             this.tabControl.Controls.Add(this.label45);
@@ -490,8 +492,45 @@
             this.tabControl.Text = "调  度";
             this.tabControl.UseVisualStyleBackColor = true;
             // 
+            // numMcontrol
+            // 
+            this.numMcontrol.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numMcontrol.Location = new System.Drawing.Point(87, 3);
+            this.numMcontrol.Margin = new System.Windows.Forms.Padding(0);
+            this.numMcontrol.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numMcontrol.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMcontrol.Name = "numMcontrol";
+            this.numMcontrol.Size = new System.Drawing.Size(129, 23);
+            this.numMcontrol.TabIndex = 95;
+            this.numMcontrol.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMcontrol.ValueChanged += new System.EventHandler(this.numMcontrol_ValueChanged);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label35.Location = new System.Drawing.Point(5, 6);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(93, 16);
+            this.label35.TabIndex = 94;
+            this.label35.Text = "级联机器：";
+            // 
             // btnSend
             // 
+            this.btnSend.BackColor = System.Drawing.Color.Transparent;
             this.btnSend.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSend.Cursor = System.Windows.Forms.Cursors.Default;
@@ -530,7 +569,7 @@
             this.cmbMcontrol.Items.AddRange(new object[] {
             "调度I区 ",
             "调度II区"});
-            this.cmbMcontrol.Location = new System.Drawing.Point(75, 5);
+            this.cmbMcontrol.Location = new System.Drawing.Point(87, 28);
             this.cmbMcontrol.Name = "cmbMcontrol";
             this.cmbMcontrol.Size = new System.Drawing.Size(207, 23);
             this.cmbMcontrol.TabIndex = 91;
@@ -541,7 +580,7 @@
             this.label73.AutoSize = true;
             this.label73.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label73.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label73.Location = new System.Drawing.Point(10, 8);
+            this.label73.Location = new System.Drawing.Point(22, 31);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(76, 16);
             this.label73.TabIndex = 92;
@@ -555,15 +594,16 @@
             this.groupBox43.Controls.Add(this.btnConFReset);
             this.groupBox43.Controls.Add(this.btnCon1Reset);
             this.groupBox43.Controls.Add(this.btnConAllReset);
-            this.groupBox43.Location = new System.Drawing.Point(3, 235);
+            this.groupBox43.Location = new System.Drawing.Point(3, 244);
             this.groupBox43.Name = "groupBox43";
-            this.groupBox43.Size = new System.Drawing.Size(361, 152);
+            this.groupBox43.Size = new System.Drawing.Size(361, 149);
             this.groupBox43.TabIndex = 89;
             this.groupBox43.TabStop = false;
             this.groupBox43.Text = "快捷操作";
             // 
             // btnConRSDReset
             // 
+            this.btnConRSDReset.BackColor = System.Drawing.Color.Transparent;
             this.btnConRSDReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConRSDReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConRSDReset.Cursor = System.Windows.Forms.Cursors.Default;
@@ -580,6 +620,7 @@
             // 
             // btnConSMReset
             // 
+            this.btnConSMReset.BackColor = System.Drawing.Color.Transparent;
             this.btnConSMReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConSMReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConSMReset.Cursor = System.Windows.Forms.Cursors.Default;
@@ -596,6 +637,7 @@
             // 
             // btnConSDReset
             // 
+            this.btnConSDReset.BackColor = System.Drawing.Color.Transparent;
             this.btnConSDReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConSDReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConSDReset.Cursor = System.Windows.Forms.Cursors.Default;
@@ -612,6 +654,7 @@
             // 
             // btnConFReset
             // 
+            this.btnConFReset.BackColor = System.Drawing.Color.Transparent;
             this.btnConFReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConFReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConFReset.Cursor = System.Windows.Forms.Cursors.Default;
@@ -628,6 +671,7 @@
             // 
             // btnCon1Reset
             // 
+            this.btnCon1Reset.BackColor = System.Drawing.Color.Transparent;
             this.btnCon1Reset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnCon1Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCon1Reset.Cursor = System.Windows.Forms.Cursors.Default;
@@ -644,6 +688,7 @@
             // 
             // btnConAllReset
             // 
+            this.btnConAllReset.BackColor = System.Drawing.Color.Transparent;
             this.btnConAllReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConAllReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConAllReset.Cursor = System.Windows.Forms.Cursors.Default;
@@ -660,6 +705,7 @@
             // 
             // groupBox44
             // 
+            this.groupBox44.Controls.Add(this.btnConSaveData);
             this.groupBox44.Controls.Add(this.btnConSave);
             this.groupBox44.Controls.Add(this.btnConDsc);
             this.groupBox44.Controls.Add(this.btnConInc);
@@ -671,22 +717,40 @@
             this.groupBox44.Controls.Add(this.label70);
             this.groupBox44.Controls.Add(this.cmbConPos);
             this.groupBox44.Controls.Add(this.label72);
-            this.groupBox44.Location = new System.Drawing.Point(6, 34);
+            this.groupBox44.Location = new System.Drawing.Point(6, 58);
             this.groupBox44.Name = "groupBox44";
-            this.groupBox44.Size = new System.Drawing.Size(361, 196);
+            this.groupBox44.Size = new System.Drawing.Size(361, 179);
             this.groupBox44.TabIndex = 88;
             this.groupBox44.TabStop = false;
             this.groupBox44.Text = "参数设置";
             // 
+            // btnConSaveData
+            // 
+            this.btnConSaveData.BackColor = System.Drawing.Color.Transparent;
+            this.btnConSaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.btnConSaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConSaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnConSaveData.EnabledSet = true;
+            this.btnConSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnConSaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.btnConSaveData.Location = new System.Drawing.Point(190, 146);
+            this.btnConSaveData.Name = "btnConSaveData";
+            this.btnConSaveData.Size = new System.Drawing.Size(108, 27);
+            this.btnConSaveData.TabIndex = 73;
+            this.btnConSaveData.Text = "保存已有数据";
+            this.btnConSaveData.UseVisualStyleBackColor = false;
+            this.btnConSaveData.Click += new System.EventHandler(this.btnConSaveData_Click);
+            // 
             // btnConSave
             // 
+            this.btnConSave.BackColor = System.Drawing.Color.Transparent;
             this.btnConSave.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConSave.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnConSave.EnabledSet = true;
             this.btnConSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConSave.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnConSave.Location = new System.Drawing.Point(190, 157);
+            this.btnConSave.Location = new System.Drawing.Point(118, 146);
             this.btnConSave.Name = "btnConSave";
             this.btnConSave.Size = new System.Drawing.Size(66, 27);
             this.btnConSave.TabIndex = 72;
@@ -696,6 +760,7 @@
             // 
             // btnConDsc
             // 
+            this.btnConDsc.BackColor = System.Drawing.Color.Transparent;
             this.btnConDsc.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConDsc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConDsc.Cursor = System.Windows.Forms.Cursors.Default;
@@ -712,6 +777,7 @@
             // 
             // btnConInc
             // 
+            this.btnConInc.BackColor = System.Drawing.Color.Transparent;
             this.btnConInc.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnConInc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConInc.Cursor = System.Windows.Forms.Cursors.Default;
@@ -804,9 +870,10 @@
             // 
             // tabOrbiter
             // 
+            this.tabOrbiter.Controls.Add(this.NumOrbiterID);
+            this.tabOrbiter.Controls.Add(this.label81);
             this.tabOrbiter.Controls.Add(this.cmbMOrbiter);
             this.tabOrbiter.Controls.Add(this.label61);
-            this.tabOrbiter.Controls.Add(this.groupBox33);
             this.tabOrbiter.Controls.Add(this.groupBox39);
             this.tabOrbiter.Controls.Add(this.groupBox40);
             this.tabOrbiter.Location = new System.Drawing.Point(4, 4);
@@ -816,6 +883,42 @@
             this.tabOrbiter.Text = "轨道机";
             this.tabOrbiter.UseVisualStyleBackColor = true;
             // 
+            // NumOrbiterID
+            // 
+            this.NumOrbiterID.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.NumOrbiterID.Location = new System.Drawing.Point(91, 10);
+            this.NumOrbiterID.Margin = new System.Windows.Forms.Padding(0);
+            this.NumOrbiterID.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.NumOrbiterID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumOrbiterID.Name = "NumOrbiterID";
+            this.NumOrbiterID.Size = new System.Drawing.Size(129, 23);
+            this.NumOrbiterID.TabIndex = 93;
+            this.NumOrbiterID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumOrbiterID.ValueChanged += new System.EventHandler(this.NumOrbiterID_ValueChanged);
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label81.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label81.Location = new System.Drawing.Point(6, 13);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(93, 16);
+            this.label81.TabIndex = 92;
+            this.label81.Text = "级联机器：";
+            // 
             // cmbMOrbiter
             // 
             this.cmbMOrbiter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -823,9 +926,9 @@
             this.cmbMOrbiter.Items.AddRange(new object[] {
             "常规通道",
             "急诊通道"});
-            this.cmbMOrbiter.Location = new System.Drawing.Point(71, 14);
+            this.cmbMOrbiter.Location = new System.Drawing.Point(91, 45);
             this.cmbMOrbiter.Name = "cmbMOrbiter";
-            this.cmbMOrbiter.Size = new System.Drawing.Size(207, 23);
+            this.cmbMOrbiter.Size = new System.Drawing.Size(129, 23);
             this.cmbMOrbiter.TabIndex = 89;
             this.cmbMOrbiter.SelectedIndexChanged += new System.EventHandler(this.cmbMOrbiter_SelectedIndexChanged);
             // 
@@ -834,299 +937,11 @@
             this.label61.AutoSize = true;
             this.label61.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label61.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label61.Location = new System.Drawing.Point(6, 17);
+            this.label61.Location = new System.Drawing.Point(23, 48);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(76, 16);
             this.label61.TabIndex = 90;
             this.label61.Text = "模块名：";
-            // 
-            // groupBox33
-            // 
-            this.groupBox33.Controls.Add(this.groupBox34);
-            this.groupBox33.Controls.Add(this.groupBox35);
-            this.groupBox33.Controls.Add(this.groupBox36);
-            this.groupBox33.Controls.Add(this.groupBox37);
-            this.groupBox33.Controls.Add(this.groupBox38);
-            this.groupBox33.Location = new System.Drawing.Point(371, 0);
-            this.groupBox33.Name = "groupBox33";
-            this.groupBox33.Size = new System.Drawing.Size(434, 443);
-            this.groupBox33.TabIndex = 88;
-            this.groupBox33.TabStop = false;
-            this.groupBox33.Text = "操作";
-            this.groupBox33.Visible = false;
-            // 
-            // groupBox34
-            // 
-            this.groupBox34.Controls.Add(this.label35);
-            this.groupBox34.Controls.Add(this.comboBox1);
-            this.groupBox34.Controls.Add(this.functionButton2);
-            this.groupBox34.Location = new System.Drawing.Point(32, 351);
-            this.groupBox34.Name = "groupBox34";
-            this.groupBox34.Size = new System.Drawing.Size(349, 78);
-            this.groupBox34.TabIndex = 77;
-            this.groupBox34.TabStop = false;
-            this.groupBox34.Text = "磁珠清洗泵";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label35.Location = new System.Drawing.Point(9, 29);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(37, 15);
-            this.label35.TabIndex = 60;
-            this.label35.Text = "动作";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(49, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(154, 23);
-            this.comboBox1.TabIndex = 58;
-            // 
-            // functionButton2
-            // 
-            this.functionButton2.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.functionButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.functionButton2.EnabledSet = true;
-            this.functionButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.functionButton2.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.functionButton2.Location = new System.Drawing.Point(233, 25);
-            this.functionButton2.Name = "functionButton2";
-            this.functionButton2.Size = new System.Drawing.Size(86, 23);
-            this.functionButton2.TabIndex = 76;
-            this.functionButton2.Text = "执行";
-            this.functionButton2.UseVisualStyleBackColor = false;
-            // 
-            // groupBox35
-            // 
-            this.groupBox35.Controls.Add(this.functionButton3);
-            this.groupBox35.Controls.Add(this.functionButton4);
-            this.groupBox35.Controls.Add(this.textBox1);
-            this.groupBox35.Controls.Add(this.textBox3);
-            this.groupBox35.Controls.Add(this.label36);
-            this.groupBox35.Controls.Add(this.label37);
-            this.groupBox35.Location = new System.Drawing.Point(33, 21);
-            this.groupBox35.Name = "groupBox35";
-            this.groupBox35.Size = new System.Drawing.Size(369, 98);
-            this.groupBox35.TabIndex = 82;
-            this.groupBox35.TabStop = false;
-            this.groupBox35.Text = "孔位移动";
-            // 
-            // functionButton3
-            // 
-            this.functionButton3.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.functionButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.functionButton3.EnabledSet = true;
-            this.functionButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.functionButton3.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.functionButton3.Location = new System.Drawing.Point(232, 65);
-            this.functionButton3.Name = "functionButton3";
-            this.functionButton3.Size = new System.Drawing.Size(86, 23);
-            this.functionButton3.TabIndex = 79;
-            this.functionButton3.Text = "执行";
-            this.functionButton3.UseVisualStyleBackColor = false;
-            // 
-            // functionButton4
-            // 
-            this.functionButton4.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.functionButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.functionButton4.EnabledSet = true;
-            this.functionButton4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.functionButton4.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.functionButton4.Location = new System.Drawing.Point(232, 15);
-            this.functionButton4.Name = "functionButton4";
-            this.functionButton4.Size = new System.Drawing.Size(86, 23);
-            this.functionButton4.TabIndex = 78;
-            this.functionButton4.Text = "执行";
-            this.functionButton4.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(102, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 25);
-            this.textBox1.TabIndex = 19;
-            this.textBox1.Text = "0";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(103, 64);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 25);
-            this.textBox3.TabIndex = 18;
-            this.textBox3.Text = "0";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label36.Location = new System.Drawing.Point(16, 69);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(52, 15);
-            this.label36.TabIndex = 15;
-            this.label36.Text = "转动：";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label37.Location = new System.Drawing.Point(6, 19);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(82, 15);
-            this.label37.TabIndex = 2;
-            this.label37.Text = "目标孔位：";
-            // 
-            // groupBox36
-            // 
-            this.groupBox36.Controls.Add(this.label54);
-            this.groupBox36.Controls.Add(this.comboBox2);
-            this.groupBox36.Controls.Add(this.functionButton13);
-            this.groupBox36.Location = new System.Drawing.Point(32, 194);
-            this.groupBox36.Name = "groupBox36";
-            this.groupBox36.Size = new System.Drawing.Size(349, 75);
-            this.groupBox36.TabIndex = 81;
-            this.groupBox36.TabStop = false;
-            this.groupBox36.Text = "压杯电机";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label54.Location = new System.Drawing.Point(9, 29);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(37, 15);
-            this.label54.TabIndex = 60;
-            this.label54.Text = "动作";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
-            "归零",
-            "压杯"});
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "复位",
-            "下降"});
-            this.comboBox2.Location = new System.Drawing.Point(49, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(154, 23);
-            this.comboBox2.TabIndex = 58;
-            // 
-            // functionButton13
-            // 
-            this.functionButton13.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.functionButton13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.functionButton13.EnabledSet = true;
-            this.functionButton13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.functionButton13.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.functionButton13.Location = new System.Drawing.Point(233, 25);
-            this.functionButton13.Name = "functionButton13";
-            this.functionButton13.Size = new System.Drawing.Size(86, 23);
-            this.functionButton13.TabIndex = 77;
-            this.functionButton13.Text = "执行";
-            this.functionButton13.UseVisualStyleBackColor = false;
-            // 
-            // groupBox37
-            // 
-            this.groupBox37.Controls.Add(this.label55);
-            this.groupBox37.Controls.Add(this.comboBox3);
-            this.groupBox37.Controls.Add(this.functionButton14);
-            this.groupBox37.Location = new System.Drawing.Point(32, 271);
-            this.groupBox37.Name = "groupBox37";
-            this.groupBox37.Size = new System.Drawing.Size(349, 78);
-            this.groupBox37.TabIndex = 15;
-            this.groupBox37.TabStop = false;
-            this.groupBox37.Text = "混匀电机";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label55.Location = new System.Drawing.Point(9, 29);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(37, 15);
-            this.label55.TabIndex = 60;
-            this.label55.Text = "动作";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(49, 25);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(154, 23);
-            this.comboBox3.TabIndex = 58;
-            // 
-            // functionButton14
-            // 
-            this.functionButton14.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.functionButton14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.functionButton14.EnabledSet = true;
-            this.functionButton14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.functionButton14.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.functionButton14.Location = new System.Drawing.Point(233, 25);
-            this.functionButton14.Name = "functionButton14";
-            this.functionButton14.Size = new System.Drawing.Size(86, 23);
-            this.functionButton14.TabIndex = 76;
-            this.functionButton14.Text = "执行";
-            this.functionButton14.UseVisualStyleBackColor = false;
-            // 
-            // groupBox38
-            // 
-            this.groupBox38.Controls.Add(this.label56);
-            this.groupBox38.Controls.Add(this.comboBox4);
-            this.groupBox38.Controls.Add(this.functionButton15);
-            this.groupBox38.Location = new System.Drawing.Point(32, 121);
-            this.groupBox38.Name = "groupBox38";
-            this.groupBox38.Size = new System.Drawing.Size(349, 71);
-            this.groupBox38.TabIndex = 13;
-            this.groupBox38.TabStop = false;
-            this.groupBox38.Text = "Z轴电机";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label56.Location = new System.Drawing.Point(9, 29);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(37, 15);
-            this.label56.TabIndex = 60;
-            this.label56.Text = "动作";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.AutoCompleteCustomSource.AddRange(new string[] {
-            "旋转到暂存盘位置",
-            "旋转到温育盘位置",
-            "旋转到清洗盘位置",
-            "旋转到扔管位置"});
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "上（光电位置）",
-            "下"});
-            this.comboBox4.Location = new System.Drawing.Point(50, 25);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(153, 23);
-            this.comboBox4.TabIndex = 58;
-            // 
-            // functionButton15
-            // 
-            this.functionButton15.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.functionButton15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.functionButton15.EnabledSet = true;
-            this.functionButton15.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.functionButton15.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.functionButton15.Location = new System.Drawing.Point(233, 25);
-            this.functionButton15.Name = "functionButton15";
-            this.functionButton15.Size = new System.Drawing.Size(86, 23);
-            this.functionButton15.TabIndex = 77;
-            this.functionButton15.Text = "执行";
-            this.functionButton15.UseVisualStyleBackColor = false;
             // 
             // groupBox39
             // 
@@ -1137,15 +952,16 @@
             this.groupBox39.Controls.Add(this.btnOrbP1Reset);
             this.groupBox39.Controls.Add(this.btnCOrbitReset);
             this.groupBox39.Controls.Add(this.btnOrbAllReset);
-            this.groupBox39.Location = new System.Drawing.Point(4, 247);
+            this.groupBox39.Location = new System.Drawing.Point(4, 271);
             this.groupBox39.Name = "groupBox39";
-            this.groupBox39.Size = new System.Drawing.Size(361, 181);
+            this.groupBox39.Size = new System.Drawing.Size(361, 157);
             this.groupBox39.TabIndex = 87;
             this.groupBox39.TabStop = false;
             this.groupBox39.Text = "快捷操作";
             // 
             // btnHGOrbitReset
             // 
+            this.btnHGOrbitReset.BackColor = System.Drawing.Color.Transparent;
             this.btnHGOrbitReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnHGOrbitReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHGOrbitReset.EnabledSet = true;
@@ -1161,6 +977,7 @@
             // 
             // btnOrbP2Reset
             // 
+            this.btnOrbP2Reset.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbP2Reset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbP2Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbP2Reset.EnabledSet = true;
@@ -1176,6 +993,7 @@
             // 
             // btnOrbRoutIReset
             // 
+            this.btnOrbRoutIReset.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbRoutIReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbRoutIReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbRoutIReset.EnabledSet = true;
@@ -1191,6 +1009,7 @@
             // 
             // btnOrbASPosReset
             // 
+            this.btnOrbASPosReset.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbASPosReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbASPosReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbASPosReset.EnabledSet = true;
@@ -1206,6 +1025,7 @@
             // 
             // btnOrbP1Reset
             // 
+            this.btnOrbP1Reset.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbP1Reset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbP1Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbP1Reset.EnabledSet = true;
@@ -1221,6 +1041,7 @@
             // 
             // btnCOrbitReset
             // 
+            this.btnCOrbitReset.BackColor = System.Drawing.Color.Transparent;
             this.btnCOrbitReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnCOrbitReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCOrbitReset.EnabledSet = true;
@@ -1236,6 +1057,7 @@
             // 
             // btnOrbAllReset
             // 
+            this.btnOrbAllReset.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbAllReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbAllReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbAllReset.EnabledSet = true;
@@ -1251,6 +1073,7 @@
             // 
             // groupBox40
             // 
+            this.groupBox40.Controls.Add(this.btnOrbSaveData);
             this.groupBox40.Controls.Add(this.groupBox41);
             this.groupBox40.Controls.Add(this.btnOrbSave);
             this.groupBox40.Controls.Add(this.btnOrbDsc);
@@ -1263,12 +1086,29 @@
             this.groupBox40.Controls.Add(this.label59);
             this.groupBox40.Controls.Add(this.cmbOrbPos);
             this.groupBox40.Controls.Add(this.label60);
-            this.groupBox40.Location = new System.Drawing.Point(4, 43);
+            this.groupBox40.Location = new System.Drawing.Point(4, 77);
             this.groupBox40.Name = "groupBox40";
-            this.groupBox40.Size = new System.Drawing.Size(361, 193);
+            this.groupBox40.Size = new System.Drawing.Size(361, 183);
             this.groupBox40.TabIndex = 86;
             this.groupBox40.TabStop = false;
             this.groupBox40.Text = "参数设置";
+            // 
+            // btnOrbSaveData
+            // 
+            this.btnOrbSaveData.BackColor = System.Drawing.Color.Transparent;
+            this.btnOrbSaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.btnOrbSaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOrbSaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnOrbSaveData.EnabledSet = true;
+            this.btnOrbSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOrbSaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.btnOrbSaveData.Location = new System.Drawing.Point(190, 150);
+            this.btnOrbSaveData.Name = "btnOrbSaveData";
+            this.btnOrbSaveData.Size = new System.Drawing.Size(108, 27);
+            this.btnOrbSaveData.TabIndex = 82;
+            this.btnOrbSaveData.Text = "保存已有数据";
+            this.btnOrbSaveData.UseVisualStyleBackColor = false;
+            this.btnOrbSaveData.Click += new System.EventHandler(this.btnOrbSaveData_Click);
             // 
             // groupBox41
             // 
@@ -1289,6 +1129,7 @@
             // 
             // functionButton21
             // 
+            this.functionButton21.BackColor = System.Drawing.Color.Transparent;
             this.functionButton21.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton21.Enabled = false;
@@ -1305,6 +1146,7 @@
             // 
             // functionButton22
             // 
+            this.functionButton22.BackColor = System.Drawing.Color.Transparent;
             this.functionButton22.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton22.Enabled = false;
@@ -1321,6 +1163,7 @@
             // 
             // functionButton23
             // 
+            this.functionButton23.BackColor = System.Drawing.Color.Transparent;
             this.functionButton23.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton23.Enabled = false;
@@ -1337,6 +1180,7 @@
             // 
             // functionButton32
             // 
+            this.functionButton32.BackColor = System.Drawing.Color.Transparent;
             this.functionButton32.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton32.Enabled = false;
@@ -1353,6 +1197,7 @@
             // 
             // functionButton33
             // 
+            this.functionButton33.BackColor = System.Drawing.Color.Transparent;
             this.functionButton33.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton33.Enabled = false;
@@ -1369,6 +1214,7 @@
             // 
             // functionButton34
             // 
+            this.functionButton34.BackColor = System.Drawing.Color.Transparent;
             this.functionButton34.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton34.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton34.Enabled = false;
@@ -1385,6 +1231,7 @@
             // 
             // functionButton35
             // 
+            this.functionButton35.BackColor = System.Drawing.Color.Transparent;
             this.functionButton35.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton35.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton35.Enabled = false;
@@ -1401,6 +1248,7 @@
             // 
             // functionButton36
             // 
+            this.functionButton36.BackColor = System.Drawing.Color.Transparent;
             this.functionButton36.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton36.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton36.Enabled = false;
@@ -1417,12 +1265,13 @@
             // 
             // btnOrbSave
             // 
+            this.btnOrbSave.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbSave.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbSave.EnabledSet = true;
             this.btnOrbSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOrbSave.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnOrbSave.Location = new System.Drawing.Point(190, 157);
+            this.btnOrbSave.Location = new System.Drawing.Point(118, 150);
             this.btnOrbSave.Name = "btnOrbSave";
             this.btnOrbSave.Size = new System.Drawing.Size(66, 27);
             this.btnOrbSave.TabIndex = 72;
@@ -1432,6 +1281,7 @@
             // 
             // btnOrbDsc
             // 
+            this.btnOrbDsc.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbDsc.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbDsc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbDsc.EnabledSet = true;
@@ -1447,6 +1297,7 @@
             // 
             // btnOrbInc
             // 
+            this.btnOrbInc.BackColor = System.Drawing.Color.Transparent;
             this.btnOrbInc.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnOrbInc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOrbInc.EnabledSet = true;
@@ -1539,6 +1390,8 @@
             // tabAddSR
             // 
             this.tabAddSR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabAddSR.Controls.Add(this.numMAddSR);
+            this.tabAddSR.Controls.Add(this.label82);
             this.tabAddSR.Controls.Add(this.cmbMAddSR);
             this.tabAddSR.Controls.Add(this.groupBox1);
             this.tabAddSR.Controls.Add(this.label4);
@@ -1552,6 +1405,42 @@
             this.tabAddSR.Text = "加样机";
             this.tabAddSR.UseVisualStyleBackColor = true;
             // 
+            // numMAddSR
+            // 
+            this.numMAddSR.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numMAddSR.Location = new System.Drawing.Point(99, 15);
+            this.numMAddSR.Margin = new System.Windows.Forms.Padding(0);
+            this.numMAddSR.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numMAddSR.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMAddSR.Name = "numMAddSR";
+            this.numMAddSR.Size = new System.Drawing.Size(99, 23);
+            this.numMAddSR.TabIndex = 95;
+            this.numMAddSR.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMAddSR.ValueChanged += new System.EventHandler(this.numMAddSR_ValueChanged);
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label82.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label82.Location = new System.Drawing.Point(14, 18);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(93, 16);
+            this.label82.TabIndex = 94;
+            this.label82.Text = "级联机器：";
+            // 
             // cmbMAddSR
             // 
             this.cmbMAddSR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1559,7 +1448,7 @@
             this.cmbMAddSR.Items.AddRange(new object[] {
             "加试剂针模块",
             "加样针模块"});
-            this.cmbMAddSR.Location = new System.Drawing.Point(87, 6);
+            this.cmbMAddSR.Location = new System.Drawing.Point(99, 49);
             this.cmbMAddSR.Name = "cmbMAddSR";
             this.cmbMAddSR.Size = new System.Drawing.Size(207, 23);
             this.cmbMAddSR.TabIndex = 71;
@@ -1650,6 +1539,7 @@
             // 
             // fbtnAddSR
             // 
+            this.fbtnAddSR.BackColor = System.Drawing.Color.Transparent;
             this.fbtnAddSR.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnAddSR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnAddSR.EnabledSet = true;
@@ -1677,6 +1567,7 @@
             // 
             // fbtnAsPumpEx
             // 
+            this.fbtnAsPumpEx.BackColor = System.Drawing.Color.Transparent;
             this.fbtnAsPumpEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnAsPumpEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnAsPumpEx.EnabledSet = true;
@@ -1745,6 +1636,7 @@
             // 
             // btbAsArmXEx
             // 
+            this.btbAsArmXEx.BackColor = System.Drawing.Color.Transparent;
             this.btbAsArmXEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btbAsArmXEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btbAsArmXEx.EnabledSet = true;
@@ -1839,6 +1731,7 @@
             // 
             // btnRegentTrayEx
             // 
+            this.btnRegentTrayEx.BackColor = System.Drawing.Color.Transparent;
             this.btnRegentTrayEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnRegentTrayEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRegentTrayEx.EnabledSet = true;
@@ -1888,6 +1781,7 @@
             // 
             // btbAsArmZEx
             // 
+            this.btbAsArmZEx.BackColor = System.Drawing.Color.Transparent;
             this.btbAsArmZEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btbAsArmZEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btbAsArmZEx.EnabledSet = true;
@@ -1906,7 +1800,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(22, 9);
+            this.label4.Location = new System.Drawing.Point(31, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 16);
             this.label4.TabIndex = 72;
@@ -1918,15 +1812,16 @@
             this.groupBox45.Controls.Add(this.btnSRZReset);
             this.groupBox45.Controls.Add(this.btnRReset);
             this.groupBox45.Controls.Add(this.btnSRAllReset);
-            this.groupBox45.Location = new System.Drawing.Point(14, 238);
+            this.groupBox45.Location = new System.Drawing.Point(14, 281);
             this.groupBox45.Name = "groupBox45";
-            this.groupBox45.Size = new System.Drawing.Size(355, 197);
+            this.groupBox45.Size = new System.Drawing.Size(355, 154);
             this.groupBox45.TabIndex = 13;
             this.groupBox45.TabStop = false;
             this.groupBox45.Text = "快捷操作";
             // 
             // btnSRXReset
             // 
+            this.btnSRXReset.BackColor = System.Drawing.Color.Transparent;
             this.btnSRXReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSRXReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSRXReset.EnabledSet = true;
@@ -1942,6 +1837,7 @@
             // 
             // btnSRZReset
             // 
+            this.btnSRZReset.BackColor = System.Drawing.Color.Transparent;
             this.btnSRZReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSRZReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSRZReset.EnabledSet = true;
@@ -1957,6 +1853,7 @@
             // 
             // btnRReset
             // 
+            this.btnRReset.BackColor = System.Drawing.Color.Transparent;
             this.btnRReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnRReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRReset.EnabledSet = true;
@@ -1972,6 +1869,7 @@
             // 
             // btnSRAllReset
             // 
+            this.btnSRAllReset.BackColor = System.Drawing.Color.Transparent;
             this.btnSRAllReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSRAllReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSRAllReset.EnabledSet = true;
@@ -1987,6 +1885,7 @@
             // 
             // groupBox42
             // 
+            this.groupBox42.Controls.Add(this.btnSRInaveData);
             this.groupBox42.Controls.Add(this.btnSRInave);
             this.groupBox42.Controls.Add(this.btnSRDec);
             this.groupBox42.Controls.Add(this.btnSRInc);
@@ -1998,21 +1897,39 @@
             this.groupBox42.Controls.Add(this.label1);
             this.groupBox42.Controls.Add(this.cmbAddSRPos);
             this.groupBox42.Controls.Add(this.label67);
-            this.groupBox42.Location = new System.Drawing.Point(14, 37);
+            this.groupBox42.Location = new System.Drawing.Point(14, 82);
             this.groupBox42.Name = "groupBox42";
             this.groupBox42.Size = new System.Drawing.Size(349, 193);
             this.groupBox42.TabIndex = 1;
             this.groupBox42.TabStop = false;
             this.groupBox42.Text = "参数设置";
             // 
+            // btnSRInaveData
+            // 
+            this.btnSRInaveData.BackColor = System.Drawing.Color.Transparent;
+            this.btnSRInaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.btnSRInaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSRInaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnSRInaveData.EnabledSet = true;
+            this.btnSRInaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSRInaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.btnSRInaveData.Location = new System.Drawing.Point(190, 157);
+            this.btnSRInaveData.Name = "btnSRInaveData";
+            this.btnSRInaveData.Size = new System.Drawing.Size(108, 27);
+            this.btnSRInaveData.TabIndex = 83;
+            this.btnSRInaveData.Text = "保存已有数据";
+            this.btnSRInaveData.UseVisualStyleBackColor = false;
+            this.btnSRInaveData.Click += new System.EventHandler(this.btnSRInaveData_Click);
+            // 
             // btnSRInave
             // 
+            this.btnSRInave.BackColor = System.Drawing.Color.Transparent;
             this.btnSRInave.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSRInave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSRInave.EnabledSet = true;
             this.btnSRInave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSRInave.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnSRInave.Location = new System.Drawing.Point(190, 157);
+            this.btnSRInave.Location = new System.Drawing.Point(118, 157);
             this.btnSRInave.Name = "btnSRInave";
             this.btnSRInave.Size = new System.Drawing.Size(66, 27);
             this.btnSRInave.TabIndex = 72;
@@ -2022,6 +1939,7 @@
             // 
             // btnSRDec
             // 
+            this.btnSRDec.BackColor = System.Drawing.Color.Transparent;
             this.btnSRDec.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSRDec.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSRDec.EnabledSet = true;
@@ -2037,6 +1955,7 @@
             // 
             // btnSRInc
             // 
+            this.btnSRInc.BackColor = System.Drawing.Color.Transparent;
             this.btnSRInc.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSRInc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSRInc.EnabledSet = true;
@@ -2126,6 +2045,8 @@
             // 
             // tabMove
             // 
+            this.tabMove.Controls.Add(this.numMMove);
+            this.tabMove.Controls.Add(this.label83);
             this.tabMove.Controls.Add(this.cmbMMove);
             this.tabMove.Controls.Add(this.groupBox2);
             this.tabMove.Controls.Add(this.label9);
@@ -2139,6 +2060,42 @@
             this.tabMove.Text = "移管手/理杯机";
             this.tabMove.UseVisualStyleBackColor = true;
             // 
+            // numMMove
+            // 
+            this.numMMove.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numMMove.Location = new System.Drawing.Point(89, 3);
+            this.numMMove.Margin = new System.Windows.Forms.Padding(0);
+            this.numMMove.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numMMove.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMMove.Name = "numMMove";
+            this.numMMove.Size = new System.Drawing.Size(60, 23);
+            this.numMMove.TabIndex = 97;
+            this.numMMove.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMMove.ValueChanged += new System.EventHandler(this.numMMove_ValueChanged);
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label83.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label83.Location = new System.Drawing.Point(7, 6);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(93, 16);
+            this.label83.TabIndex = 96;
+            this.label83.Text = "级联机器：";
+            // 
             // cmbMMove
             // 
             this.cmbMMove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -2146,7 +2103,7 @@
             this.cmbMMove.Items.AddRange(new object[] {
             "理杯机/移管手",
             "移管手"});
-            this.cmbMMove.Location = new System.Drawing.Point(89, 3);
+            this.cmbMMove.Location = new System.Drawing.Point(89, 32);
             this.cmbMMove.Name = "cmbMMove";
             this.cmbMMove.Size = new System.Drawing.Size(207, 23);
             this.cmbMMove.TabIndex = 76;
@@ -2199,6 +2156,7 @@
             // 
             // btnPutCup
             // 
+            this.btnPutCup.BackColor = System.Drawing.Color.Transparent;
             this.btnPutCup.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnPutCup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPutCup.EnabledSet = true;
@@ -2251,6 +2209,7 @@
             // 
             // btnMoveY
             // 
+            this.btnMoveY.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveY.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveY.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveY.EnabledSet = true;
@@ -2290,6 +2249,7 @@
             // 
             // btnMoveX
             // 
+            this.btnMoveX.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveX.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveX.EnabledSet = true;
@@ -2308,7 +2268,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(24, 6);
+            this.label9.Location = new System.Drawing.Point(24, 35);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(76, 16);
             this.label9.TabIndex = 77;
@@ -2325,21 +2285,22 @@
             this.groupBox7.Controls.Add(this.fbtnSDiskTurn);
             this.groupBox7.Controls.Add(this.btnPutCupInit);
             this.groupBox7.Controls.Add(this.btnMoveAllReset);
-            this.groupBox7.Location = new System.Drawing.Point(17, 229);
+            this.groupBox7.Location = new System.Drawing.Point(17, 233);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(355, 221);
+            this.groupBox7.Size = new System.Drawing.Size(349, 217);
             this.groupBox7.TabIndex = 74;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "快捷操作";
             // 
             // fbtnInTubeReset
             // 
+            this.fbtnInTubeReset.BackColor = System.Drawing.Color.Transparent;
             this.fbtnInTubeReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnInTubeReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnInTubeReset.EnabledSet = true;
             this.fbtnInTubeReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.fbtnInTubeReset.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnInTubeReset.Location = new System.Drawing.Point(19, 172);
+            this.fbtnInTubeReset.Location = new System.Drawing.Point(19, 169);
             this.fbtnInTubeReset.Name = "fbtnInTubeReset";
             this.fbtnInTubeReset.Size = new System.Drawing.Size(129, 28);
             this.fbtnInTubeReset.TabIndex = 82;
@@ -2349,12 +2310,13 @@
             // 
             // btnHandClose
             // 
+            this.btnHandClose.BackColor = System.Drawing.Color.Transparent;
             this.btnHandClose.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnHandClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHandClose.EnabledSet = true;
             this.btnHandClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHandClose.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnHandClose.Location = new System.Drawing.Point(19, 98);
+            this.btnHandClose.Location = new System.Drawing.Point(19, 95);
             this.btnHandClose.Name = "btnHandClose";
             this.btnHandClose.Size = new System.Drawing.Size(129, 28);
             this.btnHandClose.TabIndex = 84;
@@ -2364,12 +2326,13 @@
             // 
             // btnHandOpen
             // 
+            this.btnHandOpen.BackColor = System.Drawing.Color.Transparent;
             this.btnHandOpen.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnHandOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHandOpen.EnabledSet = true;
             this.btnHandOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHandOpen.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnHandOpen.Location = new System.Drawing.Point(19, 61);
+            this.btnHandOpen.Location = new System.Drawing.Point(19, 58);
             this.btnHandOpen.Name = "btnHandOpen";
             this.btnHandOpen.Size = new System.Drawing.Size(129, 28);
             this.btnHandOpen.TabIndex = 83;
@@ -2379,12 +2342,13 @@
             // 
             // btnSDickInit
             // 
+            this.btnSDickInit.BackColor = System.Drawing.Color.Transparent;
             this.btnSDickInit.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSDickInit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSDickInit.EnabledSet = true;
             this.btnSDickInit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSDickInit.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnSDickInit.Location = new System.Drawing.Point(190, 98);
+            this.btnSDickInit.Location = new System.Drawing.Point(190, 95);
             this.btnSDickInit.Name = "btnSDickInit";
             this.btnSDickInit.Size = new System.Drawing.Size(129, 28);
             this.btnSDickInit.TabIndex = 82;
@@ -2394,12 +2358,13 @@
             // 
             // btnMoveXReset
             // 
+            this.btnMoveXReset.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveXReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveXReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveXReset.EnabledSet = true;
             this.btnMoveXReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMoveXReset.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnMoveXReset.Location = new System.Drawing.Point(190, 24);
+            this.btnMoveXReset.Location = new System.Drawing.Point(190, 21);
             this.btnMoveXReset.Name = "btnMoveXReset";
             this.btnMoveXReset.Size = new System.Drawing.Size(129, 28);
             this.btnMoveXReset.TabIndex = 81;
@@ -2409,12 +2374,13 @@
             // 
             // btnMoveZReset
             // 
+            this.btnMoveZReset.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveZReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveZReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveZReset.EnabledSet = true;
             this.btnMoveZReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMoveZReset.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnMoveZReset.Location = new System.Drawing.Point(190, 61);
+            this.btnMoveZReset.Location = new System.Drawing.Point(190, 58);
             this.btnMoveZReset.Name = "btnMoveZReset";
             this.btnMoveZReset.Size = new System.Drawing.Size(129, 28);
             this.btnMoveZReset.TabIndex = 80;
@@ -2424,12 +2390,13 @@
             // 
             // fbtnSDiskTurn
             // 
+            this.fbtnSDiskTurn.BackColor = System.Drawing.Color.Transparent;
             this.fbtnSDiskTurn.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnSDiskTurn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnSDiskTurn.EnabledSet = true;
             this.fbtnSDiskTurn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.fbtnSDiskTurn.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnSDiskTurn.Location = new System.Drawing.Point(190, 135);
+            this.fbtnSDiskTurn.Location = new System.Drawing.Point(190, 132);
             this.fbtnSDiskTurn.Name = "fbtnSDiskTurn";
             this.fbtnSDiskTurn.Size = new System.Drawing.Size(129, 28);
             this.fbtnSDiskTurn.TabIndex = 79;
@@ -2439,12 +2406,13 @@
             // 
             // btnPutCupInit
             // 
+            this.btnPutCupInit.BackColor = System.Drawing.Color.Transparent;
             this.btnPutCupInit.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnPutCupInit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPutCupInit.EnabledSet = true;
             this.btnPutCupInit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPutCupInit.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnPutCupInit.Location = new System.Drawing.Point(19, 135);
+            this.btnPutCupInit.Location = new System.Drawing.Point(19, 132);
             this.btnPutCupInit.Name = "btnPutCupInit";
             this.btnPutCupInit.Size = new System.Drawing.Size(129, 28);
             this.btnPutCupInit.TabIndex = 78;
@@ -2454,12 +2422,13 @@
             // 
             // btnMoveAllReset
             // 
+            this.btnMoveAllReset.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveAllReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveAllReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveAllReset.EnabledSet = true;
             this.btnMoveAllReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMoveAllReset.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnMoveAllReset.Location = new System.Drawing.Point(19, 24);
+            this.btnMoveAllReset.Location = new System.Drawing.Point(19, 21);
             this.btnMoveAllReset.Name = "btnMoveAllReset";
             this.btnMoveAllReset.Size = new System.Drawing.Size(129, 28);
             this.btnMoveAllReset.TabIndex = 73;
@@ -2469,6 +2438,7 @@
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.btnMoveSaveData);
             this.groupBox10.Controls.Add(this.btnMoveSave);
             this.groupBox10.Controls.Add(this.btnMoveDec);
             this.groupBox10.Controls.Add(this.btnMoveInc);
@@ -2480,21 +2450,39 @@
             this.groupBox10.Controls.Add(this.label17);
             this.groupBox10.Controls.Add(this.cmbMovePos);
             this.groupBox10.Controls.Add(this.label18);
-            this.groupBox10.Location = new System.Drawing.Point(17, 32);
+            this.groupBox10.Location = new System.Drawing.Point(17, 62);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(349, 193);
+            this.groupBox10.Size = new System.Drawing.Size(349, 167);
             this.groupBox10.TabIndex = 73;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "参数设置";
             // 
+            // btnMoveSaveData
+            // 
+            this.btnMoveSaveData.BackColor = System.Drawing.Color.Transparent;
+            this.btnMoveSaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.btnMoveSaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMoveSaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnMoveSaveData.EnabledSet = true;
+            this.btnMoveSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMoveSaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.btnMoveSaveData.Location = new System.Drawing.Point(190, 137);
+            this.btnMoveSaveData.Name = "btnMoveSaveData";
+            this.btnMoveSaveData.Size = new System.Drawing.Size(108, 27);
+            this.btnMoveSaveData.TabIndex = 84;
+            this.btnMoveSaveData.Text = "保存已有数据";
+            this.btnMoveSaveData.UseVisualStyleBackColor = false;
+            this.btnMoveSaveData.Click += new System.EventHandler(this.btnMoveSaveData_Click);
+            // 
             // btnMoveSave
             // 
+            this.btnMoveSave.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveSave.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveSave.EnabledSet = true;
             this.btnMoveSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMoveSave.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnMoveSave.Location = new System.Drawing.Point(190, 157);
+            this.btnMoveSave.Location = new System.Drawing.Point(118, 137);
             this.btnMoveSave.Name = "btnMoveSave";
             this.btnMoveSave.Size = new System.Drawing.Size(66, 27);
             this.btnMoveSave.TabIndex = 72;
@@ -2504,12 +2492,13 @@
             // 
             // btnMoveDec
             // 
+            this.btnMoveDec.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveDec.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveDec.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveDec.EnabledSet = true;
             this.btnMoveDec.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMoveDec.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnMoveDec.Location = new System.Drawing.Point(226, 113);
+            this.btnMoveDec.Location = new System.Drawing.Point(226, 102);
             this.btnMoveDec.Name = "btnMoveDec";
             this.btnMoveDec.Size = new System.Drawing.Size(30, 26);
             this.btnMoveDec.TabIndex = 71;
@@ -2519,12 +2508,13 @@
             // 
             // btnMoveInc
             // 
+            this.btnMoveInc.BackColor = System.Drawing.Color.Transparent;
             this.btnMoveInc.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnMoveInc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMoveInc.EnabledSet = true;
             this.btnMoveInc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnMoveInc.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnMoveInc.Location = new System.Drawing.Point(190, 113);
+            this.btnMoveInc.Location = new System.Drawing.Point(190, 102);
             this.btnMoveInc.Name = "btnMoveInc";
             this.btnMoveInc.Size = new System.Drawing.Size(30, 26);
             this.btnMoveInc.TabIndex = 6;
@@ -2534,7 +2524,7 @@
             // 
             // txtMoveIncValue
             // 
-            this.txtMoveIncValue.Location = new System.Drawing.Point(85, 114);
+            this.txtMoveIncValue.Location = new System.Drawing.Point(85, 103);
             this.txtMoveIncValue.Name = "txtMoveIncValue";
             this.txtMoveIncValue.Size = new System.Drawing.Size(99, 25);
             this.txtMoveIncValue.TabIndex = 70;
@@ -2542,7 +2532,7 @@
             // txtMoveCurValue
             // 
             this.txtMoveCurValue.Enabled = false;
-            this.txtMoveCurValue.Location = new System.Drawing.Point(85, 85);
+            this.txtMoveCurValue.Location = new System.Drawing.Point(85, 74);
             this.txtMoveCurValue.Name = "txtMoveCurValue";
             this.txtMoveCurValue.Size = new System.Drawing.Size(99, 25);
             this.txtMoveCurValue.TabIndex = 69;
@@ -2551,7 +2541,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(16, 90);
+            this.label10.Location = new System.Drawing.Point(16, 79);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 15);
             this.label10.TabIndex = 68;
@@ -2561,7 +2551,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label16.Location = new System.Drawing.Point(30, 119);
+            this.label16.Location = new System.Drawing.Point(30, 108);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(52, 15);
             this.label16.TabIndex = 66;
@@ -2571,7 +2561,7 @@
             // 
             this.cmbMoveElecMachine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMoveElecMachine.FormattingEnabled = true;
-            this.cmbMoveElecMachine.Location = new System.Drawing.Point(85, 55);
+            this.cmbMoveElecMachine.Location = new System.Drawing.Point(85, 46);
             this.cmbMoveElecMachine.Name = "cmbMoveElecMachine";
             this.cmbMoveElecMachine.Size = new System.Drawing.Size(160, 23);
             this.cmbMoveElecMachine.TabIndex = 2;
@@ -2580,7 +2570,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label17.Location = new System.Drawing.Point(30, 58);
+            this.label17.Location = new System.Drawing.Point(30, 50);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(52, 15);
             this.label17.TabIndex = 3;
@@ -2590,7 +2580,7 @@
             // 
             this.cmbMovePos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMovePos.FormattingEnabled = true;
-            this.cmbMovePos.Location = new System.Drawing.Point(85, 24);
+            this.cmbMovePos.Location = new System.Drawing.Point(85, 17);
             this.cmbMovePos.Name = "cmbMovePos";
             this.cmbMovePos.Size = new System.Drawing.Size(234, 23);
             this.cmbMovePos.TabIndex = 0;
@@ -2600,7 +2590,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label18.Location = new System.Drawing.Point(16, 27);
+            this.label18.Location = new System.Drawing.Point(16, 21);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(67, 15);
             this.label18.TabIndex = 1;
@@ -2608,6 +2598,8 @@
             // 
             // TabIncubation
             // 
+            this.TabIncubation.Controls.Add(this.numMIncubation);
+            this.TabIncubation.Controls.Add(this.label84);
             this.TabIncubation.Controls.Add(this.GB1);
             this.TabIncubation.Controls.Add(this.groupBox13);
             this.TabIncubation.Controls.Add(this.groupBox3);
@@ -2619,6 +2611,42 @@
             this.TabIncubation.TabIndex = 2;
             this.TabIncubation.Text = "温育盘";
             this.TabIncubation.UseVisualStyleBackColor = true;
+            // 
+            // numMIncubation
+            // 
+            this.numMIncubation.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numMIncubation.Location = new System.Drawing.Point(92, 8);
+            this.numMIncubation.Margin = new System.Windows.Forms.Padding(0);
+            this.numMIncubation.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numMIncubation.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMIncubation.Name = "numMIncubation";
+            this.numMIncubation.Size = new System.Drawing.Size(60, 23);
+            this.numMIncubation.TabIndex = 99;
+            this.numMIncubation.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMIncubation.ValueChanged += new System.EventHandler(this.numMIncubation_ValueChanged);
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label84.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label84.Location = new System.Drawing.Point(10, 11);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(93, 16);
+            this.label84.TabIndex = 98;
+            this.label84.Text = "级联机器：";
             // 
             // GB1
             // 
@@ -2648,6 +2676,7 @@
             // 
             // fbtnInTubeCS
             // 
+            this.fbtnInTubeCS.BackColor = System.Drawing.Color.Transparent;
             this.fbtnInTubeCS.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnInTubeCS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnInTubeCS.Enabled = false;
@@ -2664,6 +2693,7 @@
             // 
             // fbtnInTubeClear
             // 
+            this.fbtnInTubeClear.BackColor = System.Drawing.Color.Transparent;
             this.fbtnInTubeClear.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnInTubeClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnInTubeClear.EnabledSet = true;
@@ -2739,6 +2769,7 @@
             // 
             // btnPressCup
             // 
+            this.btnPressCup.BackColor = System.Drawing.Color.Transparent;
             this.btnPressCup.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnPressCup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPressCup.EnabledSet = true;
@@ -2783,6 +2814,7 @@
             // 
             // fbtnMixTurnNum
             // 
+            this.fbtnMixTurnNum.BackColor = System.Drawing.Color.Transparent;
             this.fbtnMixTurnNum.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnMixTurnNum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnMixTurnNum.EnabledSet = true;
@@ -2837,6 +2869,7 @@
             // 
             // fbtnMixArm
             // 
+            this.fbtnMixArm.BackColor = System.Drawing.Color.Transparent;
             this.fbtnMixArm.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnMixArm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnMixArm.EnabledSet = true;
@@ -2865,6 +2898,7 @@
             // 
             // btnIYInit
             // 
+            this.btnIYInit.BackColor = System.Drawing.Color.Transparent;
             this.btnIYInit.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnIYInit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnIYInit.EnabledSet = true;
@@ -2880,6 +2914,7 @@
             // 
             // fbtnMixStart
             // 
+            this.fbtnMixStart.BackColor = System.Drawing.Color.Transparent;
             this.fbtnMixStart.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnMixStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnMixStart.EnabledSet = true;
@@ -2895,6 +2930,7 @@
             // 
             // fbtnPressCupZero
             // 
+            this.fbtnPressCupZero.BackColor = System.Drawing.Color.Transparent;
             this.fbtnPressCupZero.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnPressCupZero.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnPressCupZero.EnabledSet = true;
@@ -2910,6 +2946,7 @@
             // 
             // btnIAllInit
             // 
+            this.btnIAllInit.BackColor = System.Drawing.Color.Transparent;
             this.btnIAllInit.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnIAllInit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnIAllInit.EnabledSet = true;
@@ -2925,6 +2962,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnISaveData);
             this.groupBox3.Controls.Add(this.btnISave);
             this.groupBox3.Controls.Add(this.btnISub);
             this.groupBox3.Controls.Add(this.btnIAdd);
@@ -2936,21 +2974,22 @@
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.CmbIpara);
             this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Location = new System.Drawing.Point(21, 41);
+            this.groupBox3.Location = new System.Drawing.Point(21, 75);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(349, 212);
+            this.groupBox3.Size = new System.Drawing.Size(349, 182);
             this.groupBox3.TabIndex = 78;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "参数设置";
             // 
             // btnISave
             // 
+            this.btnISave.BackColor = System.Drawing.Color.Transparent;
             this.btnISave.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnISave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnISave.EnabledSet = true;
             this.btnISave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnISave.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnISave.Location = new System.Drawing.Point(190, 157);
+            this.btnISave.Location = new System.Drawing.Point(118, 149);
             this.btnISave.Name = "btnISave";
             this.btnISave.Size = new System.Drawing.Size(66, 27);
             this.btnISave.TabIndex = 72;
@@ -2960,6 +2999,7 @@
             // 
             // btnISub
             // 
+            this.btnISub.BackColor = System.Drawing.Color.Transparent;
             this.btnISub.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnISub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnISub.EnabledSet = true;
@@ -2975,6 +3015,7 @@
             // 
             // btnIAdd
             // 
+            this.btnIAdd.BackColor = System.Drawing.Color.Transparent;
             this.btnIAdd.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnIAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnIAdd.EnabledSet = true;
@@ -3075,7 +3116,7 @@
             this.cmbMIncubation.Items.AddRange(new object[] {
             "温育盘(外)",
             "温育盘(内)"});
-            this.cmbMIncubation.Location = new System.Drawing.Point(92, 8);
+            this.cmbMIncubation.Location = new System.Drawing.Point(92, 40);
             this.cmbMIncubation.Name = "cmbMIncubation";
             this.cmbMIncubation.Size = new System.Drawing.Size(207, 23);
             this.cmbMIncubation.TabIndex = 79;
@@ -3086,7 +3127,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(27, 11);
+            this.label6.Location = new System.Drawing.Point(27, 43);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 16);
             this.label6.TabIndex = 80;
@@ -3094,6 +3135,8 @@
             // 
             // TabWashTray
             // 
+            this.TabWashTray.Controls.Add(this.numMWash);
+            this.TabWashTray.Controls.Add(this.label85);
             this.TabWashTray.Controls.Add(this.groupBox17);
             this.TabWashTray.Controls.Add(this.groupBox21);
             this.TabWashTray.Controls.Add(this.groupBox22);
@@ -3103,6 +3146,42 @@
             this.TabWashTray.TabIndex = 3;
             this.TabWashTray.Text = "清洗盘";
             this.TabWashTray.UseVisualStyleBackColor = true;
+            // 
+            // numMWash
+            // 
+            this.numMWash.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numMWash.Location = new System.Drawing.Point(88, 5);
+            this.numMWash.Margin = new System.Windows.Forms.Padding(0);
+            this.numMWash.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numMWash.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMWash.Name = "numMWash";
+            this.numMWash.Size = new System.Drawing.Size(60, 23);
+            this.numMWash.TabIndex = 101;
+            this.numMWash.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMWash.ValueChanged += new System.EventHandler(this.numMWash_ValueChanged);
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label85.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label85.Location = new System.Drawing.Point(3, 8);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(93, 16);
+            this.label85.TabIndex = 100;
+            this.label85.Text = "级联机器：";
             // 
             // groupBox17
             // 
@@ -3154,6 +3233,7 @@
             // 
             // fbtnPeristalticPEx
             // 
+            this.fbtnPeristalticPEx.BackColor = System.Drawing.Color.Transparent;
             this.fbtnPeristalticPEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnPeristalticPEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnPeristalticPEx.EnabledSet = true;
@@ -3185,6 +3265,7 @@
             // 
             // btnLoopTurn
             // 
+            this.btnLoopTurn.BackColor = System.Drawing.Color.Transparent;
             this.btnLoopTurn.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnLoopTurn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLoopTurn.EnabledSet = true;
@@ -3200,6 +3281,7 @@
             // 
             // btnWashTurn
             // 
+            this.btnWashTurn.BackColor = System.Drawing.Color.Transparent;
             this.btnWashTurn.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnWashTurn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnWashTurn.EnabledSet = true;
@@ -3215,6 +3297,7 @@
             // 
             // fbtnHoleTarget
             // 
+            this.fbtnHoleTarget.BackColor = System.Drawing.Color.Transparent;
             this.fbtnHoleTarget.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnHoleTarget.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnHoleTarget.EnabledSet = true;
@@ -3303,6 +3386,7 @@
             // 
             // fbtnWashPressCupEx
             // 
+            this.fbtnWashPressCupEx.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashPressCupEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashPressCupEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashPressCupEx.EnabledSet = true;
@@ -3352,6 +3436,7 @@
             // 
             // btnWashMix
             // 
+            this.btnWashMix.BackColor = System.Drawing.Color.Transparent;
             this.btnWashMix.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnWashMix.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnWashMix.EnabledSet = true;
@@ -3406,6 +3491,7 @@
             // 
             // fbtnWashZEx
             // 
+            this.fbtnWashZEx.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashZEx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashZEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashZEx.EnabledSet = true;
@@ -3427,15 +3513,16 @@
             this.groupBox21.Controls.Add(this.fbtnWashTrayReset);
             this.groupBox21.Controls.Add(this.fbtnWashPressCupReset);
             this.groupBox21.Controls.Add(this.fbtnWashReset);
-            this.groupBox21.Location = new System.Drawing.Point(4, 200);
+            this.groupBox21.Location = new System.Drawing.Point(4, 249);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(361, 221);
+            this.groupBox21.Size = new System.Drawing.Size(361, 172);
             this.groupBox21.TabIndex = 84;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "快捷操作";
             // 
             // fbtnWashTubeCS
             // 
+            this.fbtnWashTubeCS.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashTubeCS.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashTubeCS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashTubeCS.Enabled = false;
@@ -3452,6 +3539,7 @@
             // 
             // fbtnWashTubeClear
             // 
+            this.fbtnWashTubeClear.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashTubeClear.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashTubeClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashTubeClear.EnabledSet = true;
@@ -3467,6 +3555,7 @@
             // 
             // fbtnWashZReset
             // 
+            this.fbtnWashZReset.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashZReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashZReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashZReset.EnabledSet = true;
@@ -3482,6 +3571,7 @@
             // 
             // fbtnWashTrayReset
             // 
+            this.fbtnWashTrayReset.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashTrayReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashTrayReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashTrayReset.EnabledSet = true;
@@ -3497,6 +3587,7 @@
             // 
             // fbtnWashPressCupReset
             // 
+            this.fbtnWashPressCupReset.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashPressCupReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashPressCupReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashPressCupReset.EnabledSet = true;
@@ -3512,6 +3603,7 @@
             // 
             // fbtnWashReset
             // 
+            this.fbtnWashReset.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashReset.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashReset.EnabledSet = true;
@@ -3527,6 +3619,7 @@
             // 
             // groupBox22
             // 
+            this.groupBox22.Controls.Add(this.fbtnWashSaveData);
             this.groupBox22.Controls.Add(this.groupBox23);
             this.groupBox22.Controls.Add(this.fbtnWashSave);
             this.groupBox22.Controls.Add(this.fbtnWashSub);
@@ -3539,7 +3632,7 @@
             this.groupBox22.Controls.Add(this.label30);
             this.groupBox22.Controls.Add(this.cmbWashPara);
             this.groupBox22.Controls.Add(this.label31);
-            this.groupBox22.Location = new System.Drawing.Point(4, 4);
+            this.groupBox22.Location = new System.Drawing.Point(4, 46);
             this.groupBox22.Name = "groupBox22";
             this.groupBox22.Size = new System.Drawing.Size(361, 193);
             this.groupBox22.TabIndex = 83;
@@ -3565,6 +3658,7 @@
             // 
             // functionButton24
             // 
+            this.functionButton24.BackColor = System.Drawing.Color.Transparent;
             this.functionButton24.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton24.Enabled = false;
@@ -3581,6 +3675,7 @@
             // 
             // functionButton25
             // 
+            this.functionButton25.BackColor = System.Drawing.Color.Transparent;
             this.functionButton25.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton25.Enabled = false;
@@ -3597,6 +3692,7 @@
             // 
             // functionButton26
             // 
+            this.functionButton26.BackColor = System.Drawing.Color.Transparent;
             this.functionButton26.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton26.Enabled = false;
@@ -3613,6 +3709,7 @@
             // 
             // functionButton27
             // 
+            this.functionButton27.BackColor = System.Drawing.Color.Transparent;
             this.functionButton27.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton27.Enabled = false;
@@ -3629,6 +3726,7 @@
             // 
             // functionButton28
             // 
+            this.functionButton28.BackColor = System.Drawing.Color.Transparent;
             this.functionButton28.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton28.Enabled = false;
@@ -3645,6 +3743,7 @@
             // 
             // functionButton29
             // 
+            this.functionButton29.BackColor = System.Drawing.Color.Transparent;
             this.functionButton29.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton29.Enabled = false;
@@ -3661,6 +3760,7 @@
             // 
             // functionButton30
             // 
+            this.functionButton30.BackColor = System.Drawing.Color.Transparent;
             this.functionButton30.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton30.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton30.Enabled = false;
@@ -3677,6 +3777,7 @@
             // 
             // functionButton31
             // 
+            this.functionButton31.BackColor = System.Drawing.Color.Transparent;
             this.functionButton31.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.functionButton31.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton31.Enabled = false;
@@ -3693,12 +3794,13 @@
             // 
             // fbtnWashSave
             // 
+            this.fbtnWashSave.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashSave.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashSave.EnabledSet = true;
             this.fbtnWashSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.fbtnWashSave.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnWashSave.Location = new System.Drawing.Point(190, 157);
+            this.fbtnWashSave.Location = new System.Drawing.Point(118, 157);
             this.fbtnWashSave.Name = "fbtnWashSave";
             this.fbtnWashSave.Size = new System.Drawing.Size(66, 27);
             this.fbtnWashSave.TabIndex = 72;
@@ -3708,6 +3810,7 @@
             // 
             // fbtnWashSub
             // 
+            this.fbtnWashSub.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashSub.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashSub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashSub.EnabledSet = true;
@@ -3723,6 +3826,7 @@
             // 
             // fbtnWashAdd
             // 
+            this.fbtnWashAdd.BackColor = System.Drawing.Color.Transparent;
             this.fbtnWashAdd.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnWashAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnWashAdd.EnabledSet = true;
@@ -3820,6 +3924,8 @@
             // 
             // TabPhoton
             // 
+            this.TabPhoton.Controls.Add(this.numMRead);
+            this.TabPhoton.Controls.Add(this.label87);
             this.TabPhoton.Controls.Add(this.groupBox28);
             this.TabPhoton.Controls.Add(this.groupBox29);
             this.TabPhoton.Controls.Add(this.groupBox30);
@@ -3830,6 +3936,42 @@
             this.TabPhoton.TabIndex = 4;
             this.TabPhoton.Text = "光子板/扫码器/烧录";
             this.TabPhoton.UseVisualStyleBackColor = true;
+            // 
+            // numMRead
+            // 
+            this.numMRead.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numMRead.Location = new System.Drawing.Point(96, 13);
+            this.numMRead.Margin = new System.Windows.Forms.Padding(0);
+            this.numMRead.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numMRead.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMRead.Name = "numMRead";
+            this.numMRead.Size = new System.Drawing.Size(60, 23);
+            this.numMRead.TabIndex = 103;
+            this.numMRead.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numMRead.ValueChanged += new System.EventHandler(this.numMRead_ValueChanged);
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label87.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label87.Location = new System.Drawing.Point(11, 16);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(93, 16);
+            this.label87.TabIndex = 102;
+            this.label87.Text = "级联机器：";
             // 
             // groupBox28
             // 
@@ -3849,6 +3991,7 @@
             // 
             // btnZx
             // 
+            this.btnZx.BackColor = System.Drawing.Color.Transparent;
             this.btnZx.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnZx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnZx.EnabledSet = true;
@@ -3864,6 +4007,7 @@
             // 
             // btnReadNum
             // 
+            this.btnReadNum.BackColor = System.Drawing.Color.Transparent;
             this.btnReadNum.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnReadNum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReadNum.EnabledSet = true;
@@ -3972,6 +4116,7 @@
             // 
             // btnLoadProgram
             // 
+            this.btnLoadProgram.BackColor = System.Drawing.Color.Transparent;
             this.btnLoadProgram.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnLoadProgram.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLoadProgram.EnabledSet = true;
@@ -3987,6 +4132,7 @@
             // 
             // btnSelectBin
             // 
+            this.btnSelectBin.BackColor = System.Drawing.Color.Transparent;
             this.btnSelectBin.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSelectBin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSelectBin.EnabledSet = true;
@@ -4099,15 +4245,16 @@
             this.groupBox30.Controls.Add(this.nudSpCodePos);
             this.groupBox30.Controls.Add(this.label53);
             this.groupBox30.Controls.Add(this.txtSpCode);
-            this.groupBox30.Location = new System.Drawing.Point(16, 331);
+            this.groupBox30.Location = new System.Drawing.Point(16, 340);
             this.groupBox30.Name = "groupBox30";
-            this.groupBox30.Size = new System.Drawing.Size(302, 95);
+            this.groupBox30.Size = new System.Drawing.Size(302, 86);
             this.groupBox30.TabIndex = 8;
             this.groupBox30.TabStop = false;
             this.groupBox30.Text = "扫码器";
             // 
             // btnScanSpCode
             // 
+            this.btnScanSpCode.BackColor = System.Drawing.Color.Transparent;
             this.btnScanSpCode.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnScanSpCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnScanSpCode.EnabledSet = true;
@@ -4183,12 +4330,28 @@
             this.groupBox27.Controls.Add(this.label39);
             this.groupBox27.Controls.Add(this.txtReadShow);
             this.groupBox27.Controls.Add(this.label42);
-            this.groupBox27.Location = new System.Drawing.Point(3, 3);
+            this.groupBox27.Location = new System.Drawing.Point(3, 47);
             this.groupBox27.Name = "groupBox27";
-            this.groupBox27.Size = new System.Drawing.Size(302, 321);
+            this.groupBox27.Size = new System.Drawing.Size(302, 288);
             this.groupBox27.TabIndex = 4;
             this.groupBox27.TabStop = false;
             this.groupBox27.Text = "光子板";
+            // 
+            // fbtnReadEnd
+            // 
+            this.fbtnReadEnd.BackColor = System.Drawing.Color.Transparent;
+            this.fbtnReadEnd.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.fbtnReadEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fbtnReadEnd.EnabledSet = true;
+            this.fbtnReadEnd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.fbtnReadEnd.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.fbtnReadEnd.Location = new System.Drawing.Point(233, 260);
+            this.fbtnReadEnd.Name = "fbtnReadEnd";
+            this.fbtnReadEnd.Size = new System.Drawing.Size(50, 23);
+            this.fbtnReadEnd.TabIndex = 84;
+            this.fbtnReadEnd.Text = "结束";
+            this.fbtnReadEnd.UseVisualStyleBackColor = false;
+            this.fbtnReadEnd.Click += new System.EventHandler(this.fbtnReadEnd_Click);
             // 
             // chkInTubeClear
             // 
@@ -4234,7 +4397,7 @@
             // chbReadExport
             // 
             this.chbReadExport.AutoSize = true;
-            this.chbReadExport.Location = new System.Drawing.Point(117, 285);
+            this.chbReadExport.Location = new System.Drawing.Point(117, 262);
             this.chbReadExport.Name = "chbReadExport";
             this.chbReadExport.Size = new System.Drawing.Size(56, 19);
             this.chbReadExport.TabIndex = 80;
@@ -4243,12 +4406,13 @@
             // 
             // fbtnRead
             // 
+            this.fbtnRead.BackColor = System.Drawing.Color.Transparent;
             this.fbtnRead.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.fbtnRead.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.fbtnRead.EnabledSet = true;
             this.fbtnRead.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.fbtnRead.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnRead.Location = new System.Drawing.Point(174, 283);
+            this.fbtnRead.Location = new System.Drawing.Point(174, 260);
             this.fbtnRead.Name = "fbtnRead";
             this.fbtnRead.Size = new System.Drawing.Size(50, 23);
             this.fbtnRead.TabIndex = 79;
@@ -4283,7 +4447,7 @@
             this.chkAddTube.AutoSize = true;
             this.chkAddTube.Checked = true;
             this.chkAddTube.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAddTube.Location = new System.Drawing.Point(25, 285);
+            this.chkAddTube.Location = new System.Drawing.Point(25, 262);
             this.chkAddTube.Name = "chkAddTube";
             this.chkAddTube.Size = new System.Drawing.Size(86, 19);
             this.chkAddTube.TabIndex = 76;
@@ -4302,11 +4466,11 @@
             // 
             // txtReadShow
             // 
-            this.txtReadShow.Location = new System.Drawing.Point(35, 85);
+            this.txtReadShow.Location = new System.Drawing.Point(35, 79);
             this.txtReadShow.Multiline = true;
             this.txtReadShow.Name = "txtReadShow";
             this.txtReadShow.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtReadShow.Size = new System.Drawing.Size(241, 189);
+            this.txtReadShow.Size = new System.Drawing.Size(241, 177);
             this.txtReadShow.TabIndex = 3;
             // 
             // label42
@@ -4321,6 +4485,8 @@
             // 
             // tabTemperature
             // 
+            this.tabTemperature.Controls.Add(this.numTem);
+            this.tabTemperature.Controls.Add(this.label88);
             this.tabTemperature.Controls.Add(this.chart1);
             this.tabTemperature.Controls.Add(this.groupBox31);
             this.tabTemperature.Controls.Add(this.groupBox25);
@@ -4331,6 +4497,42 @@
             this.tabTemperature.TabIndex = 5;
             this.tabTemperature.Text = "温控设置";
             this.tabTemperature.UseVisualStyleBackColor = true;
+            // 
+            // numTem
+            // 
+            this.numTem.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.numTem.Location = new System.Drawing.Point(88, 7);
+            this.numTem.Margin = new System.Windows.Forms.Padding(0);
+            this.numTem.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.numTem.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numTem.Name = "numTem";
+            this.numTem.Size = new System.Drawing.Size(60, 23);
+            this.numTem.TabIndex = 105;
+            this.numTem.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numTem.ValueChanged += new System.EventHandler(this.numTem_ValueChanged);
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label88.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label88.Location = new System.Drawing.Point(3, 10);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(93, 16);
+            this.label88.TabIndex = 104;
+            this.label88.Text = "级联机器：";
             // 
             // chart1
             // 
@@ -4512,6 +4714,7 @@
             // 
             // saveTo
             // 
+            this.saveTo.BackColor = System.Drawing.Color.Transparent;
             this.saveTo.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.saveTo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveTo.EnabledSet = true;
@@ -4527,6 +4730,7 @@
             // 
             // suspendAndContinue
             // 
+            this.suspendAndContinue.BackColor = System.Drawing.Color.Transparent;
             this.suspendAndContinue.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.suspendAndContinue.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.suspendAndContinue.EnabledSet = true;
@@ -4542,6 +4746,7 @@
             // 
             // beginAndStop
             // 
+            this.beginAndStop.BackColor = System.Drawing.Color.Transparent;
             this.beginAndStop.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.beginAndStop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.beginAndStop.EnabledSet = true;
@@ -4744,6 +4949,7 @@
             // 
             // restore
             // 
+            this.restore.BackColor = System.Drawing.Color.Transparent;
             this.restore.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.restore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.restore.EnabledSet = true;
@@ -4759,6 +4965,7 @@
             // 
             // saveSetting
             // 
+            this.saveSetting.BackColor = System.Drawing.Color.Transparent;
             this.saveSetting.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.saveSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.saveSetting.EnabledSet = true;
@@ -4925,21 +5132,22 @@
             this.groupBox26.Controls.Add(this.label65);
             this.groupBox26.Controls.Add(this.cmbModelName);
             this.groupBox26.Controls.Add(this.label66);
-            this.groupBox26.Location = new System.Drawing.Point(1, 11);
+            this.groupBox26.Location = new System.Drawing.Point(1, 44);
             this.groupBox26.Name = "groupBox26";
-            this.groupBox26.Size = new System.Drawing.Size(221, 183);
+            this.groupBox26.Size = new System.Drawing.Size(221, 158);
             this.groupBox26.TabIndex = 6;
             this.groupBox26.TabStop = false;
             this.groupBox26.Text = "温控设置";
             // 
             // btnmakeStandard
             // 
+            this.btnmakeStandard.BackColor = System.Drawing.Color.Transparent;
             this.btnmakeStandard.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnmakeStandard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnmakeStandard.EnabledSet = true;
             this.btnmakeStandard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnmakeStandard.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnmakeStandard.Location = new System.Drawing.Point(158, 154);
+            this.btnmakeStandard.Location = new System.Drawing.Point(158, 128);
             this.btnmakeStandard.Name = "btnmakeStandard";
             this.btnmakeStandard.Size = new System.Drawing.Size(56, 23);
             this.btnmakeStandard.TabIndex = 83;
@@ -4949,12 +5157,13 @@
             // 
             // btnSelect
             // 
+            this.btnSelect.BackColor = System.Drawing.Color.Transparent;
             this.btnSelect.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSelect.EnabledSet = true;
             this.btnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSelect.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnSelect.Location = new System.Drawing.Point(85, 154);
+            this.btnSelect.Location = new System.Drawing.Point(85, 128);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(56, 23);
             this.btnSelect.TabIndex = 82;
@@ -4964,7 +5173,7 @@
             // 
             // txtStandard
             // 
-            this.txtStandard.Location = new System.Drawing.Point(85, 114);
+            this.txtStandard.Location = new System.Drawing.Point(85, 87);
             this.txtStandard.Name = "txtStandard";
             this.txtStandard.Size = new System.Drawing.Size(129, 25);
             this.txtStandard.TabIndex = 69;
@@ -4973,7 +5182,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label33.Location = new System.Drawing.Point(16, 118);
+            this.label33.Location = new System.Drawing.Point(16, 92);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(67, 15);
             this.label33.TabIndex = 68;
@@ -4989,7 +5198,7 @@
             "设置校准值",
             "查询校准值",
             "查询温度"});
-            this.cmbStep.Location = new System.Drawing.Point(85, 69);
+            this.cmbStep.Location = new System.Drawing.Point(85, 56);
             this.cmbStep.Name = "cmbStep";
             this.cmbStep.Size = new System.Drawing.Size(129, 23);
             this.cmbStep.TabIndex = 2;
@@ -4998,7 +5207,7 @@
             // 
             this.label65.AutoSize = true;
             this.label65.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label65.Location = new System.Drawing.Point(30, 73);
+            this.label65.Location = new System.Drawing.Point(30, 60);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(45, 15);
             this.label65.TabIndex = 3;
@@ -5041,6 +5250,7 @@
             // 
             // btnReturn
             // 
+            this.btnReturn.BackColor = System.Drawing.Color.Transparent;
             this.btnReturn.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
             this.btnReturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReturn.EnabledSet = true;
@@ -5056,6 +5266,7 @@
             // 
             // functionButton1
             // 
+            this.functionButton1.BackColor = System.Drawing.Color.Transparent;
             this.functionButton1.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.灰显1;
             this.functionButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.functionButton1.Enabled = false;
@@ -5079,20 +5290,39 @@
             this.saveFileDialog1.Filter = "excel表格|*.xls";
             this.saveFileDialog1.Title = "将温度信息保存到本地";
             // 
-            // fbtnReadEnd
+            // btnISaveData
             // 
-            this.fbtnReadEnd.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.fbtnReadEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fbtnReadEnd.EnabledSet = true;
-            this.fbtnReadEnd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.fbtnReadEnd.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnReadEnd.Location = new System.Drawing.Point(233, 283);
-            this.fbtnReadEnd.Name = "fbtnReadEnd";
-            this.fbtnReadEnd.Size = new System.Drawing.Size(50, 23);
-            this.fbtnReadEnd.TabIndex = 84;
-            this.fbtnReadEnd.Text = "结束";
-            this.fbtnReadEnd.UseVisualStyleBackColor = false;
-            this.fbtnReadEnd.Click += new System.EventHandler(this.fbtnReadEnd_Click);
+            this.btnISaveData.BackColor = System.Drawing.Color.Transparent;
+            this.btnISaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.btnISaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnISaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnISaveData.EnabledSet = true;
+            this.btnISaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnISaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.btnISaveData.Location = new System.Drawing.Point(190, 149);
+            this.btnISaveData.Name = "btnISaveData";
+            this.btnISaveData.Size = new System.Drawing.Size(108, 27);
+            this.btnISaveData.TabIndex = 85;
+            this.btnISaveData.Text = "保存已有数据";
+            this.btnISaveData.UseVisualStyleBackColor = false;
+            this.btnISaveData.Click += new System.EventHandler(this.btnISaveData_Click);
+            // 
+            // fbtnWashSaveData
+            // 
+            this.fbtnWashSaveData.BackColor = System.Drawing.Color.Transparent;
+            this.fbtnWashSaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.fbtnWashSaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fbtnWashSaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fbtnWashSaveData.EnabledSet = true;
+            this.fbtnWashSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.fbtnWashSaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.fbtnWashSaveData.Location = new System.Drawing.Point(190, 157);
+            this.fbtnWashSaveData.Name = "fbtnWashSaveData";
+            this.fbtnWashSaveData.Size = new System.Drawing.Size(108, 27);
+            this.fbtnWashSaveData.TabIndex = 86;
+            this.fbtnWashSaveData.Text = "保存已有数据";
+            this.fbtnWashSaveData.UseVisualStyleBackColor = false;
+            this.fbtnWashSaveData.Click += new System.EventHandler(this.fbtnWashSaveData_Click);
             // 
             // frmDiagnost
             // 
@@ -5109,28 +5339,20 @@
             this.tabControl1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMcontrol)).EndInit();
             this.groupBox43.ResumeLayout(false);
             this.groupBox44.ResumeLayout(false);
             this.groupBox44.PerformLayout();
             this.tabOrbiter.ResumeLayout(false);
             this.tabOrbiter.PerformLayout();
-            this.groupBox33.ResumeLayout(false);
-            this.groupBox34.ResumeLayout(false);
-            this.groupBox34.PerformLayout();
-            this.groupBox35.ResumeLayout(false);
-            this.groupBox35.PerformLayout();
-            this.groupBox36.ResumeLayout(false);
-            this.groupBox36.PerformLayout();
-            this.groupBox37.ResumeLayout(false);
-            this.groupBox37.PerformLayout();
-            this.groupBox38.ResumeLayout(false);
-            this.groupBox38.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumOrbiterID)).EndInit();
             this.groupBox39.ResumeLayout(false);
             this.groupBox40.ResumeLayout(false);
             this.groupBox40.PerformLayout();
             this.groupBox41.ResumeLayout(false);
             this.tabAddSR.ResumeLayout(false);
             this.tabAddSR.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMAddSR)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -5147,6 +5369,7 @@
             this.groupBox42.PerformLayout();
             this.tabMove.ResumeLayout(false);
             this.tabMove.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMMove)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -5157,6 +5380,7 @@
             this.groupBox10.PerformLayout();
             this.TabIncubation.ResumeLayout(false);
             this.TabIncubation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMIncubation)).EndInit();
             this.GB1.ResumeLayout(false);
             this.groupBox46.ResumeLayout(false);
             this.groupBox46.PerformLayout();
@@ -5170,6 +5394,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.TabWashTray.ResumeLayout(false);
+            this.TabWashTray.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMWash)).EndInit();
             this.groupBox17.ResumeLayout(false);
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
@@ -5187,6 +5413,8 @@
             this.groupBox22.PerformLayout();
             this.groupBox23.ResumeLayout(false);
             this.TabPhoton.ResumeLayout(false);
+            this.TabPhoton.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numMRead)).EndInit();
             this.groupBox28.ResumeLayout(false);
             this.groupBox28.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRepeat)).EndInit();
@@ -5201,6 +5429,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumReadNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTubeNum)).EndInit();
             this.tabTemperature.ResumeLayout(false);
+            this.tabTemperature.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox31.ResumeLayout(false);
             this.groupBox31.PerformLayout();
@@ -5463,30 +5693,6 @@
         private System.Windows.Forms.ComboBox cmbTurnType;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TabPage tabOrbiter;
-        private System.Windows.Forms.GroupBox groupBox33;
-        private System.Windows.Forms.GroupBox groupBox34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private CustomControl.FunctionButton functionButton2;
-        private System.Windows.Forms.GroupBox groupBox35;
-        private CustomControl.FunctionButton functionButton3;
-        private CustomControl.FunctionButton functionButton4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.GroupBox groupBox36;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private CustomControl.FunctionButton functionButton13;
-        private System.Windows.Forms.GroupBox groupBox37;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private CustomControl.FunctionButton functionButton14;
-        private System.Windows.Forms.GroupBox groupBox38;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private CustomControl.FunctionButton functionButton15;
         private System.Windows.Forms.GroupBox groupBox39;
         private CustomControl.FunctionButton btnOrbASPosReset;
         private CustomControl.FunctionButton btnOrbP1Reset;
@@ -5565,5 +5771,27 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.TextBox txtStartHole;
         private CustomControl.FunctionButton fbtnReadEnd;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.NumericUpDown NumOrbiterID;
+        private System.Windows.Forms.NumericUpDown numMAddSR;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.NumericUpDown numMMove;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.NumericUpDown numMIncubation;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.NumericUpDown numMWash;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.NumericUpDown numMRead;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.NumericUpDown numTem;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.NumericUpDown numMcontrol;
+        private System.Windows.Forms.Label label35;
+        private CustomControl.FunctionButton btnConSaveData;
+        private CustomControl.FunctionButton btnOrbSaveData;
+        private CustomControl.FunctionButton btnSRInaveData;
+        private CustomControl.FunctionButton btnMoveSaveData;
+        private CustomControl.FunctionButton btnISaveData;
+        private CustomControl.FunctionButton fbtnWashSaveData;
     }
 }

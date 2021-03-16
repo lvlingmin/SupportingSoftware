@@ -43,23 +43,23 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// <summary>
         /// 发送移管手指令
         /// </summary>
-        /// <param name="movestate">动作状态</param>
-        /// <param name="movestate">抓手标志 0-移新管 1-移管 </param>
+        /// <param name="strModel">级联机器</param>
+        /// <param name="MoveSate">抓手标志 0-移新管 1-移管 </param>
         /// <param name="startpos">开始位置</param>
         /// <param name="goalpos">结束位置</param>
         /// <returns></returns>
-        public int Move(MoveSate MoveSate, int movehand,int startpos = 0, int goalpos = 0)
+        public int Move(string strModel, MoveSate MoveSate, int movehand,int startpos = 0, int goalpos = 0)
         {
             MoveHandSend.MoveSate = MoveSate;
             
             if(movehand ==(int)MoveHand.Movehand)
             {
-                MoveHandSend.Move2(startpos, goalpos);
+                MoveHandSend.Move2(strModel,startpos, goalpos);
                 return NetCom3.Instance.Move2rrorFlag;
             }
             else
             {
-                MoveHandSend.Move(startpos, goalpos);
+                MoveHandSend.Move(strModel,startpos, goalpos);
                 return NetCom3.Instance.MoverrorFlag;
             }
                 
@@ -67,24 +67,25 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// <summary>
         /// 发送加样机指令
         /// </summary>
+        /// <param name="AddLiquid">仪器级联编号</param>
         /// <param name="step">加样开始位置</param>
         /// <param name="startpos">加样开始位置</param>
         /// <param name="endpos">加样结束位置</param>
         /// <param name="liquidVol">加样体积</param>
         /// <param name="leftVol">剩余体积</param>
         /// <returns></returns>
-        public int AddLiquid(AddLiquidStep step, int startpos = 0, int endpos = 0, int liquidVol = 0, int leftVol = 0)
+        public int AddLiquid(string strModel,AddLiquidStep step, int startpos = 0, int endpos = 0, int liquidVol = 0, int leftVol = 0)
         {
             if (MAddSR == 0)
             {
                 AddLiquidSend.Liquidstep = step;
-                AddLiquidSend.AddSample(startpos, endpos, liquidVol, leftVol);
+                AddLiquidSend.AddSample(strModel,startpos, endpos, liquidVol, leftVol);
                 return NetCom3.Instance.AdderrorFlag;
             }
             else
             {
                 AddLiquidSend.Liquidstep = step;
-                AddLiquidSend.AddReagent(startpos, endpos, liquidVol, leftVol);
+                AddLiquidSend.AddReagent(strModel,startpos, endpos, liquidVol, leftVol);
                 return NetCom3.Instance.Add2errorFlag;
             }
 
@@ -94,9 +95,9 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// </summary>
         /// <param name="num">旋转孔数</param>
         /// <returns></returns>
-        public int WashTurn(int num)
+        public int WashTurn(string strModel,int num)
         {
-            return WashSend.WashTurn(num);
+            return WashSend.WashTurn(strModel,num);
         }
         /// <summary>
         /// 批量更新清洗盘配置信息
@@ -119,16 +120,16 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 清洗盘加液/注液/读数
         /// </summary>
         /// <returns></returns>
-        public int WashAddLiquidR()
+        public int WashAddLiquidR(string strModel)
         {
-            return WashSend.WashAddLiquidR();
+            return WashSend.WashAddLiquidR(strModel);
         }
         /// <summary>
         /// 获取重新计算的PMT值
         /// </summary>
         /// <param name="temp"></param>
         /// <returns></returns>
-        public double GetPMT(double temp)
+        public  double GetPMT(double temp)
         {
             return WashSend.GetPMT(temp);
         }
@@ -196,6 +197,36 @@ namespace BioBase.HSCIADebug.SysMaintenance
         public void WriteConfigToFile(string iniPath, DataTable dataTable)
         {
             OperateIniFile.WriteConfigToFile("[TubePosition]", iniPath, dataTable);
+        }
+        /// <summary>
+        /// 读取保存指令配置文件
+        /// </summary>
+        /// <param name="strModel">级联机器编号</param>
+        /// <param name="state">调试模块编号</param>
+        /// 配置文件的保存格式“机器编码 调试模块 模块名称 位置 = 机器编码 调试模块 模块名称 位置 数据1 数据2”
+        /// <returns></returns>
+        private List<string> GetData(string strModel, string state)
+        {
+            string path = Directory.GetCurrentDirectory() + "\\LocationData.ini";
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("在指定目录下不存在数据文件文件，请确认！");
+                return new List<string>();
+            }
+
+            List<string> data = new List<string>();
+
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line.Contains("="))
+                    data.Add(line);
+            }
+
+            List<string> finalData = data.Where(item => (item.Substring(0, 2) == strModel && item.Substring(3, 2) == state)).ToList();
+
+            return finalData;
         }
         #endregion
         public frmDiagnost()
@@ -332,7 +363,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 {
                     while (this == null || !this.IsHandleCreated)
                     { }
-                    if (!btnSelect.Enabled)
+                    //if (!btnSelect.Enabled)
                         this.Invoke(new SetTextCallBack(SettxtStandard), readData.ToString());
                     //this.Invoke(new SetTextCallBack(SettxtStandard), readData.ToString());
                 }
@@ -412,6 +443,15 @@ namespace BioBase.HSCIADebug.SysMaintenance
         ///  "加普通样本", "加急诊样本", "加稀释后的样本"
         /// </summary>
         string[] AddSMove = { "加普通样本", "加急诊样本", "加稀释后的样本" };
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+       string NumMAddSR ="90";
+        private void numMAddSR_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMAddSR.Value-1).ToString("x2");
+            NumMAddSR = "9" + num.Substring(1, 1).ToUpper();
+        }
         private void cmbMAddSR_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbAddSRPos.Items.Clear();
@@ -489,50 +529,51 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (pos == AddSRPos[0].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 06";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 06";
+                    //strorder = "EB 90 12 A1 01 06";
                 }
                 else if (pos == AddSRPos[1].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 05";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 05";
                 }
                 else if (pos == AddSRPos[2].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 04";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 04";
                 }
                 else if (pos == AddSRPos[3].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 03";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 03";
                 }
                 else if (pos == AddSRPos[4].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 07";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 07";
                 }
                 else if (pos == AddSRPos[5].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 00";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 00";
                 }
                 else if (pos == AddSRPos[6].Trim())
                 {
-                    strorder = "EB 90 12 A1 01 01";
+                    strorder = "EB "+ NumMAddSR + " 12 A1 01 01";
                 }
             }
             else
             {
                 if (pos == AddSPPos[0].Trim())
                 {
-                    strorder = "EB 90 02 A1 01 03";
+                    strorder = "EB "+ NumMAddSR + " 02 A1 01 03";
                 }
                 else if (pos == AddSPPos[1].Trim())
                 {
-                    strorder = "EB 90 02 A1 01 02";
+                    strorder = "EB "+ NumMAddSR + " 02 A1 01 02";
                 }
                 else if (pos == AddSPPos[2].Trim())
                 {
-                    strorder = "EB 90 02 A1 01 00";
+                    strorder = "EB "+ NumMAddSR + " 02 A1 01 00";
                 }
                 else if (pos == AddSPPos[3].Trim())
                 {
-                    strorder = "EB 90 02 A1 01 01";
+                    strorder = "EB "+ NumMAddSR + " 02 A1 01 01";
                 }
             }
             cmbAddSRPos.Enabled = false;
@@ -564,17 +605,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[0].Trim())
                 {
-                    strorder = "EB 90 12 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 12 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[1].Trim())
                 {
-                    strorder = "EB 90 12 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 12 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[2].Trim())
                 {
-                    strorder = "EB 90 12 04 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 12 04 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
 
@@ -583,12 +624,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[0].Trim())
                 {
-                    strorder = "EB 90 02 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 02 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[1].Trim())
                 {
-                    strorder = "EB 90 02 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 02 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
             }
@@ -637,17 +678,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[0].Trim())
                 {
-                    strorder = "EB 90 12 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 12 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[1].Trim())
                 {
-                    strorder = "EB 90 12 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 12 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[2].Trim())
                 {
-                    strorder = "EB 90 12 04 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 12 04 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
 
@@ -656,22 +697,22 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[0].Trim())
                 {
-                    strorder = "EB 90 02 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 02 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[1].Trim())
                 {
-                    strorder = "EB 90 02 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ NumMAddSR + " 02 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 //else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[2].Trim())
                 //{
-                //    strorder = "EB 90 02 03 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                //    strorder = "EB "+ NumMAddSR + " 02 03 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                 //                + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 //}
                 //else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[3].Trim())
                 //{
-                //    strorder = "EB 90 02 03 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                //    strorder = "EB "+ NumMAddSR + " 02 03 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                 //                + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 //}
             }
@@ -693,15 +734,15 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[0].Trim())
                 {
-                    strorder = "EB 90 12 01 13";
+                    strorder = "EB "+ NumMAddSR + " 12 01 13";
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[1].Trim())
                 {
-                    strorder = "EB 90 12 02 13";
+                    strorder = "EB "+ NumMAddSR + " 12 02 13";
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSRAEM[2].Trim())
                 {
-                    strorder = "EB 90 12 04 13";
+                    strorder = "EB "+ NumMAddSR + " 12 04 13";
                 }
             }
             else
@@ -709,25 +750,55 @@ namespace BioBase.HSCIADebug.SysMaintenance
 
                 if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[0].Trim())
                 {
-                    strorder = "EB 90 02 01 13";
+                    strorder = "EB "+ NumMAddSR + " 02 01 13";
                 }
                 else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[1].Trim())
                 {
-                    strorder = "EB 90 02 02 13";
+                    strorder = "EB "+ NumMAddSR + " 02 02 13";
                 }
                 //else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[2].Trim())
                 //{
-                //    strorder = "EB 90 12 03 13";
+                //    strorder = "EB "+ NumMAddSR + " 12 03 13";
                 //}
                 //else if (cmbAElecMachine.SelectedItem.ToString().Trim() == AddSPAEM[3].Trim())
                 //{
-                //    strorder = "EB 90 12 03 13";
+                //    strorder = "EB "+ NumMAddSR + " 12 03 13";
                 //}
             }
             btnSRInave.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             btnSRInave.Enabled = true;
+        }
+        private void btnSRInaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnSRInaveData.Enabled = false;
+            List<string> data = new List<string>();
+            if (MAddSR == 1)
+            {
+                data = GetData(NumMAddSR, "12");
+            }
+            else
+            {
+                data = GetData(NumMAddSR, "02");
+            }
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 8) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnSRInaveData.Enabled = true;
         }
         private void btnSRAllReset_Click(object sender, EventArgs e)
         {
@@ -740,11 +811,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MAddSR == 0)
             {
-                strorder = "EB 90 02 00";
+                strorder = "EB "+ NumMAddSR + " 02 00";
             }
             else
             {
-                strorder = "EB 90 12 00";
+                strorder = "EB "+ NumMAddSR + " 12 00";
             }
             btnSRAllReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -763,11 +834,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MAddSR == 0)
             {
-                strorder = "EB 90 02 01 00";
+                strorder = "EB " + NumMAddSR + " 02 01 00";
             }
             else
             {
-                strorder = "EB 90 12 01 00";
+                strorder = "EB "+ NumMAddSR + " 12 01 00";
             }
             btnSRXReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -785,11 +856,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MAddSR == 0)
             {
-                strorder = "EB 90 02 02 00";
+                strorder = "EB " + NumMAddSR + " 02 02 00";
             }
             else
             {
-                strorder = "EB 90 12 02 00";
+                strorder = "EB "+ NumMAddSR + " 12 02 00";
             }
             btnSRZReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -805,7 +876,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 12 04 00";
+            string strorder = "EB "+ NumMAddSR + " 12 04 00";
             btnRReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -823,16 +894,16 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (MAddSR == 0)
             {
                 if (cmbAsArmZ.SelectedItem.ToString() == "下降")
-                    strorder = "EB 90 11 02 11 41 00 00";
+                    strorder = "EB "+ NumMAddSR + " 11 02 11 41 00 00";
                 else
-                    strorder = "EB 90 11 02 11 40 00 00";
+                    strorder = "EB "+ NumMAddSR + " 11 02 11 40 00 00";
             }
             else
             {
                 if (cmbAsArmZ.SelectedItem.ToString() == "下降")
-                    strorder = "EB 90 11 12 11 41 00 00";
+                    strorder = "EB "+ NumMAddSR + " 11 12 11 41 00 00";
                 else
-                    strorder = "EB 90 11 12 11 40 00 00";
+                    strorder = "EB "+ NumMAddSR + " 11 12 11 40 00 00";
             }
             btbAsArmZEx.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -860,42 +931,42 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[0])
                 {
 
-                    strorder = "EB 90 11 12 12 06";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 06";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[1])
                 {
 
-                    strorder = "EB 90 11 12 12 05";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 05";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[2])
                 {
 
-                    strorder = "EB 90 11 12 12 04";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 04";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[3])
                 {
 
-                    strorder = "EB 90 11 12 12 03";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 03";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[4])
                 {
 
-                    strorder = "EB 90 11 12 12 07";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 07";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[5])
                 {
 
-                    strorder = "EB 90 11 12 12 00";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 00";
                 }
                 //else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[6])
                 //{
 
-                //    strorder = "EB 90 11 12 12 00 0A";
+                //    strorder = "EB "+ NumMAddSR + " 11 12 12 00 0A";
                 //}
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSRPos[6])
                 {
 
-                    strorder = "EB 90 11 12 12 01";
+                    strorder = "EB "+ NumMAddSR + " 11 12 12 01";
                 }
             }
             else
@@ -903,27 +974,27 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (cmbAsArmX.SelectedItem.ToString() == AddSPPos[0])
                 {
 
-                    strorder = "EB 90 11 02 12 03";
+                    strorder = "EB "+ NumMAddSR + " 11 02 12 03";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSPPos[1])
                 {
 
-                    strorder = "EB 90 11 02 12 02";
+                    strorder = "EB "+ NumMAddSR + " 11 02 12 02";
                 }
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSPPos[2])
                 {
 
-                    strorder = "EB 90 11 02 12 00";
+                    strorder = "EB "+ NumMAddSR + " 11 02 12 00";
                 }
                 //else if (cmbAsArmX.SelectedItem.ToString() == AddSPPos[3])
                 //{
 
-                //    strorder = "EB 90 11 12 12 00 0A";
+                //    strorder = "EB "+ NumMAddSR + " 11 12 12 00 0A";
                 //}
                 else if (cmbAsArmX.SelectedItem.ToString() == AddSPPos[3])
                 {
 
-                    strorder = "EB 90 11 02 12 01";
+                    strorder = "EB "+ NumMAddSR + " 11 02 12 01";
                 }
             }
             btbAsArmXEx.Enabled = false;
@@ -946,27 +1017,27 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (cmbRegentTray.SelectedItem.ToString() == AddSRPos[0])
             {
 
-                strorder = "EB 90 11 12 13 06";
+                strorder = "EB "+ NumMAddSR + " 11 12 13 06";
             }
             else if (cmbRegentTray.SelectedItem.ToString() == AddSRPos[1])
             {
 
-                strorder = "EB 90 11 12 13 05";
+                strorder = "EB "+ NumMAddSR + " 11 12 13 05";
             }
             else if (cmbRegentTray.SelectedItem.ToString() == AddSRPos[2])
             {
 
-                strorder = "EB 90 11 12 13 04";
+                strorder = "EB "+ NumMAddSR + " 11 12 13 04";
             }
             else if (cmbRegentTray.SelectedItem.ToString() == AddSRPos[3])
             {
 
-                strorder = "EB 90 11 12 13 03";
+                strorder = "EB "+ NumMAddSR + " 11 12 13 03";
             }
             else if (cmbRegentTray.SelectedItem.ToString() == AddSRPos[4])
             {
 
-                strorder = "EB 90 11 12 13 07";
+                strorder = "EB "+ NumMAddSR + " 11 12 13 07";
             }
 
             //}
@@ -975,12 +1046,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             //    if (cmbRegentTray.SelectedItem.ToString() == AddSPPos[0])
             //    {
 
-            //        strorder = "EB 90 11 02 13 05";
+            //        strorder = "EB "+ NumMAddSR + " 11 02  13 05";
             //    }
             //    else if (cmbRegentTray.SelectedItem.ToString() == AddSPPos[1])
             //    {
 
-            //        strorder = "EB 90 11 12 13 05";
+            //        strorder = "EB "+ NumMAddSR + " 11 12 13 05";
             //    }
             //}
             int BB = 1;
@@ -1026,11 +1097,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string temp2 = temp.Substring(2, 2);
             if (MAddSR == 0)
             {
-                strorder = "EB 90 11 02 14 " + temp1 + " " + temp2 + " 00";
+                strorder = "EB "+ NumMAddSR + " 11 02 14 " + temp1 + " " + temp2 + " 00";
             }
             else
             {
-                strorder = "EB 90 11 12 14 " + temp1 + " " + temp2 + " 00";
+                strorder = "EB "+ NumMAddSR + " 11 12 14 " + temp1 + " " + temp2 + " 00";
             }
             fbtnAsPumpEx.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1067,38 +1138,38 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbAddsamle.SelectedItem.ToString() == AddSMove[0])
                 {
-                    AddLiquid(AddLiquidStep.AddLiquidCS,startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddLiquidCS,startPos, endPos);
                 }
                 else if (cmbAddsamle.SelectedItem.ToString() == AddSMove[1])
                 {
-                    AddLiquid(AddLiquidStep.AddLiquidES, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddLiquidES, startPos, endPos);
                 }
                 else if (cmbAddsamle.SelectedItem.ToString() == AddSMove[2])
                 {
-                    AddLiquid(AddLiquidStep.AddLiquidDS, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddLiquidDS, startPos, endPos);
                 }
             }
             else
             {
                 if (cmbAddsamle.SelectedItem.ToString() == AddRMove[0])
                 {
-                    AddLiquid(AddLiquidStep.AddLiquidD, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddLiquidD, startPos, endPos);
                 }
                 else if (cmbAddsamle.SelectedItem.ToString() == AddRMove[1])
                 {
-                    AddLiquid(AddLiquidStep.AddSingleR1, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddSingleR1, startPos, endPos);
                 }
                 else if (cmbAddsamle.SelectedItem.ToString() == AddRMove[2])
                 {
-                    AddLiquid(AddLiquidStep.AddSingleR2, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddSingleR2, startPos, endPos);
                 }
                 else if (cmbAddsamle.SelectedItem.ToString() == AddRMove[3])
                 {
-                    AddLiquid(AddLiquidStep.AddSingleR3, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddSingleR3, startPos, endPos);
                 }
                 else if (cmbAddsamle.SelectedItem.ToString() == AddRMove[4])
                 {
-                    AddLiquid(AddLiquidStep.AddBeads, startPos, endPos);
+                    AddLiquid(NumMAddSR,AddLiquidStep.AddBeads, startPos, endPos);
                 }
             }
             fbtnAddSR.Enabled = true;
@@ -1111,9 +1182,9 @@ namespace BioBase.HSCIADebug.SysMaintenance
         int MMove = 0;
         /// <summary>
         /// 移管手(新)调试位置
-        /// 温育盘位置,暂存盘位置,废管位置,"理杯块位置"
+        /// 温育盘位置,暂存盘位置,废管位置,"理杯块位置","清洗盘位置"
         /// </summary>
-        string[] MoveNewPos = { "温育盘位置", "暂存盘位置", "废管位置", "理杯块位置" };
+        string[] MoveNewPos = { "温育盘位置", "暂存盘位置", "废管位置", "理杯块位置","清洗盘位置" };
         /// <summary>
         /// 移管手调试位置
         /// 温育盘位置,清洗盘位置,废管位置
@@ -1124,6 +1195,16 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 垂直电机，旋转电机，暂存盘电机，理杯块电机,温育盘电机
         /// </summary>
         string[] MoveElecMachine = { "垂直电机", "旋转电机", "暂存盘电机", "理杯块电机", "温育盘电机" };
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+        string strMMove = "";
+        private void numMMove_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMMove.Value - 1).ToString("x2");
+            strMMove = "9" + num.Substring(1, 1).ToUpper();
+        }
+       
         private void cmbMMove_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbMovePos.Items.Clear();
@@ -1166,42 +1247,46 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[0])
                 {
-                    strorder = "EB 90 01 01 02";
+                    strorder = "EB "+ strMMove+ " 01 01 02";
                 }
                 //else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[1])
                 //{
-                //    strorder = "EB 90 01 01 02 00";
+                //    strorder = "EB "+ strMMove+ " 01 01 02 00";
                 //}
                 else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[1])
                 {
-                    strorder = "EB 90 01 01 01";
+                    strorder = "EB "+ strMMove+ " 01 01 01";
                 }
                 else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[2])
                 {
-                    strorder = "EB 90 01 01 04";
+                    strorder = "EB "+ strMMove+ " 01 01 04";
                 }
                 else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[3])
                 {
-                    strorder = "EB 90 01 01 05";
+                    strorder = "EB "+ strMMove+ " 01 01 05";
+                }
+                else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[4])
+                {
+                    strorder = "EB " + strMMove + " 01 01 06";
                 }
             }
             else
             {
                 if (cmbMovePos.SelectedItem.ToString() == MovePos[0])
                 {
-                    strorder = "EB 90 21 01 02";
+                    strorder = "EB "+ strMMove+ " 21 01 02";
                 }
                 //else if (cmbMovePos.SelectedItem.ToString() == MovePos[1])
                 //{
-                //    strorder = "EB 90 21 01 02 00";
+                //    strorder = "EB "+ strMMove+ " 21 01 02 00";
                 //}
                 else if (cmbMovePos.SelectedItem.ToString() == MovePos[1])
                 {
-                    strorder = "EB 90 21 01 03";
+                    strorder = "EB "+ strMMove+ " 21 01 03";
                 }
                 else if (cmbMovePos.SelectedItem.ToString() == MovePos[2])
                 {
-                    strorder = "EB 90 21 01 04";
+                    strorder = "EB "+ strMMove+ " 21 01 04";
                 }
             }
             cmbMovePos.Enabled = false;
@@ -1232,38 +1317,38 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (MMove == 0)
             {
                 if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[0])
-                    strorder = "EB 90 01 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[1])
-                    strorder = "EB 90 01 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[2])
-                    strorder = "EB 90 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[3])
-                    strorder = "EB 90 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if(cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[4])
-                    strorder = "EB 90 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
 
             }
             else
             {
                 if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[0])
-                    strorder = "EB 90 21 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 21 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[1])
-                    strorder = "EB 90 21 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 21 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[2])
-                    strorder = "EB 90 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[3])
-                    strorder = "EB 90 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[4])
-                    strorder = "EB 90 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             btnMoveInc.Enabled = false;
@@ -1294,37 +1379,37 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (MMove == 0)
             {
                 if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[0])
-                    strorder = "EB 90 01 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[1])
-                    strorder = "EB 90 01 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[2])
-                    strorder = "EB 90 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[3])
-                    strorder = "EB 90 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[4])
-                    strorder = "EB 90 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else
             {
                 if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[0])
-                    strorder = "EB 90 21 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 21 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[1])
-                    strorder = "EB 90 21 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 21 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[2])
-                    strorder = "EB 90 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[3])
-                    strorder = "EB 90 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMMove+ " 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbMoveElecMachine.SelectedItem.ToString() == MoveElecMachine[4])
-                    strorder = "EB 90 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             btnMoveDec.Enabled = false;
@@ -1343,16 +1428,46 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMove == 0)
             {
-                strorder = "EB 90 01 13";
+                strorder = "EB "+ strMMove+ " 01 13";
             }
             else
             {
-                strorder = "EB 90 21 13";
+                strorder = "EB "+ strMMove+ " 21 13";
             }
             btnMoveSave.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             btnMoveSave.Enabled = true;
+        }
+        private void btnMoveSaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnMoveSaveData.Enabled = false;
+            List<string> data = new List<string>();
+            if (MMove == 0)
+            {
+                data = GetData(strMMove, "01");
+            }
+            else
+            {
+                data = GetData(strMMove, "21");
+            }
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnMoveSaveData.Enabled = true;
         }
         private void btnMoveAllReset_Click(object sender, EventArgs e)
         {
@@ -1365,11 +1480,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMove == 0)
             {
-                strorder = "EB 90 01 03";
+                strorder = "EB "+ strMMove+ " 01 03";
             }
             else
             {
-                strorder = "EB 90 21 03";
+                strorder = "EB "+ strMMove+ " 21 03";
             }
             btnMoveAllReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1387,11 +1502,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMove == 0)
             {
-                strorder = "EB 90 01 03 04";
+                strorder = "EB "+ strMMove+ " 01 03 04";
             }
             else
             {
-                strorder = "EB 90 21 03 04";
+                strorder = "EB "+ strMMove+ " 21 03 04";
             }
             btnMoveXReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1409,11 +1524,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMove == 0)
             {
-                strorder = "EB 90 11 01 03 31";
+                strorder = "EB "+ strMMove+ " 11 01 03 31";
             }
             else
             {
-                strorder = "EB 90 11 11 03 31";
+                strorder = "EB "+ strMMove+ " 11 11 03 31";
             }
             btnHandOpen.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1431,11 +1546,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMove == 0)
             {
-                strorder = "EB 90 01 03 03";
+                strorder = "EB "+ strMMove+ " 01 03 03";
             }
             else
             {
-                strorder = "EB 90 21 03 03";
+                strorder = "EB "+ strMMove+ " 21 03 03";
             }
             btnMoveZReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1453,11 +1568,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMove == 0)
             {
-                strorder = "EB 90 11 01 03 30";
+                strorder = "EB "+ strMMove+ " 11 01 03 30";
             }
             else
             {
-                strorder = "EB 90 11 11 03 30";
+                strorder = "EB "+ strMMove+ " 11 11 03 30";
             }
             btnHandClose.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1473,7 +1588,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 return;
             }
             string strorder = "";
-            strorder = "EB 90 01 03 02";
+            strorder = "EB "+ strMMove+ " 01 03 02";
             btnSDickInit.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -1488,7 +1603,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 return;
             }
             string strorder = "";
-            strorder = "EB 90 01 03 01";
+            strorder = "EB "+ strMMove+ " 01 03 01";
             btnPutCupInit.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -1503,7 +1618,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 return;
             }
             fbtnSDiskTurn.Enabled = false;
-            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 01 05 01"), (int)OrderSendType.Total);
+            NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMMove+ " 11 01 05 01"), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             fbtnSDiskTurn.Enabled = true;
         }
@@ -1525,30 +1640,34 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbMoveX.SelectedItem.ToString() == MoveNewPos[0])
                 {
-                    strorder = "EB 90 11 01 01 02 00 00";
+                    strorder = "EB "+ strMMove+ " 11 01 01 02 00 00";
                 }
                 else if (cmbMoveX.SelectedItem.ToString() == MoveNewPos[1])
                 {
-                    strorder = "EB 90 11 01 01 01";
+                    strorder = "EB "+ strMMove+ " 11 01 01 01";
                 }
                 else if (cmbMoveX.SelectedItem.ToString() == MoveNewPos[2])
                 {
-                    strorder = "EB 90 11 01 01 04";
+                    strorder = "EB "+ strMMove+ " 11 01 01 04";
+                }
+                else if (cmbMoveX.SelectedItem.ToString() == MoveNewPos[4])
+                {
+                    strorder = "EB " + strMMove + " 11 01 01 03";
                 }
             }
             else
             {
                 if (cmbMoveX.SelectedItem.ToString() == MovePos[0])
                 {
-                    strorder = "EB 90 11 11 01 02 00 00";
+                    strorder = "EB "+ strMMove+ " 11 11 01 02 00 00";
                 }
                 else if (cmbMoveX.SelectedItem.ToString() == MovePos[1])
                 {
-                    strorder = "EB 90 11 11 01 03";
+                    strorder = "EB "+ strMMove+ " 11 11 01 03";
                 }
                 else if (cmbMoveX.SelectedItem.ToString() == MovePos[2])
                 {
-                    strorder = "EB 90 11 11 01 04";
+                    strorder = "EB "+ strMMove+ " 11 11 01 04";
                 }
             }
             btnMoveX.Enabled = false;
@@ -1574,22 +1693,22 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbMoveY.SelectedItem.ToString() == "升到光电开关位置")
                 {
-                    strorder = "EB 90 11 01 02 30";
+                    strorder = "EB "+ strMMove+ " 11 01 02 30";
                 }
                 else if (cmbMoveY.SelectedItem.ToString() == "在当前位置下降")
                 {
-                    strorder = "EB 90 11 01 02 31";
+                    strorder = "EB "+ strMMove+ " 11 01 02 31";
                 }
             }
             else
             {
                 if (cmbMoveY.SelectedItem.ToString() == "升到光电开关位置")
                 {
-                    strorder = "EB 90 11 11 02 30";
+                    strorder = "EB "+ strMMove+ " 11 11 02 30";
                 }
                 else if (cmbMoveY.SelectedItem.ToString() == "在当前位置下降")
                 {
-                    strorder = "EB 90 11 11 02 31";
+                    strorder = "EB "+ strMMove+ " 11 11 02 31";
                 }
             }
             btnMoveY.Enabled = false;
@@ -1613,12 +1732,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             btnPutCup.Enabled = false;
             if (cmbCupMake.SelectedItem.ToString() == "理杯块运行到最低点")
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 01 04 30 00 00"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMMove+ " 11 01 04 30 00 00"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             else if (cmbCupMake.SelectedItem.ToString() == "理杯块运行到最高点")
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 01 04 31 00 00"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMMove+ " 11 01 04 31 00 00"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             btnPutCup.Enabled = true;
@@ -1639,6 +1758,13 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 垂直电机，压杯电机
         /// </summary>
         string[] IncubaElecMachine = { "垂直电机", "压杯电机" };
+
+        string strMIncubation = "90";
+        private void numMIncubation_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMIncubation.Value - 1).ToString("x2");
+            strMIncubation = "9" + num.Substring(1, 1).ToUpper();
+        }
         private void cmbMIncubation_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbMIncubation.SelectedItem.ToString() == "温育盘(内)")
@@ -1664,30 +1790,30 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[0]))
                 {
-                    strorder = "EB 90 04 01 01";
+                    strorder = "EB "+ strMIncubation+ " 04 01 01";
                 }
                 else if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[1]))
                 {
-                    strorder = "EB 90 04 01 02";
+                    strorder = "EB "+ strMIncubation+ " 04 01 02";
                 }
                 else if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[2]))
                 {
-                    strorder = "EB 90 04 01 03";
+                    strorder = "EB "+ strMIncubation+ " 04 01 03";
                 }
             }
             else
             {
                 if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[0]))
                 {
-                    strorder = "EB 90 14 01 01";
+                    strorder = "EB "+ strMIncubation+ " 14 01 01";
                 }
                 else if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[1]))
                 {
-                    strorder = "EB 90 14 01 02";
+                    strorder = "EB "+ strMIncubation+ " 14 01 02";
                 }
                 else if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[2]))
                 {
-                    strorder = "EB 90 14 01 03";
+                    strorder = "EB "+ strMIncubation+ " 14 01 03";
                 }
             }
             CmbIpara.Enabled = false;
@@ -1713,19 +1839,19 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (MMIncubation == 0)
             {
                 if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[0])
-                    strorder = "EB 90 04 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 04 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[1])
-                    strorder = "EB 90 04 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 04 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else
             {
                 if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[0])
-                    strorder = "EB 90 14 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[1])
-                    strorder = "EB 90 14 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             btnIAdd.Enabled = false;
@@ -1752,20 +1878,20 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
               
                 if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[0])
-                    strorder = "EB 90 04 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 04 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 else if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[1])
-                    strorder = "EB 90 04 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 04 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else
             {
              
                 if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[0])
-                    strorder = "EB 90 14 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 else if (cmbIElecMachine.SelectedItem.ToString() == IncubaElecMachine[1])
-                    strorder = "EB 90 14 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMIncubation+ " 14 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                               + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             btnISub.Enabled = false;
@@ -1784,17 +1910,48 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMIncubation == 0)
             {
-                strorder = "EB 90 04 13";
+                strorder = "EB "+ strMIncubation+ " 04 13";
             }
             else
             {
-                strorder = "EB 90 14 13";
+                strorder = "EB "+ strMIncubation+ " 14 13";
             }
             btnISave.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             btnISave.Enabled = true;
         }
+        private void btnISaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnISaveData.Enabled = false;
+            List<string> data = new List<string>();
+            if (MMIncubation == 0)
+            {
+                data = GetData(strMIncubation, "04");
+            }
+            else
+            {
+                data = GetData(strMIncubation, "14");
+            }
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnISaveData.Enabled = true;
+        }
+
         private void btnIAllInit_Click(object sender, EventArgs e)
         {
             frmMessageShow frmMsgShow = new frmMessageShow();
@@ -1804,7 +1961,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 return;
             }
             string strorder = "";
-            strorder = "EB 90 14 03 00";
+            strorder = "EB "+ strMIncubation+ " 14 03 00";
             btnIAllInit.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -1820,7 +1977,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 return;
             }
             string strorder = "";
-            strorder = "EB 90 14 03 01";
+            strorder = "EB "+ strMIncubation+ " 14 03 01";
             fbtnInTubeReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -1838,11 +1995,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMIncubation == 0)
             {
-                strorder = "EB 90 04 03 02";
+                strorder = "EB "+ strMIncubation+ " 04 03 02";
             }
             else
             {
-                strorder = "EB 90 14 03 02";
+                strorder = "EB "+ strMIncubation+ " 14 03 02";
             }
             btnIYInit.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1861,11 +2018,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMIncubation == 0)
             {
-                strorder = "EB 90 04 03 03";
+                strorder = "EB "+ strMIncubation+ " 04 03 03";
             }
             else
             {
-                strorder = "EB 90 14 03 03";
+                strorder = "EB "+ strMIncubation+ " 14 03 03";
             }
             fbtnPressCupZero.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -1881,18 +2038,19 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (cmbChooseMove.SelectedItem == null)
                 cmbChooseMove.SelectedIndex = 0;
             if (cmbChooseMove.SelectedItem.ToString().Trim() == "移管手")
-                reactTrayTubeClear(1);
+                reactTrayTubeClear(strMIncubation,1);
             else if (cmbChooseMove.SelectedItem.ToString().Trim() == "移新管抓手")
-                reactTrayTubeClear(0);
+                reactTrayTubeClear(strMIncubation,0);
             else
             {
                 bRRectClear = true;
-                ThNewMove = new Thread(reactNewTrayClear);
+                ThNewMove = new Thread(new ParameterizedThreadStart(reactNewTrayClear));
+                //ThNewMove = new Thread(reactNewTrayClear);
                 ThNewMove.IsBackground = true;
-                ThNewMove.Start();
-                ThMove = new Thread(reactTrayClear);
+                ThNewMove.Start(strMIncubation);
+                ThMove = new Thread(new ParameterizedThreadStart(reactNewTrayClear));
                 ThMove.IsBackground = true;
-                ThMove.Start();
+                ThMove.Start(strMIncubation);
                 while (tubeCount < ReactTrayNum && bRRectClear)
                 {
                     NetCom3.Delay(1000);
@@ -1921,9 +2079,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
         bool bRRectClear = false;
         /// <summary>
         /// 温育反应盘清管
+        /// strModel 级联机器编号
         /// Movetate 抓手标志 0-移新管抓手 1-移管手
         /// </summary>
-        bool reactTrayTubeClear(int Movetate)
+        bool reactTrayTubeClear(string strModel,int Movetate)
         {
             bRRectClear = true;
             LogFile.Instance.Write("运行调试界面温育盘清空代码！");
@@ -1935,7 +2094,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (Movetate == 0)
                 {
                     int statpos= int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, Movetate, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, Movetate, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         fbtnInTubeClear.Enabled = true;
@@ -1946,7 +2105,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 else if(Movetate == 1)
                 {
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, Movetate, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, Movetate, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         fbtnInTubeClear.Enabled = true;
@@ -1958,7 +2117,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             }
             return true;
         }
-        private void reactNewTrayClear()
+        /// <summary>
+        /// 移新管抓手清空温育盘
+        /// </summary>
+        /// <param name="strModel">级联机器编号</param>
+        private void reactNewTrayClear(object strModel)
         {
             DataTable dtInTrayIni = ReadReact();
             for (int j = 0; j < ReactTrayNum / 40 + 1; j = j + 2)
@@ -1968,7 +2131,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     if (i >= 150) return;
                     if (!bRRectClear) return;
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, 0, statpos);
+                    int errorflag = Move(strModel.ToString(),MoveSate.ReactLoss, 0, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         bRRectClear = false;
@@ -1980,7 +2143,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 }
             }
         }
-        private void reactTrayClear()
+        /// <summary>
+        /// 移管手清空温育盘
+        /// </summary>
+        /// <param name="strModel"></param>
+        private void reactTrayClear(string strModel)
         {
             DataTable dtInTrayIni = ReadReact();
             for (int j = 1; j < (ReactTrayNum / 40) + 1; j = j + 2)
@@ -1990,7 +2157,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     if (i >= 150) return;
                     if (!bRRectClear) return;
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, 1, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, 1, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         bRRectClear = false;
@@ -2014,16 +2181,16 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (MMIncubation == 0)
             {
                 if (cmbMixArm.SelectedItem.ToString() == "上（光电位置）")
-                    strorder = "EB 90 11 0a 02 30";
+                    strorder = "EB "+ strMIncubation+ " 11 0a 02 30";
                 else
-                    strorder = "EB 90 11 0a 02 31";
+                    strorder = "EB "+ strMIncubation+ " 11 0a 02 31";
             }
             else
             {
                 if (cmbMixArm.SelectedItem.ToString() == "上（光电位置）")
-                    strorder = "EB 90 11 1a 02 30";
+                    strorder = "EB "+ strMIncubation+ " 11 1a 02 30";
                 else
-                    strorder = "EB 90 11 1a 02 31";
+                    strorder = "EB "+ strMIncubation+ " 11 1a 02 31";
             }
             fbtnMixArm.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -2045,12 +2212,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             int HoleNum = int.Parse(txtInHoleNum.Text.Trim());
             if (HoleNum %2  == 0)
             {
-                strorder = "EB 90 31 04 01 " + HoleNum.ToString("x2");
+                strorder = "EB " + strMIncubation + " 31 04 01 " + HoleNum.ToString("x2");
                 SendType = (int)OrderSendType.Mix;
             }
             else
             {
-                strorder = "EB 90 31 14 01 " + HoleNum.ToString("x2");
+                strorder = "EB " + strMIncubation + " 31 14 01 " + HoleNum.ToString("x2");
                 SendType = (int)OrderSendType.Mix2;
             }
             fbtnMixTurnNum.Enabled = false;
@@ -2071,16 +2238,16 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (MMIncubation == 0)
             {
                 if (cmbPressCup.SelectedItem.ToString() == "归零")
-                    strorder = "EB 90 11 0a 03 30";
+                    strorder = "EB "+ strMIncubation+ " 11 0a 03 30";
                 else
-                    strorder = "EB 90 11 0a 03 31";
+                    strorder = "EB "+ strMIncubation+ " 11 0a 03 31";
             }
             else
             {
                 if (cmbPressCup.SelectedItem.ToString() == "归零")
-                    strorder = "EB 90 11 1a 03 30";
+                    strorder = "EB "+ strMIncubation+ " 11 1a 03 30";
                 else
-                    strorder = "EB 90 11 1a 03 31";
+                    strorder = "EB "+ strMIncubation+ " 11 1a 03 31";
             }
             btnPressCup.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -2099,12 +2266,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MMIncubation == 0)
             {
-                strorder = "EB 90 11 0a 04 30";
+                strorder = "EB "+ strMIncubation+ " 11 0a 04 30";
                 //strorder = "EB 90 11 0a 04 31";混匀停止
             }
             else
             {
-                strorder = "EB 90 11 1a 04 30";
+                strorder = "EB "+ strMIncubation+ " 11 1a 04 30";
             }
             fbtnMixStart.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -2113,6 +2280,15 @@ namespace BioBase.HSCIADebug.SysMaintenance
         }
         #endregion
         #region 清洗盘
+        /// <summary>
+        /// 清洗盘级联编号
+        /// </summary>
+        string strMWash = "90";
+        private void numMWash_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMIncubation.Value - 1).ToString("x2");
+            strMWash = "9" + num.Substring(1, 1).ToUpper();
+        }
         private void cmbWashPara_SelectedIndexChanged(object sender, EventArgs e)
         {
             frmMessageShow frmMsgShow = new frmMessageShow();
@@ -2125,17 +2301,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             //压杯开始位置
             if (cmbWashPara.SelectedItem.ToString().Contains("压杯开始位置"))
             {
-                strorder = "EB 90 03 01 01";
+                strorder = "EB "+ strMWash+ " 03 01 01";
             }
             //压杯最低位置
             else if(cmbWashPara.SelectedItem.ToString().Contains("压杯最低位置"))
             {
-                strorder = "EB 90 03 01 02";
+                strorder = "EB "+ strMWash+ " 03 01 02";
             }
             //清洗盘初始位置
             else if (cmbWashPara.SelectedItem.ToString().Contains("清洗盘初始位置"))
             {
-                strorder = "EB 90 03 01 03";
+                strorder = "EB "+ strMWash+ " 03 01 03";
             }
             cmbWashPara.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -2165,17 +2341,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string incream = int.Parse(txtWashIncream.Text.Trim()).ToString("x8");
             if (cmbWashElecMachine.SelectedItem.ToString().Contains("Z轴电机"))
             {
-                strorder = "EB 90 03 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                strorder = "EB "+ strMWash+ " 03 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                     + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else if (cmbWashElecMachine.SelectedItem.ToString().Contains("清洗盘"))
             {
-                strorder = "EB 90 03 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                strorder = "EB "+ strMWash+ " 03 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                     + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else if (cmbWashElecMachine.SelectedItem.ToString().Contains("压杯电机"))
             {
-                strorder = "EB 90 03 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                strorder = "EB "+ strMWash+ " 03 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                     + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             fbtnWashAdd.Enabled = false;
@@ -2207,17 +2383,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string incream = int.Parse("-" + txtWashIncream.Text.Trim()).ToString("x8");
             if (cmbWashElecMachine.SelectedItem.ToString().Contains("Z轴电机"))
             {
-                strorder = "EB 90 03 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                strorder = "EB "+ strMWash+ " 03 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                     + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else if (cmbWashElecMachine.SelectedItem.ToString().Contains("清洗盘"))
             {
-                strorder = "EB 90 03 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                strorder = "EB "+ strMWash+ " 03 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                     + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             else if (cmbWashElecMachine.SelectedItem.ToString().Contains("压杯电机"))
             {
-                strorder = "EB 90 03 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                strorder = "EB "+ strMWash+ " 03 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                     + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
             }
             fbtnWashSub.Enabled = false;
@@ -2234,11 +2410,41 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 03 03 00";
+            string strorder = "EB "+ strMWash+ " 03 03 00";
             fbtnWashSave.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             fbtnWashSave.Enabled = true;
+        }
+        private void fbtnWashSaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            fbtnWashSaveData.Enabled = false;
+            List<string> data = new List<string>();
+            if (MMIncubation == 0)
+            {
+                data = GetData(strMWash, "04");
+            }
+            else
+            {
+                data = GetData(strMWash, "14");
+            }
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            fbtnWashSaveData.Enabled = true;
         }
 
         private void fbtnWashReset_Click(object sender, EventArgs e)
@@ -2249,7 +2455,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 03 00 00";
+            string strorder = "EB "+ strMWash+ " 03 00 00";
             fbtnWashReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -2265,7 +2471,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 03 00 02";
+            string strorder = "EB "+ strMWash+ " 03 00 02";
             fbtnWashTrayReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -2280,7 +2486,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 03 00 01";
+            string strorder = "EB "+ strMWash+ " 03 00 01";
             fbtnWashZReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -2295,7 +2501,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 03 00 03";
+            string strorder = "EB "+ strMWash+ " 03 00 03";
             fbtnWashPressCupReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -2309,7 +2515,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         {
             fbtnWashTubeClear.Enabled = false;
             fbtnWashTubeCS.Enabled = true;
-            washTrayTubeClear();
+            washTrayTubeClear(strMWash);
             fbtnWashTubeClear.Enabled = true;
             fbtnWashTubeCS.Enabled = false;
         }
@@ -2322,8 +2528,9 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// <summary>
         /// 清洗盘清管
         /// </summary>
+        /// <param name="strModel">级联机器编号</param>
         /// <returns></returns>
-        bool washTrayTubeClear()
+        bool washTrayTubeClear(string strModel)
         {
             DataTable dtWashTrayIni = ReadWash();
             //2018-08-20 zlx mod
@@ -2336,7 +2543,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (i != 0)
                 {
                     //清洗盘顺时针旋转一位
-                    errorflag = WashTurn(-1);
+                    errorflag = WashTurn(strModel ,- 1);
                     if (errorflag!=(int)ErrorState.Success)
                     {
                         fbtnWashTubeClear.Enabled = true;
@@ -2366,7 +2573,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 }
                 #region 移管手取放管位置取管扔废管
                 LogFile.Instance.Write("==============  " + currentHoleNum + "  扔管");
-                errorflag = Move(MoveSate.WashLoss,1,(int)WashLossPos.PutTubePos);
+                errorflag = Move(strModel,MoveSate.WashLoss,1,(int)WashLossPos.PutTubePos);
                 if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                 {
                     fbtnWashTubeClear.Enabled = true;
@@ -2427,10 +2634,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            if (textBox1.Text.Trim() == "")
+            if (txtWashTurn.Text.Trim() == "")
             {
                 frmMsgShow.MessageShow("仪器调试", "请输入转动个数！");
-                textBox1.Focus();
+                txtWashTurn.Focus();
                 return;
             }
             try
@@ -2447,12 +2654,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (holetarget == 0 || holetarget == WashTrayNum || holetarget == -WashTrayNum)
                 {
                     frmMsgShow.MessageShow("仪器调试", "当前孔位没有变化！");
-                    textBox1.Focus();
+                    txtWashTurn.Focus();
                     btnWashTurn.Enabled = true;
                 }
                 else if (holetarget > -WashTrayNum && holetarget < WashTrayNum)
                 {
-                    WashTurn(holetarget);
+                    WashTurn(strMWash,holetarget);
                     //NetCom3.Instance.Send(NetCom3.Cover("EB 90 31 03 01" + " " + holetargethex.Substring(0, 2)), 2);
                     //NetCom3.Instance.WashQuery();
                     btnWashTurn.Enabled = true;
@@ -2460,7 +2667,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 else if (holetarget > WashTrayNum || holetarget < -WashTrayNum)
                 {
                     frmMsgShow.MessageShow("仪器调试", "孔位支持移动的范围为-"+ WashTrayNum + "~"+ WashTrayNum + "！");
-                    textBox1.Focus();
+                    txtWashTurn.Focus();
                 }
                 btnWashTurn.Enabled = true;
             }
@@ -2488,7 +2695,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (txtWashTurn.Text.Trim() == "")
             {
                 frmMsgShow.MessageShow("仪器调试", "请输入转动个数！");
-                textBox1.Focus();
+                txtWashTurn.Focus();
                 return;
             }
             if (bLoopRun)
@@ -2512,13 +2719,13 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (holetarget == 0 || holetarget == WashTrayNum || holetarget == -WashTrayNum)
                 {
                     frmMsgShow.MessageShow("仪器调试", "当前孔位没有变化！");
-                    textBox1.Focus();
+                    txtWashTurn.Focus();
                     btnLoopTurn.Enabled = true;
                 }
                 else if (holetarget > WashTrayNum || holetarget < -WashTrayNum)
                 {
                     frmMsgShow.MessageShow("仪器调试", "孔位支持移动的范围为-"+ WashTrayNum + "~"+ WashTrayNum + "！");
-                    textBox1.Focus();
+                    txtWashTurn.Focus();
                     btnLoopTurn.Enabled = true;
                 }
                 else if (holetarget > -WashTrayNum && holetarget < WashTrayNum)
@@ -2538,7 +2745,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             int holetarget = int.Parse(txtWashTurn.Text.Trim());
             while (bLoopRun)
             {
-                WashTurn(holetarget);
+                WashTurn(strMWash, holetarget);
                 Thread.Sleep(1000);
             }
 
@@ -2558,12 +2765,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             fbtnWashZEx.Enabled = false;
             if (cmbWashZ.SelectedItem.ToString().Contains("吸液夹管开始位置"))
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 31 30"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 31 30"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             else if (cmbWashZ.SelectedItem.ToString().Contains("吸液夹管最低位"))
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 31 31"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 31 31"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             fbtnWashZEx.Enabled = true;
@@ -2584,12 +2791,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             fbtnWashPressCupEx.Enabled = false;
             if (cmbWashPressCup.SelectedItem.ToString().Contains("压杯开始位置"))
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 32 30"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 32 30"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             else if (cmbWashPressCup.SelectedItem.ToString().Contains("压杯最低位置"))
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 32 31"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 32 31"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             fbtnWashPressCupEx.Enabled = true;
@@ -2610,12 +2817,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             btnWashMix.Enabled = false;
             if (cmbWashMix.SelectedIndex == 0)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 33 01"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 33 01"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             else if (cmbWashMix.SelectedIndex == 1)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 33 02"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 33 02"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             btnWashMix.Enabled = true;
@@ -2634,7 +2841,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string temp = InPowerLoquid.ToString("x4");
             string temp1 = temp.Substring(0, 2);
             string temp2 = temp.Substring(2, 2);
-            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 03 14 " + temp1 + " " + temp2 + " 00"), (int)OrderSendType.Total);
+            NetCom3.Instance.Send(NetCom3.Cover("EB "+ strMWash+ " 11 03 14 " + temp1 + " " + temp2 + " 00"), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             fbtnPeristalticPEx.Enabled = true;
         }
@@ -2649,7 +2856,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
         Thread thFire = null;
         bool bRead = false;
         #endregion
-        
+        string strNumMRead = "90";
+        private void numMRead_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMIncubation.Value - 1).ToString("x2");
+            strNumMRead = "9" + num.Substring(1, 1).ToUpper();
+        }
         private void fbtnRead_Click(object sender, EventArgs e)
         {
             fbtnRead.Enabled = false;
@@ -2662,7 +2874,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (chkWashTubeClear.Checked ==true)
             {
                 txtReadShow.AppendText("开始清空清洗盘" + Environment.NewLine);
-                bool bclear = washTrayTubeClear();
+                bool bclear = washTrayTubeClear(strNumMRead);
                 if (!bclear)
                 {
                     string message = "";
@@ -2680,7 +2892,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (chkInTubeClear.Checked == true)
             {
                 txtReadShow.AppendText("开始清空温育盘" + Environment.NewLine);
-                bool bclear = reactTrayTubeClear(0);
+                bool bclear = reactTrayTubeClear(strNumMRead,0);
                 if (!bclear)
                 {
                     string message = "";
@@ -2706,7 +2918,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     string message = "";
                     int Tube = 0;
                     Again:
-                    int moverrorflag = Move(MoveSate.NewtubeToReact, 0, i);
+                    int moverrorflag = Move(strNumMRead,MoveSate.NewtubeToReact, 0, i);
                     if (moverrorflag != (int)ErrorState.Success)
                     {
                         if (moverrorflag == (int)ErrorState.LackTube)
@@ -2744,7 +2956,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     string message = "";
                     int Tube = 0;
                     Again:
-                    int moverror = Move(MoveSate.ReactToWash, 1, i);
+                    int moverror = Move(strNumMRead,MoveSate.ReactToWash, 1, i);
                     if (moverror != (int)ErrorState.Success)
                     {
                         if (moverror == (int)ErrorState.IsNull)
@@ -2768,7 +2980,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                         fbtnReadEnd.Enabled = false;
                         return;
                     }
-                    int errror = WashTurn(1);
+                    int errror = WashTurn(strNumMRead,1);
                     if (errror != (int)ErrorState.Success)
                     {
                         txtReadShow.AppendText("清洗盘旋转指令异常:" + Environment.NewLine);
@@ -2779,7 +2991,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     Thread.Sleep(500);
                 }
                 txtReadShow.AppendText("清洗盘旋转"+ washturnnum + "个孔位" + Environment.NewLine);
-                int washerrror = WashTurn(washturnnum);
+                int washerrror = WashTurn(strNumMRead,washturnnum);
                 if (washerrror != (int)ErrorState.Success)
                 {
                     txtReadShow.AppendText("清洗盘旋转指令异常:" + Environment.NewLine);
@@ -2798,7 +3010,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 {
                     WashSend.Initial();
                     WashSend.ReadFlag = 1;
-                    int errror = WashAddLiquidR();
+                    int errror = WashAddLiquidR(strNumMRead);
                     if (errror != (int)ErrorState.Success)
                     {
                         txtReadShow.AppendText("清洗灌注指令异常:" + Environment.NewLine);
@@ -2821,7 +3033,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     }
                     Thread.Sleep(1000);
                 }
-                int washerrror = WashTurn(1);
+                int washerrror = WashTurn(strNumMRead,1);
                 if (washerrror != (int)ErrorState.Success)
                 {
                     txtReadShow.AppendText("清洗盘旋转指令异常:" + Environment.NewLine);
@@ -2855,7 +3067,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         private void btnZx_Click(object sender, EventArgs e)
         {
             int pos = int.Parse(numXz.Text);
-            int error = WashTurn(pos);
+            int error = WashTurn(strNumMRead,pos);
         }
 
         private void btnReadNum_Click(object sender, EventArgs e)
@@ -2868,7 +3080,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 WashSend.Initial();
                 WashSend.ReadFlag = 1;
-                int errror = WashAddLiquidR();
+                int errror = WashAddLiquidR(strNumMRead);
                 if (errror != (int)ErrorState.Success)
                 {
                     fbtnRead.Enabled = true;
@@ -3384,7 +3596,13 @@ namespace BioBase.HSCIADebug.SysMaintenance
         BindingList<decimal> Qglist = new BindingList<decimal>();//底物
         decimal timespan;//时间间隔
         double numOfSam, num1, num2;//采样数、y轴下界、y轴上界
+        string strMNumTem = "90";
         delegate void SetTextCallBack(string text);
+        private void numTem_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMIncubation.Value - 1).ToString("x2");
+            strMNumTem = "9" + num.Substring(1, 1).ToUpper();
+        }
         private void SettxtStandard(string text)
         {
             txtStandard.Text = text;
@@ -3419,33 +3637,33 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 case "温育盘":
                     if (cmbStep.SelectedItem.ToString() == "查询校准值")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 04 06"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 04 06"), (int)OrderSendType.Total);
                     else if (cmbStep.SelectedItem.ToString() == "查询温度")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 04 04"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 04 04"), (int)OrderSendType.Total);
                     break;
                 case "清洗盘":
                     if (cmbStep.SelectedItem.ToString() == "查询校准值")
                         NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 05 06"), (int)OrderSendType.Total);
                     else if (cmbStep.SelectedItem.ToString() == "查询温度")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 05 04"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 05 04"), (int)OrderSendType.Total);
                     break;
                 case "清洗管路":
                     if (cmbStep.SelectedItem.ToString() == "查询校准值")
                         NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 06 06"), (int)OrderSendType.Total);
                     else if (cmbStep.SelectedItem.ToString() == "查询温度")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 06 04"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 06 04"), (int)OrderSendType.Total);
                     break;
                 case "底物管路":
                     if (cmbStep.SelectedItem.ToString() == "查询校准值")
                         NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 07 06"), (int)OrderSendType.Total);
                     else if (cmbStep.SelectedItem.ToString() == "查询温度")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 07 04"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 07 04"), (int)OrderSendType.Total);
                     break;
                 case "试剂盘":
                     if (cmbStep.SelectedItem.ToString() == "查询校准值")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 08 06"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 08 06"), (int)OrderSendType.Total);
                     else if (cmbStep.SelectedItem.ToString() == "查询温度")
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 08 04"), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 08 04"), (int)OrderSendType.Total);
                     if (!reagentColdQuery())
                     {
                         frmMsgShow.MessageShow("ERROR", "请检查是否打开制冷开关.");
@@ -3507,10 +3725,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     switch (cmbStep.SelectedItem.ToString())
                     {
                         case "加热打开":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 04 00"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 04 00"), (int)OrderSendType.Total);
                             break;
                         case "加热关闭":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 04 01"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 04 01"), (int)OrderSendType.Total);
                             break;
                         case "设置校准值":
                             if (txtStandard.Text == "")
@@ -3519,7 +3737,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                                 return;
                             }
                             string jzwendu = NetCom3.FloatToHex(float.Parse(txtStandard.Text));
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 04 03 " + jzwendu), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 04 03 " + jzwendu), (int)OrderSendType.Total);
                             break;
                         default:
                             break;
@@ -3529,10 +3747,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     switch (cmbStep.Text)
                     {
                         case "加热打开":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 05 00"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 05 00"), (int)OrderSendType.Total);
                             break;
                         case "加热关闭":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 05 01"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 05 01"), (int)OrderSendType.Total);
                             break;
                         case "设置校准值":
                             if (txtStandard.Text == "")
@@ -3541,7 +3759,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                                 return;
                             }
                             string jzwendu = NetCom3.FloatToHex(float.Parse(txtStandard.Text));
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 05 03 " + jzwendu), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 05 03 " + jzwendu), (int)OrderSendType.Total);
                             break;
                         default:
                             break;
@@ -3551,10 +3769,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     switch (cmbStep.Text)
                     {
                         case "加热打开":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 06 00"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 06 00"), (int)OrderSendType.Total);
                             break;
                         case "加热关闭":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 06 01"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 06 01"), (int)OrderSendType.Total);
                             break;
                         case "设置校准值":
                             if (txtStandard.Text == "")
@@ -3563,7 +3781,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                                 return;
                             }
                             string jzwendu = NetCom3.FloatToHex(float.Parse(txtStandard.Text));
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 06 03 " + jzwendu), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 06 03 " + jzwendu), (int)OrderSendType.Total);
                             break;
                         default:
                             break;
@@ -3573,10 +3791,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     switch (cmbStep.Text)
                     {
                         case "加热打开":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 07 00"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 07 00"), (int)OrderSendType.Total);
                             break;
                         case "加热关闭":
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 07 01"), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 07 01"), (int)OrderSendType.Total);
                             break;
                         case "设置校准值":
                             if (txtStandard.Text == "")
@@ -3585,7 +3803,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                                 return;
                             }
                             string jzwendu = NetCom3.FloatToHex(float.Parse(txtStandard.Text));
-                            NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 07 03 " + jzwendu), (int)OrderSendType.Total);
+                            NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 07 03 " + jzwendu), (int)OrderSendType.Total);
                             break;
                         default:
                             break;
@@ -3600,7 +3818,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                             break;
                         }
                         string sjwendu = NetCom3.FloatToHex(float.Parse(txtStandard.Text));
-                        NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 08 03 " + sjwendu), (int)OrderSendType.Total);
+                        NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 08 03 " + sjwendu), (int)OrderSendType.Total);
                         if (!reagentColdQuery())
                         {
                             frmMsgShow.MessageShow("ERROR", "请检查是否打开制冷开关");
@@ -3708,27 +3926,27 @@ namespace BioBase.HSCIADebug.SysMaintenance
             SelectTemFlag = true;
             if (chkWY.Checked)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 04 04"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 04 04"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             if (chkQX.Checked)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 05 04"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 05 04"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             if (chkDW.Checked)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 07 04"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 07 04"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             if (chkQXGL.Checked)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 06 04"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 06 04"), (int)OrderSendType.Total);
                 NetCom3.Instance.SingleQuery();
             }
             if (chkRegent.Checked)
             {
-                NetCom3.Instance.Send(NetCom3.Cover("EB 90 11 08 04"), (int)OrderSendType.Total);
+                NetCom3.Instance.Send(NetCom3.Cover("EB "+strMNumTem+" 11 08 04"), (int)OrderSendType.Total);
                 if (!reagentColdQuery())
                 {
                     SelectTemFlag = false;
@@ -3853,7 +4071,16 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 挡块I，加样定位片
         /// </summary>
         string[] OrbERElecMach = { "挡块I","加样定位片" };
-       
+        /// <summary>
+        /// 级联仪器编号
+        /// </summary>
+        string numOrbiterID ="0";
+        string OrbOrder = "90";
+        private void NumOrbiterID_ValueChanged(object sender, EventArgs e)
+        {
+            numOrbiterID =int.Parse((NumOrbiterID.Value-1).ToString()).ToString("x2");
+            OrbOrder = "9" + numOrbiterID.Substring(1, 1);
+        }
         private void cmbMOrbiter_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbOrbPos.Items.Clear();
@@ -3909,32 +4136,32 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbOrbPos.SelectedItem.ToString() == OrbCPos[0])
                 {
-                    strorder = "EB 90 06 01 01";
+                    strorder = "EB "+OrbOrder+" 06 01 01";
 
                 }
                 else if (cmbOrbPos.SelectedItem.ToString() == OrbCPos[1])
                 {
-                    strorder = "EB 90 06 01 02";
+                    strorder = "EB "+OrbOrder+" 06 01 02";
 
                 }
                 else if (cmbOrbPos.SelectedItem.ToString() == OrbCPos[2])
                 {
-                    strorder = "EB 90 06 01 03";
+                    strorder = "EB "+OrbOrder+" 06 01 03";
 
                 }
                 else if (cmbOrbPos.SelectedItem.ToString() == OrbCPos[3])
                 {
-                    strorder = "EB 90 06 01 04";
+                    strorder = "EB "+OrbOrder+" 06 01 04";
 
                 }
                 else if (cmbOrbPos.SelectedItem.ToString() == OrbCPos[4])
                 {
-                    strorder = "EB 90 06 01 05";
+                    strorder = "EB "+OrbOrder+" 06 01 05";
 
                 }
                 else if (cmbOrbPos.SelectedItem.ToString() == OrbCPos[5])
                 {
-                    strorder = "EB 90 06 01 06";
+                    strorder = "EB "+OrbOrder+" 06 01 06";
 
                 }
             }
@@ -3942,12 +4169,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbOrbPos.SelectedItem.ToString() == OrbERPos[0])
                 {
-                    strorder = "EB 90 06 01 07";
+                    strorder = "EB "+OrbOrder+" 06 01 07";
 
                 }
                 else if (cmbOrbPos.SelectedItem.ToString() == OrbERPos[1])
                 {
-                    strorder = "EB 90 06 01 08";
+                    strorder = "EB "+OrbOrder+" 06 01 08";
                 }
             }
             cmbMOrbiter.Enabled = false;
@@ -3980,32 +4207,32 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[0].Trim())
                 {
-                    strorder = "EB 90 06 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[1].Trim())
                 {
-                    strorder = "EB 90 06 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[2].Trim())
                 {
-                    strorder = "EB 90 06 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 //else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[3].Trim())
                 //{
-                //    strorder = "EB 90 06 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                //    strorder = "EB "+OrbOrder+" 06 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                 //                + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 //}
                 //else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[4].Trim())
                 //{
-                //    strorder = "EB 90 06 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                //    strorder = "EB "+OrbOrder+" 06 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                 //                + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 //}
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[3].Trim())
                 {
-                    strorder = "EB 90 06 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                
@@ -4015,12 +4242,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
 
                 if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbERElecMach[0].Trim())
                 {
-                    strorder = "EB 90 06 02 07 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 07 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbERElecMach[1].Trim())
                 {
-                    strorder = "EB 90 06 02 08 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 08 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
             }
@@ -4054,32 +4281,32 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[0].Trim())
                 {
-                    strorder = "EB 90 06 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[1].Trim())
                 {
-                    strorder = "EB 90 06 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[2].Trim())
                 {
-                    strorder = "EB 90 06 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
                 //else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[3].Trim())
                 //{
-                //    strorder = "EB 90 06 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                //    strorder = "EB "+OrbOrder+" 06 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                 //                + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 //}
                 //else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[4].Trim())
                 //{
-                //    strorder = "EB 90 06 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                //    strorder = "EB "+OrbOrder+" 06 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                 //                + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 //}
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbCElecMach[3].Trim())
                 {
-                    strorder = "EB 90 06 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
 
@@ -4089,12 +4316,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
 
                 if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbERElecMach[0].Trim())
                 {
-                    strorder = "EB 90 06 02 07 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 07 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
                 else if (cmbOrbElecMach.SelectedItem.ToString().Trim() == OrbERElecMach[1].Trim())
                 {
-                    strorder = "EB 90 06 02 08 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+OrbOrder+" 06 02 08 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
             }
@@ -4114,17 +4341,53 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MOrbiter == 0)
             {
-                strorder = "EB 90 06 04";
+                strorder = "EB "+OrbOrder+" 06 04";
             }
             else
             {
-                strorder = "EB 90 06 14";
+                strorder = "EB "+OrbOrder+" 06 14";
             }
             btnOrbSave.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             btnOrbSave.Enabled = true;
         }
+        private void btnOrbSaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnOrbSaveData.Enabled = false;
+            List<string> data = GetData(OrbOrder, "06");
+
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            if (MOrbiter == 0)
+            {
+                foreach (string item in data)
+                {
+                    string s = ("EB " + item.Substring(0, 5) + " 04 " + item.Substring(18)).TrimEnd();
+                    NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                    NetCom3.Instance.SingleQuery();
+                }
+            }
+            else
+            {
+                foreach (string item in data)
+                {
+                    string s = ("EB " + item.Substring(0, 5) + " 14 " + item.Substring(18)).TrimEnd();
+                    NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                    NetCom3.Instance.SingleQuery();
+                }
+            }
+            btnOrbSaveData.Enabled = true;
+        }
+
         private void btnOrbAllReset_Click(object sender, EventArgs e)
         {
 
@@ -4141,11 +4404,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MOrbiter == 0)
             {
-                strorder = "EB 90 06 03 01";
+                strorder = "EB "+OrbOrder+" 06 03 01";
             }
             else
             {
-                strorder = "EB 90 06 03 07";
+                strorder = "EB "+OrbOrder+" 06 03 07";
             }
             btnOrbP1Reset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -4164,11 +4427,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MOrbiter == 0)
             {
-                strorder = "EB 90 06 03 02";
+                strorder = "EB "+OrbOrder+" 06 03 02";
             }
             else
             {
-                strorder = "EB 90 06 03 08";
+                strorder = "EB "+OrbOrder+" 06 03 08";
             }
             btnOrbASPosReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -4187,11 +4450,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MOrbiter == 0)
             {
-                strorder = "EB 90 06 03 F1";
+                strorder = "EB "+OrbOrder+" 06 03 F1";
             }
             else
             {
-                strorder = "EB 90 06 03 F2";
+                strorder = "EB "+OrbOrder+" 06 03 F2";
             }
             btnOrbRoutIReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -4207,7 +4470,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 06 03 F3";
+            string strorder = "EB "+OrbOrder+" 06 03 F3";
             btnHGOrbitReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -4222,7 +4485,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 06 03 03";
+            string strorder = "EB "+OrbOrder+" 06 03 03";
             btnCOrbitReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -4237,7 +4500,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            string strorder = "EB 90 06 03 06";
+            string strorder = "EB "+OrbOrder+" 06 03 06";
             btnOrbP2Reset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
@@ -4271,6 +4534,15 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 出样本待检区推手电机，出调度去轨道挡片退走电机，链盘电机
         /// </summary>
         string[] MConElecMach2 = { "出样本待检区推手电机", "出调度去轨道挡片退走电机", "链盘电机" };
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+        string strMControl = "90";
+        private void numMcontrol_ValueChanged(object sender, EventArgs e)
+        {
+            numOrbiterID = int.Parse((NumOrbiterID.Value - 1).ToString()).ToString("x2");
+            OrbOrder = "9" + numOrbiterID.Substring(1, 1);
+        }
         private void cmbMcontrol_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbConPos.Items.Clear();
@@ -4329,42 +4601,42 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbConPos.SelectedItem.ToString() == MControlPos1[0])
                 {
-                    strorder = "EB 90 05 01 01";
+                    strorder = "EB "+ strMControl + " 05 01 01";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos1[1])
                 {
-                    strorder = "EB 90 05 01 02";
+                    strorder = "EB "+ strMControl + " 05 01 02";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos1[2])
                 {
-                    strorder = "EB 90 05 01 03";
+                    strorder = "EB "+ strMControl + " 05 01 03";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos1[3])
                 {
-                    strorder = "EB 90 05 01 04";
+                    strorder = "EB "+ strMControl + " 05 01 04";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos1[4])
                 {
-                    strorder = "EB 90 05 01 05";
+                    strorder = "EB "+ strMControl + " 05 01 05";
                 }
             }
             else
             {
                 if (cmbConPos.SelectedItem.ToString() == MControlPos2[0])
                 {
-                    strorder = "EB 90 05 01 06";
+                    strorder = "EB "+ strMControl + " 05 01 06";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos2[1])
                 {
-                    strorder = "EB 90 05 01 07";
+                    strorder = "EB "+ strMControl + " 05 01 07";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos2[2])
                 {
-                    strorder = "EB 90 05 01 08";
+                    strorder = "EB "+ strMControl + " 05 01 08";
                 }
                 else if (cmbConPos.SelectedItem.ToString() == MControlPos2[3])
                 {
-                    strorder = "EB 90 05 01 09";
+                    strorder = "EB "+ strMControl + " 05 01 09";
                 }
                
             }
@@ -4398,17 +4670,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach1[0].Trim())
                 {
-                    strorder = "EB 90 05 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach1[1].Trim())
                 {
-                    strorder = "EB 90 05 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2) ;
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach1[2].Trim())
                 {
-                    strorder = "EB 90 05 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
 
@@ -4418,17 +4690,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
 
                 if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach2[0].Trim())
                 {
-                    strorder = "EB 90 05 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach2[1].Trim())
                 {
-                    strorder = "EB 90 05 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach2[2].Trim())
                 {
-                    strorder = "EB 90 05 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
             }
@@ -4462,17 +4734,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach1[0].Trim())
                 {
-                    strorder = "EB 90 05 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach1[1].Trim())
                 {
-                    strorder = "EB 90 05 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach1[2].Trim())
                 {
-                    strorder = "EB 90 05 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
 
@@ -4482,17 +4754,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
 
                 if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach2[0].Trim())
                 {
-                    strorder = "EB 90 05 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach2[1].Trim())
                 {
-                    strorder = "EB 90 05 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
                 else if (cmbConElecMach.SelectedItem.ToString().Trim() == MConElecMach2[2].Trim())
                 {
-                    strorder = "EB 90 05 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    strorder = "EB "+ strMControl + " 05 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
                                 + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
                 }
             }
@@ -4513,16 +4785,39 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MConrrol == 1)
             {
-                strorder = "EB 90 05 13";
+                strorder = "EB "+ strMControl + " 05 13";
             }
             else
             {
-                strorder = "EB 90 05 23";
+                strorder = "EB "+ strMControl + " 05 23";
             }
             btnConSave.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             btnConSave.Enabled = true;
+        }
+        private void btnConSaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnConSaveData.Enabled = false;
+            List<string> data = GetData(strMControl, "05");
+
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnConSaveData.Enabled = true;
         }
 
         private void btnConAllReset_Click(object sender, EventArgs e)
@@ -4541,11 +4836,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MConrrol == 1)
             {
-                strorder = "EB 90 05 03 F1";
+                strorder = "EB "+ strMControl + " 05 03 F1";
             }
             else
             {
-                strorder = "EB 90 05 03 F2";
+                strorder = "EB "+ strMControl + " 05 03 F2";
             }
             btnCon1Reset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -4564,11 +4859,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MConrrol == 1)
             {
-                strorder = "EB 90 05 03 01";
+                strorder = "EB "+ strMControl + " 05 03 01";
             }
             else
             {
-                strorder = "EB 90 05 03 03";
+                strorder = "EB "+ strMControl + " 05 03 03";
             }
             btnConSMReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -4587,11 +4882,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MConrrol == 1)
             {
-                strorder = "EB 90 05 03 00";
+                strorder = "EB "+ strMControl + " 05 03 00";
             }
             else
             {
-                strorder = "EB 90 05 03 02";
+                strorder = "EB "+ strMControl + " 05 03 02";
             }
             btnConSDReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
@@ -4611,19 +4906,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
             string strorder = "";
             if (MConrrol == 1)
             {
-                strorder = "EB 90 05 03 05";
+                strorder = "EB "+ strMControl + " 05 03 05";
             }
             else
             {
-                strorder = "EB 90 05 03 06";
+                strorder = "EB "+ strMControl + " 05 03 06";
             }
             btnConFReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             btnConFReset.Enabled = true;
         }
-
-
         private void btnConRSDReset_Click(object sender, EventArgs e)
         {
             frmMessageShow frmMsgShow = new frmMessageShow();
@@ -4633,7 +4926,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 return;
             }
             string strorder = "";
-            strorder = "EB 90 05 03 04";
+            strorder = "EB "+ strMControl + " 05 03 04";
             btnConRSDReset.Enabled = false;
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
