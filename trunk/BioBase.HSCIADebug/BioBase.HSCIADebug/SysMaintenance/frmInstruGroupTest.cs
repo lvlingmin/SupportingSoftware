@@ -18,6 +18,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
         #region 变量
         bool isNewWashRun = false;
         bool CancellationToken = false;
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+        string strModel = "00";
         #endregion
         #region 读写文件信息
         /// <summary>
@@ -28,18 +32,18 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// <param name="startpos">开始位置</param>
         /// <param name="goalpos">结束位置</param>
         /// <returns></returns>
-        public int Move(MoveSate MoveSate, int movehand, int startpos = 0, int goalpos = 0)
+        public int Move(string strModel,MoveSate MoveSate, int movehand, int startpos = 0, int goalpos = 0)
         {
             MoveHandSend.MoveSate = MoveSate;
            
             if(movehand ==(int)MoveHand.Movehand)
             { 
-                MoveHandSend.Move2(startpos, goalpos);
+                MoveHandSend.Move2(strModel, goalpos);
                 return NetCom3.Instance.Move2rrorFlag;
             }
             else
             {
-                MoveHandSend.Move(startpos, goalpos);
+                MoveHandSend.Move(strModel, goalpos);
                 return NetCom3.Instance.MoverrorFlag;
             }
                
@@ -104,7 +108,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// <returns></returns>
         public int WashTurn(int num)
         {
-            return WashSend.WashTurn(num);
+            return WashSend.WashTurn(strModel,num);
         }
         /// <summary>
         /// 批量写入数据
@@ -136,9 +140,9 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 清洗盘加液/注液/读数
         /// </summary>
         /// <returns></returns>
-        public int WashAddLiquidR()
+        public int WashAddLiquidR(string strModel)
         {
-            return WashSend.WashAddLiquidR();
+            return WashSend.WashAddLiquidR(strModel);
         }
         #endregion
         public frmInstruGroupTest()
@@ -289,7 +293,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 {
                     if (isNewWashEnd())
                         return;
-                    int errorflag = Move(MoveSate.NewtubeToReact,0, ReactStart+i);
+                    int errorflag = Move(strModel,MoveSate.NewtubeToReact,0, ReactStart+i);
                     if (errorflag != (int)ErrorState.Success)
                     {
                         NewWashEnd(1);
@@ -310,7 +314,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     if (ChkAddTube.Checked)
                     {
                         TExtAppend("正在加第" + (tubeNum - temptubenum + 1) + "个新管");
-                        int errorFlag = Move(MoveSate.ReactToWash,(int)MoveHand.Movehand, ReactStart+i);
+                        int errorFlag = Move(strModel,MoveSate.ReactToWash,(int)MoveHand.Movehand, ReactStart+i);
                         if (errorFlag != (int)ErrorState.Success)
                         {
                             NewWashEnd(1);
@@ -330,7 +334,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                         TExtAppend("第" + tempread + "个管正在读数");
                         tempread++;
                     }
-                    errorflag=tray.WashAddLiquidR(chkWash.Checked, ChkAddSub.Checked,ChkRead.Checked,1);
+                    errorflag=tray.WashAddLiquidR(strModel,chkWash.Checked, ChkAddSub.Checked,ChkRead.Checked,1);
                     if (errorflag != (int)ErrorState.Success)
                     {
                         NewWashEnd(3);
@@ -351,7 +355,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                             if (isNewWashEnd()) return;
                             WashSend.Initial();
                             WashSend.ReadFlag = 1;
-                            errorflag = WashAddLiquidR();
+                            errorflag = WashAddLiquidR(strModel);
                             if (errorflag != (int)ErrorState.Success)
                             {
                                 NewWashEnd(3);
@@ -366,7 +370,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (ChkLossTube.Checked && tray.pointer[10].Value[1] == 1)
                 {
                     TExtAppend("正在从清洗盘扔第" + tubecount + "个管。");
-                    errorflag = Move(MoveSate.WashLoss,(int)MoveHand.Movehand,(int)WashLossPos.ReadFinshPos);
+                    errorflag = Move(strModel,MoveSate.WashLoss,(int)MoveHand.Movehand,(int)WashLossPos.ReadFinshPos);
                     if (errorflag != (int)ErrorState.Success)
                     {
                         NewWashEnd(1);
@@ -435,7 +439,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 if (Movetate == 0)
                 {
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, Movetate, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, Movetate, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         return false;
@@ -445,7 +449,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 else
                 {
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, Movetate, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, Movetate, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         return false;
@@ -466,7 +470,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     if (i >= 150) return;
                     if (isNewWashEnd()) return;
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, 0, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, 0, statpos);
                     //string order = "EB 90 31 01 05 " + statpos.ToString("x2");
                     //NetCom3.Instance.Send(NetCom3.Cover(order), (int)OrderSendType.MoveNewTube);
                     //bool errorflag = NetCom3.Instance.MoveQuery();
@@ -491,7 +495,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     if (i >= 150) return;
                     if (isNewWashEnd()) return;
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(MoveSate.ReactLoss, 1, statpos);
+                    int errorflag = Move(strModel,MoveSate.ReactLoss, 1, statpos);
                     //string order = "EB 90 31 11 05 " + statpos.ToString("x2");
                     //NetCom3.Instance.Send(NetCom3.Cover(order), (int)OrderSendType.MoveTube);
                     //bool errorflag = NetCom3.Instance.Move2Query();
@@ -549,7 +553,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 }
                 #region 移管手取放管位置取管扔废管
                 LogFile.Instance.Write("==============  " + tubeHoleNum + "  扔管");
-                errorflag = Move(MoveSate.WashLoss, (int)MoveHand.Movehand, (int)WashLossPos.PutTubePos);
+                errorflag = Move(strModel,MoveSate.WashLoss, (int)MoveHand.Movehand, (int)WashLossPos.PutTubePos);
                 if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                 {
                     return false;
@@ -570,7 +574,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             int Num = num;
             int substrateNum1 = ReadSubstrate();
             #region 清洗盘顺时针18位，然后放管
-            int errorflag = Move(MoveSate.NewtubeToReact,(int)MoveHand.NewMovehand,1);
+            int errorflag = Move(strModel,MoveSate.NewtubeToReact,(int)MoveHand.NewMovehand,1);
             if (errorflag != (int)ErrorState.Success)
             {
                 NewWashEnd(1);
@@ -582,7 +586,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 NewWashEnd(3);
                 return;
             }
-            errorflag = Move(MoveSate.ReactToWash, (int)MoveHand.Movehand, 1) ;
+            errorflag = Move(strModel,MoveSate.ReactToWash, (int)MoveHand.Movehand, 1) ;
             if (errorflag != (int)ErrorState.Success)
             {
                 NewWashEnd(1);
@@ -605,7 +609,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 #region 底物注液
                 WashSend.Initial();
                 WashSend.AddSubstrateFlag = 1;
-                errorflag = WashAddLiquidR();
+                errorflag = WashAddLiquidR(strModel);
                 if (errorflag != (int)ErrorState.Success)
                 {
                     NewWashEnd(3);
@@ -624,7 +628,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 #region 吸液
                 WashSend.Initial();
                 WashSend.ImbibitionFlag = 1;
-                errorflag = WashAddLiquidR();
+                errorflag = WashAddLiquidR(strModel);
                 if (errorflag != (int)ErrorState.Success)
                 {
                     NewWashEnd(3);
@@ -650,7 +654,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 NewWashEnd(3);
                 return;
             }
-            errorflag = Move(MoveSate.WashLoss,(int)MoveHand.Movehand,(int)WashLossPos.PutTubePos);
+            errorflag = Move(strModel,MoveSate.WashLoss,(int)MoveHand.Movehand,(int)WashLossPos.PutTubePos);
             if (errorflag != (int)ErrorState.Success)
             {
                 NewWashEnd(1);
@@ -819,7 +823,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             int IsKnockedCool = 0;
             AgainNewMove:
             if (isNewWashEnd()) return false;
-            int errorflag = Move(MoveSate.NewtubeToReact, (int)MoveHand.NewMovehand, 1);
+            int errorflag = Move(strModel,MoveSate.NewtubeToReact, (int)MoveHand.NewMovehand, 1);
             if (errorflag != (int)ErrorState.Success)
             {
                 #region 发生异常处理
@@ -878,7 +882,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 #endregion
             }
             if (isNewWashEnd()) return false;
-            errorflag = Move(MoveSate.ReactToWash,(int)MoveHand.Movehand,1);
+            errorflag = Move(strModel,MoveSate.ReactToWash,(int)MoveHand.Movehand,1);
             if (errorflag != (int)ErrorState.Success)
             {
                 #region 发生异常处理
@@ -992,7 +996,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             }
             AgainNewMove:
             if (isNewWashEnd()) return;  //lyq add 20190822
-            int errorflag = WashAddLiquidR();
+            int errorflag = WashAddLiquidR(strModel);
             if (errorflag != (int)ErrorState.Success)
             {
                 if (NetCom3.Instance.WasherrorFlag == (int)ErrorState.Sendfailure)
@@ -1021,7 +1025,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             int IsKnockedCool = 0;
             AgainNewMove:
             if (isNewWashEnd()) return false;
-            int errorflag = Move(MoveSate.WashLoss,(int)MoveHand.Movehand,(int)WashLossPos.PutTubePos);
+            int errorflag = Move(strModel,MoveSate.WashLoss,(int)MoveHand.Movehand,(int)WashLossPos.PutTubePos);
             if (errorflag != (int)ErrorState.Success)
             {
                 #region 发生异常处理
@@ -1130,7 +1134,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 }
                 return stay;
             }
-            public int WashAddLiquidR(bool wash, bool addbase, bool read, int washPipe)
+            public int WashAddLiquidR(string strModel,bool wash, bool addbase, bool read, int washPipe)
             {
                 WashSend.Initial();
                 if (wash && (pointer[1].Value[1] == 1 || pointer[3].Value[1] == 1 || pointer[5].Value[1] == 1 || pointer[7].Value[1] == 1))
@@ -1152,7 +1156,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 {
                     WashSend.ReadFlag = pointer[9].Value[1];
                 }
-                int errorflag = WashSend.WashAddLiquidR();
+                int errorflag = WashSend.WashAddLiquidR(strModel);
                 return errorflag;
             }
         }
@@ -1551,7 +1555,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     CleanTrayMovePace(-2);
                     WashSend.Initial();
                     WashSend.ImbibitionFlag = 1;
-                    int errorflag = WashAddLiquidR();
+                    int errorflag = WashAddLiquidR(strModel);
                     if ( NetCom3.Instance.WasherrorFlag != (int)ErrorState.Success)
                     {
                         TExtAppend("灌注失败，错误类型为 " + Enum.GetName(typeof(ErrorState), NetCom3.Instance.WasherrorFlag) + "\n");
@@ -1592,7 +1596,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             {
                 WashSend.Initial();
                 WashSend.AddSubstrateFlag = 1;
-                int errorflag = WashAddLiquidR();
+                int errorflag = WashAddLiquidR(strModel);
                 if (errorflag != (int)ErrorState.Success)
                     return false;
             }
