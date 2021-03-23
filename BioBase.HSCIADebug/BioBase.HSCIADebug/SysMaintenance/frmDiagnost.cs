@@ -1198,7 +1198,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// <summary>
         /// 级联机器编号
         /// </summary>
-        string strMMove = "";
+        string strMMove = "90";
         private void numMMove_ValueChanged(object sender, EventArgs e)
         {
             string num = ((int)numMMove.Value - 1).ToString("x2");
@@ -1267,7 +1267,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 }
                 else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[4])
                 {
-                    strorder = "EB " + strMMove + " 01 01 06";
+                    strorder = "EB " + strMMove + " 01 01 03";
                 }
             }
             else
@@ -2515,7 +2515,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
         {
             fbtnWashTubeClear.Enabled = false;
             fbtnWashTubeCS.Enabled = true;
-            washTrayTubeClear(strMWash);
+            if (chkWashMove.SelectedItem.ToString().Trim() == "移管手")
+                washTrayTubeClear(strMWash, 1);
+            else if (chkWashMove.SelectedItem.ToString().Trim() == "移新管抓手")
+                washTrayTubeClear(strMWash, 0);
+            //washTrayTubeClear(strMWash, movehand);
             fbtnWashTubeClear.Enabled = true;
             fbtnWashTubeCS.Enabled = false;
         }
@@ -2530,7 +2534,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// </summary>
         /// <param name="strModel">级联机器编号</param>
         /// <returns></returns>
-        bool washTrayTubeClear(string strModel)
+        bool washTrayTubeClear(string strModel,int movehand)
         {
             DataTable dtWashTrayIni = ReadWash();
             //2018-08-20 zlx mod
@@ -2573,7 +2577,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 }
                 #region 移管手取放管位置取管扔废管
                 LogFile.Instance.Write("==============  " + currentHoleNum + "  扔管");
-                errorflag = Move(strModel,MoveSate.WashLoss,1,(int)WashLossPos.PutTubePos);
+                errorflag = Move(strModel,MoveSate.WashLoss, movehand, (int)WashLossPos.PutTubePos);
                 if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                 {
                     fbtnWashTubeClear.Enabled = true;
@@ -2874,7 +2878,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (chkWashTubeClear.Checked ==true)
             {
                 txtReadShow.AppendText("开始清空清洗盘" + Environment.NewLine);
-                bool bclear = washTrayTubeClear(strNumMRead);
+                bool bclear = washTrayTubeClear(strNumMRead,1);
                 if (!bclear)
                 {
                     string message = "";
