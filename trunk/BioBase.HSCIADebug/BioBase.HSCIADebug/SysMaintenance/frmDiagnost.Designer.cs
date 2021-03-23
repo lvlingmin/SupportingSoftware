@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabControl = new System.Windows.Forms.TabPage();
             this.numMcontrol = new System.Windows.Forms.NumericUpDown();
@@ -221,6 +221,7 @@
             this.fbtnPressCupZero = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnIAllInit = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnISaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnISave = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnISub = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.btnIAdd = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -263,13 +264,12 @@
             this.cmbWashZ = new System.Windows.Forms.ComboBox();
             this.fbtnWashZEx = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.fbtnWashTubeCS = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.fbtnWashTubeClear = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.fbtnWashZReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.fbtnWashTrayReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.fbtnWashPressCupReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.fbtnWashReset = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.fbtnWashSaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.functionButton24 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.functionButton25 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
@@ -380,8 +380,11 @@
             this.functionButton1 = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnISaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
-            this.fbtnWashSaveData = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
+            this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.fbtnWashTubeCS = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
+            this.fbtnWashTubeClear = new BioBase.HSCIADebug.CustomControl.FunctionButton(this.components);
+            this.label36 = new System.Windows.Forms.Label();
+            this.chkWashMove = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMcontrol)).BeginInit();
@@ -452,6 +455,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numOfSample)).BeginInit();
             this.groupBox26.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
+            this.groupBox33.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -2981,6 +2985,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "参数设置";
             // 
+            // btnISaveData
+            // 
+            this.btnISaveData.BackColor = System.Drawing.Color.Transparent;
+            this.btnISaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.btnISaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnISaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnISaveData.EnabledSet = true;
+            this.btnISaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnISaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.btnISaveData.Location = new System.Drawing.Point(190, 149);
+            this.btnISaveData.Name = "btnISaveData";
+            this.btnISaveData.Size = new System.Drawing.Size(108, 27);
+            this.btnISaveData.TabIndex = 85;
+            this.btnISaveData.Text = "保存已有数据";
+            this.btnISaveData.UseVisualStyleBackColor = false;
+            this.btnISaveData.Click += new System.EventHandler(this.btnISaveData_Click);
+            // 
             // btnISave
             // 
             this.btnISave.BackColor = System.Drawing.Color.Transparent;
@@ -3185,6 +3206,7 @@
             // 
             // groupBox17
             // 
+            this.groupBox17.Controls.Add(this.groupBox33);
             this.groupBox17.Controls.Add(this.groupBox24);
             this.groupBox17.Controls.Add(this.groupBox32);
             this.groupBox17.Controls.Add(this.groupBox18);
@@ -3202,7 +3224,7 @@
             this.groupBox24.Controls.Add(this.numPeristalticPVol);
             this.groupBox24.Controls.Add(this.label32);
             this.groupBox24.Controls.Add(this.fbtnPeristalticPEx);
-            this.groupBox24.Location = new System.Drawing.Point(32, 351);
+            this.groupBox24.Location = new System.Drawing.Point(25, 295);
             this.groupBox24.Name = "groupBox24";
             this.groupBox24.Size = new System.Drawing.Size(349, 62);
             this.groupBox24.TabIndex = 77;
@@ -3256,9 +3278,9 @@
             this.groupBox32.Controls.Add(this.txtWashTurn);
             this.groupBox32.Controls.Add(this.label41);
             this.groupBox32.Controls.Add(this.label40);
-            this.groupBox32.Location = new System.Drawing.Point(33, 21);
+            this.groupBox32.Location = new System.Drawing.Point(25, 17);
             this.groupBox32.Name = "groupBox32";
-            this.groupBox32.Size = new System.Drawing.Size(401, 98);
+            this.groupBox32.Size = new System.Drawing.Size(401, 83);
             this.groupBox32.TabIndex = 82;
             this.groupBox32.TabStop = false;
             this.groupBox32.Text = "孔位移动";
@@ -3271,7 +3293,7 @@
             this.btnLoopTurn.EnabledSet = true;
             this.btnLoopTurn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLoopTurn.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnLoopTurn.Location = new System.Drawing.Point(309, 65);
+            this.btnLoopTurn.Location = new System.Drawing.Point(309, 48);
             this.btnLoopTurn.Name = "btnLoopTurn";
             this.btnLoopTurn.Size = new System.Drawing.Size(86, 23);
             this.btnLoopTurn.TabIndex = 80;
@@ -3287,7 +3309,7 @@
             this.btnWashTurn.EnabledSet = true;
             this.btnWashTurn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnWashTurn.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnWashTurn.Location = new System.Drawing.Point(232, 65);
+            this.btnWashTurn.Location = new System.Drawing.Point(232, 48);
             this.btnWashTurn.Name = "btnWashTurn";
             this.btnWashTurn.Size = new System.Drawing.Size(67, 23);
             this.btnWashTurn.TabIndex = 79;
@@ -3321,7 +3343,7 @@
             // 
             // txtWashTurn
             // 
-            this.txtWashTurn.Location = new System.Drawing.Point(103, 64);
+            this.txtWashTurn.Location = new System.Drawing.Point(103, 47);
             this.txtWashTurn.Name = "txtWashTurn";
             this.txtWashTurn.Size = new System.Drawing.Size(100, 25);
             this.txtWashTurn.TabIndex = 18;
@@ -3331,7 +3353,7 @@
             // 
             this.label41.AutoSize = true;
             this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label41.Location = new System.Drawing.Point(16, 69);
+            this.label41.Location = new System.Drawing.Point(16, 52);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(52, 15);
             this.label41.TabIndex = 15;
@@ -3352,9 +3374,9 @@
             this.groupBox18.Controls.Add(this.label23);
             this.groupBox18.Controls.Add(this.cmbWashPressCup);
             this.groupBox18.Controls.Add(this.fbtnWashPressCupEx);
-            this.groupBox18.Location = new System.Drawing.Point(32, 194);
+            this.groupBox18.Location = new System.Drawing.Point(25, 164);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(349, 75);
+            this.groupBox18.Size = new System.Drawing.Size(349, 63);
             this.groupBox18.TabIndex = 81;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "压杯电机";
@@ -3405,9 +3427,9 @@
             this.groupBox19.Controls.Add(this.label25);
             this.groupBox19.Controls.Add(this.cmbWashMix);
             this.groupBox19.Controls.Add(this.btnWashMix);
-            this.groupBox19.Location = new System.Drawing.Point(32, 271);
+            this.groupBox19.Location = new System.Drawing.Point(25, 229);
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(349, 78);
+            this.groupBox19.Size = new System.Drawing.Size(349, 64);
             this.groupBox19.TabIndex = 15;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "混匀电机";
@@ -3455,9 +3477,9 @@
             this.groupBox20.Controls.Add(this.label27);
             this.groupBox20.Controls.Add(this.cmbWashZ);
             this.groupBox20.Controls.Add(this.fbtnWashZEx);
-            this.groupBox20.Location = new System.Drawing.Point(32, 121);
+            this.groupBox20.Location = new System.Drawing.Point(25, 102);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(349, 71);
+            this.groupBox20.Size = new System.Drawing.Size(349, 60);
             this.groupBox20.TabIndex = 13;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "Z轴电机";
@@ -3507,8 +3529,6 @@
             // 
             // groupBox21
             // 
-            this.groupBox21.Controls.Add(this.fbtnWashTubeCS);
-            this.groupBox21.Controls.Add(this.fbtnWashTubeClear);
             this.groupBox21.Controls.Add(this.fbtnWashZReset);
             this.groupBox21.Controls.Add(this.fbtnWashTrayReset);
             this.groupBox21.Controls.Add(this.fbtnWashPressCupReset);
@@ -3519,39 +3539,6 @@
             this.groupBox21.TabIndex = 84;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "快捷操作";
-            // 
-            // fbtnWashTubeCS
-            // 
-            this.fbtnWashTubeCS.BackColor = System.Drawing.Color.Transparent;
-            this.fbtnWashTubeCS.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.fbtnWashTubeCS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fbtnWashTubeCS.Enabled = false;
-            this.fbtnWashTubeCS.EnabledSet = true;
-            this.fbtnWashTubeCS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.fbtnWashTubeCS.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnWashTubeCS.Location = new System.Drawing.Point(190, 122);
-            this.fbtnWashTubeCS.Name = "fbtnWashTubeCS";
-            this.fbtnWashTubeCS.Size = new System.Drawing.Size(129, 28);
-            this.fbtnWashTubeCS.TabIndex = 85;
-            this.fbtnWashTubeCS.Text = "停止清空";
-            this.fbtnWashTubeCS.UseVisualStyleBackColor = false;
-            this.fbtnWashTubeCS.Click += new System.EventHandler(this.fbtnWashTubeCS_Click);
-            // 
-            // fbtnWashTubeClear
-            // 
-            this.fbtnWashTubeClear.BackColor = System.Drawing.Color.Transparent;
-            this.fbtnWashTubeClear.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.fbtnWashTubeClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fbtnWashTubeClear.EnabledSet = true;
-            this.fbtnWashTubeClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.fbtnWashTubeClear.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnWashTubeClear.Location = new System.Drawing.Point(19, 122);
-            this.fbtnWashTubeClear.Name = "fbtnWashTubeClear";
-            this.fbtnWashTubeClear.Size = new System.Drawing.Size(129, 28);
-            this.fbtnWashTubeClear.TabIndex = 84;
-            this.fbtnWashTubeClear.Text = "清洗盘清空";
-            this.fbtnWashTubeClear.UseVisualStyleBackColor = false;
-            this.fbtnWashTubeClear.Click += new System.EventHandler(this.fbtnWashTubeClear_Click);
             // 
             // fbtnWashZReset
             // 
@@ -3638,6 +3625,23 @@
             this.groupBox22.TabIndex = 83;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "参数设置";
+            // 
+            // fbtnWashSaveData
+            // 
+            this.fbtnWashSaveData.BackColor = System.Drawing.Color.Transparent;
+            this.fbtnWashSaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.fbtnWashSaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fbtnWashSaveData.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fbtnWashSaveData.EnabledSet = true;
+            this.fbtnWashSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.fbtnWashSaveData.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.fbtnWashSaveData.Location = new System.Drawing.Point(190, 157);
+            this.fbtnWashSaveData.Name = "fbtnWashSaveData";
+            this.fbtnWashSaveData.Size = new System.Drawing.Size(108, 27);
+            this.fbtnWashSaveData.TabIndex = 86;
+            this.fbtnWashSaveData.Text = "保存已有数据";
+            this.fbtnWashSaveData.UseVisualStyleBackColor = false;
+            this.fbtnWashSaveData.Click += new System.EventHandler(this.fbtnWashSaveData_Click);
             // 
             // groupBox23
             // 
@@ -4540,142 +4544,142 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.BackSecondaryColor = System.Drawing.Color.Black;
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisX.InterlacedColor = System.Drawing.Color.AntiqueWhite;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX.IsInterlaced = true;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.IsStartedFromZero = false;
-            chartArea2.AxisX.MajorGrid.Enabled = false;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisX.MajorTickMark.Enabled = false;
-            chartArea2.AxisX.MajorTickMark.Size = 0.5F;
-            chartArea2.AxisX.Maximum = 100D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisX.ScaleView.Zoomable = false;
-            chartArea2.AxisX.ScrollBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            chartArea2.AxisX.ScrollBar.ButtonColor = System.Drawing.Color.MediumAquamarine;
-            chartArea2.AxisX.ScrollBar.ButtonStyle = System.Windows.Forms.DataVisualization.Charting.ScrollBarButtonStyles.SmallScroll;
-            chartArea2.AxisX.ScrollBar.Enabled = false;
-            chartArea2.AxisX.ScrollBar.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.Title = "采样位点";
-            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            chartArea2.AxisX.ToolTip = "采样位点";
-            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.AxisY.MajorTickMark.Size = 0F;
-            chartArea2.AxisY.Maximum = 40D;
-            chartArea2.AxisY.Minimum = 0D;
-            chartArea2.AxisY.MinorGrid.Enabled = true;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea2.AxisY.ScrollBar.Enabled = false;
-            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
-            chartArea2.AxisY.Title = "温度";
-            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            chartArea2.AxisY.ToolTip = "温度";
-            chartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY2.MajorGrid.Enabled = false;
-            chartArea2.AxisY2.MajorTickMark.Enabled = false;
-            chartArea2.AxisY2.Maximum = 20D;
-            chartArea2.AxisY2.Minimum = 0D;
-            chartArea2.AxisY2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
-            chartArea2.AxisY2.Title = "试剂盘温度";
-            chartArea2.AxisY2.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.AxisY2.TitleFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            chartArea2.BackColor = System.Drawing.Color.White;
-            chartArea2.BackSecondaryColor = System.Drawing.Color.LightBlue;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 100F;
-            chartArea2.Position.Width = 100F;
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Center;
-            legend2.BackColor = System.Drawing.Color.White;
-            legend2.BackImageTransparentColor = System.Drawing.Color.White;
-            legend2.BorderWidth = 0;
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.MaximumAutoSize = 7F;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.InterlacedColor = System.Drawing.Color.AntiqueWhite;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.IsInterlaced = true;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.IsStartedFromZero = false;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisX.MajorTickMark.Enabled = false;
+            chartArea1.AxisX.MajorTickMark.Size = 0.5F;
+            chartArea1.AxisX.Maximum = 100D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.ScaleView.Zoomable = false;
+            chartArea1.AxisX.ScrollBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            chartArea1.AxisX.ScrollBar.ButtonColor = System.Drawing.Color.MediumAquamarine;
+            chartArea1.AxisX.ScrollBar.ButtonStyle = System.Windows.Forms.DataVisualization.Charting.ScrollBarButtonStyles.SmallScroll;
+            chartArea1.AxisX.ScrollBar.Enabled = false;
+            chartArea1.AxisX.ScrollBar.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.Title = "采样位点";
+            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            chartArea1.AxisX.ToolTip = "采样位点";
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.AxisY.MajorTickMark.Size = 0F;
+            chartArea1.AxisY.Maximum = 40D;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY.MinorGrid.Enabled = true;
+            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea1.AxisY.ScrollBar.Enabled = false;
+            chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
+            chartArea1.AxisY.Title = "温度";
+            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            chartArea1.AxisY.ToolTip = "温度";
+            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY2.MajorGrid.Enabled = false;
+            chartArea1.AxisY2.MajorTickMark.Enabled = false;
+            chartArea1.AxisY2.Maximum = 20D;
+            chartArea1.AxisY2.Minimum = 0D;
+            chartArea1.AxisY2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
+            chartArea1.AxisY2.Title = "试剂盘温度";
+            chartArea1.AxisY2.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisY2.TitleFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.LightBlue;
+            chartArea1.Name = "ChartArea1";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 100F;
+            chartArea1.Position.Width = 100F;
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.BackColor = System.Drawing.Color.White;
+            legend1.BackImageTransparentColor = System.Drawing.Color.White;
+            legend1.BorderWidth = 0;
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.MaximumAutoSize = 7F;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(241, 0);
             this.chart1.Margin = new System.Windows.Forms.Padding(0);
             this.chart1.Name = "chart1";
             this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            series7.BorderWidth = 2;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Legend = "Legend1";
-            series7.LegendText = "试剂盘温度   ";
-            series7.MarkerBorderColor = System.Drawing.Color.Black;
-            series7.MarkerColor = System.Drawing.Color.Black;
-            series7.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series7.Name = "reagent";
-            series7.XValueMember = "Time";
-            series7.YValueMembers = "Reagent";
-            series8.BorderWidth = 2;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            series8.Legend = "Legend1";
-            series8.LegendText = "温育盘温度   ";
-            series8.MarkerBorderColor = System.Drawing.Color.Black;
-            series8.MarkerColor = System.Drawing.Color.Red;
-            series8.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series8.Name = "wenyu";
-            series8.XValueMember = "Time";
-            series8.YValueMembers = "Wenyu";
-            series8.YValuesPerPoint = 2;
-            series9.BorderWidth = 2;
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series9.Legend = "Legend1";
-            series9.LegendText = "清洗盘温度   ";
-            series9.MarkerBorderColor = System.Drawing.Color.Black;
-            series9.MarkerColor = System.Drawing.Color.Lime;
-            series9.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
-            series9.Name = "qingxi";
-            series9.XValueMember = "Time";
-            series9.YValueMembers = "Qingxi";
-            series9.YValuesPerPoint = 2;
-            series10.BorderWidth = 2;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series10.Legend = "Legend1";
-            series10.LegendText = "底物温度   ";
-            series10.MarkerBorderColor = System.Drawing.Color.Black;
-            series10.MarkerColor = System.Drawing.Color.Black;
-            series10.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
-            series10.Name = "diwu";
-            series10.XValueMember = "Time";
-            series10.YValueMembers = "Diwu";
-            series11.BorderWidth = 2;
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series11.Legend = "Legend1";
-            series11.LegendText = "清洗管路温度";
-            series11.MarkerBorderColor = System.Drawing.Color.Black;
-            series11.MarkerColor = System.Drawing.Color.Black;
-            series11.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
-            series11.Name = "qxgl";
-            series12.ChartArea = "ChartArea1";
-            series12.IsVisibleInLegend = false;
-            series12.Legend = "Legend1";
-            series12.MarkerSize = 2;
-            series12.Name = "nothing";
-            dataPoint2.IsEmpty = true;
-            dataPoint2.IsVisibleInLegend = false;
-            series12.Points.Add(dataPoint2);
-            this.chart1.Series.Add(series7);
-            this.chart1.Series.Add(series8);
-            this.chart1.Series.Add(series9);
-            this.chart1.Series.Add(series10);
-            this.chart1.Series.Add(series11);
-            this.chart1.Series.Add(series12);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.LegendText = "试剂盘温度   ";
+            series1.MarkerBorderColor = System.Drawing.Color.Black;
+            series1.MarkerColor = System.Drawing.Color.Black;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series1.Name = "reagent";
+            series1.XValueMember = "Time";
+            series1.YValueMembers = "Reagent";
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            series2.Legend = "Legend1";
+            series2.LegendText = "温育盘温度   ";
+            series2.MarkerBorderColor = System.Drawing.Color.Black;
+            series2.MarkerColor = System.Drawing.Color.Red;
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series2.Name = "wenyu";
+            series2.XValueMember = "Time";
+            series2.YValueMembers = "Wenyu";
+            series2.YValuesPerPoint = 2;
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.LegendText = "清洗盘温度   ";
+            series3.MarkerBorderColor = System.Drawing.Color.Black;
+            series3.MarkerColor = System.Drawing.Color.Lime;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
+            series3.Name = "qingxi";
+            series3.XValueMember = "Time";
+            series3.YValueMembers = "Qingxi";
+            series3.YValuesPerPoint = 2;
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.LegendText = "底物温度   ";
+            series4.MarkerBorderColor = System.Drawing.Color.Black;
+            series4.MarkerColor = System.Drawing.Color.Black;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
+            series4.Name = "diwu";
+            series4.XValueMember = "Time";
+            series4.YValueMembers = "Diwu";
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Legend = "Legend1";
+            series5.LegendText = "清洗管路温度";
+            series5.MarkerBorderColor = System.Drawing.Color.Black;
+            series5.MarkerColor = System.Drawing.Color.Black;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
+            series5.Name = "qxgl";
+            series6.ChartArea = "ChartArea1";
+            series6.IsVisibleInLegend = false;
+            series6.Legend = "Legend1";
+            series6.MarkerSize = 2;
+            series6.Name = "nothing";
+            dataPoint1.IsEmpty = true;
+            dataPoint1.IsVisibleInLegend = false;
+            series6.Points.Add(dataPoint1);
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Series.Add(series5);
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(563, 267);
             this.chart1.TabIndex = 9;
             this.chart1.Text = "温度变化记录";
@@ -5290,39 +5294,73 @@
             this.saveFileDialog1.Filter = "excel表格|*.xls";
             this.saveFileDialog1.Title = "将温度信息保存到本地";
             // 
-            // btnISaveData
+            // groupBox33
             // 
-            this.btnISaveData.BackColor = System.Drawing.Color.Transparent;
-            this.btnISaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.btnISaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnISaveData.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnISaveData.EnabledSet = true;
-            this.btnISaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnISaveData.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.btnISaveData.Location = new System.Drawing.Point(190, 149);
-            this.btnISaveData.Name = "btnISaveData";
-            this.btnISaveData.Size = new System.Drawing.Size(108, 27);
-            this.btnISaveData.TabIndex = 85;
-            this.btnISaveData.Text = "保存已有数据";
-            this.btnISaveData.UseVisualStyleBackColor = false;
-            this.btnISaveData.Click += new System.EventHandler(this.btnISaveData_Click);
+            this.groupBox33.Controls.Add(this.fbtnWashTubeCS);
+            this.groupBox33.Controls.Add(this.fbtnWashTubeClear);
+            this.groupBox33.Controls.Add(this.label36);
+            this.groupBox33.Controls.Add(this.chkWashMove);
+            this.groupBox33.Location = new System.Drawing.Point(25, 359);
+            this.groupBox33.Name = "groupBox33";
+            this.groupBox33.Size = new System.Drawing.Size(349, 64);
+            this.groupBox33.TabIndex = 83;
+            this.groupBox33.TabStop = false;
+            this.groupBox33.Text = "清洗盘清空";
             // 
-            // fbtnWashSaveData
+            // fbtnWashTubeCS
             // 
-            this.fbtnWashSaveData.BackColor = System.Drawing.Color.Transparent;
-            this.fbtnWashSaveData.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
-            this.fbtnWashSaveData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fbtnWashSaveData.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fbtnWashSaveData.EnabledSet = true;
-            this.fbtnWashSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.fbtnWashSaveData.Font = new System.Drawing.Font("宋体", 10.5F);
-            this.fbtnWashSaveData.Location = new System.Drawing.Point(190, 157);
-            this.fbtnWashSaveData.Name = "fbtnWashSaveData";
-            this.fbtnWashSaveData.Size = new System.Drawing.Size(108, 27);
-            this.fbtnWashSaveData.TabIndex = 86;
-            this.fbtnWashSaveData.Text = "保存已有数据";
-            this.fbtnWashSaveData.UseVisualStyleBackColor = false;
-            this.fbtnWashSaveData.Click += new System.EventHandler(this.fbtnWashSaveData_Click);
+            this.fbtnWashTubeCS.BackColor = System.Drawing.Color.Transparent;
+            this.fbtnWashTubeCS.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.fbtnWashTubeCS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fbtnWashTubeCS.Enabled = false;
+            this.fbtnWashTubeCS.EnabledSet = true;
+            this.fbtnWashTubeCS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.fbtnWashTubeCS.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.fbtnWashTubeCS.Location = new System.Drawing.Point(257, 22);
+            this.fbtnWashTubeCS.Name = "fbtnWashTubeCS";
+            this.fbtnWashTubeCS.Size = new System.Drawing.Size(86, 28);
+            this.fbtnWashTubeCS.TabIndex = 85;
+            this.fbtnWashTubeCS.Text = "停止清空";
+            this.fbtnWashTubeCS.UseVisualStyleBackColor = false;
+            this.fbtnWashTubeCS.Click += new System.EventHandler(this.fbtnWashTubeCS_Click);
+            // 
+            // fbtnWashTubeClear
+            // 
+            this.fbtnWashTubeClear.BackColor = System.Drawing.Color.Transparent;
+            this.fbtnWashTubeClear.BackgroundImage = global::BioBase.HSCIADebug.Properties.Resources.主界面按钮_;
+            this.fbtnWashTubeClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fbtnWashTubeClear.EnabledSet = true;
+            this.fbtnWashTubeClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.fbtnWashTubeClear.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.fbtnWashTubeClear.Location = new System.Drawing.Point(165, 22);
+            this.fbtnWashTubeClear.Name = "fbtnWashTubeClear";
+            this.fbtnWashTubeClear.Size = new System.Drawing.Size(86, 28);
+            this.fbtnWashTubeClear.TabIndex = 84;
+            this.fbtnWashTubeClear.Text = "清洗盘清空";
+            this.fbtnWashTubeClear.UseVisualStyleBackColor = false;
+            this.fbtnWashTubeClear.Click += new System.EventHandler(this.fbtnWashTubeClear_Click);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label36.Location = new System.Drawing.Point(13, 29);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(52, 15);
+            this.label36.TabIndex = 60;
+            this.label36.Text = "移管手";
+            // 
+            // chkWashMove
+            // 
+            this.chkWashMove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.chkWashMove.FormattingEnabled = true;
+            this.chkWashMove.Items.AddRange(new object[] {
+            "移新管抓手",
+            "移管手"});
+            this.chkWashMove.Location = new System.Drawing.Point(73, 25);
+            this.chkWashMove.Name = "chkWashMove";
+            this.chkWashMove.Size = new System.Drawing.Size(80, 23);
+            this.chkWashMove.TabIndex = 58;
             // 
             // frmDiagnost
             // 
@@ -5443,6 +5481,8 @@
             this.groupBox26.ResumeLayout(false);
             this.groupBox26.PerformLayout();
             this.pnlSidebar.ResumeLayout(false);
+            this.groupBox33.ResumeLayout(false);
+            this.groupBox33.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -5578,7 +5618,6 @@
         private System.Windows.Forms.ComboBox cmbWashZ;
         private CustomControl.FunctionButton fbtnWashZEx;
         private System.Windows.Forms.GroupBox groupBox21;
-        private CustomControl.FunctionButton fbtnWashTubeClear;
         private CustomControl.FunctionButton fbtnWashZReset;
         private CustomControl.FunctionButton fbtnWashTrayReset;
         private CustomControl.FunctionButton fbtnWashPressCupReset;
@@ -5734,7 +5773,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.CheckBox chkInTubeClear;
         private System.Windows.Forms.TextBox txtInHoleNum;
-        private CustomControl.FunctionButton fbtnWashTubeCS;
         private CustomControl.FunctionButton fbtnInTubeCS;
         private CustomControl.FunctionButton fbtnInTubeReset;
         private System.Windows.Forms.TabPage tabControl;
@@ -5793,5 +5831,10 @@
         private CustomControl.FunctionButton btnMoveSaveData;
         private CustomControl.FunctionButton btnISaveData;
         private CustomControl.FunctionButton fbtnWashSaveData;
+        private System.Windows.Forms.GroupBox groupBox33;
+        private CustomControl.FunctionButton fbtnWashTubeCS;
+        private CustomControl.FunctionButton fbtnWashTubeClear;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.ComboBox chkWashMove;
     }
 }
