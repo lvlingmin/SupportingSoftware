@@ -43,18 +43,19 @@ namespace BioBase.HSCIADebug.ControlInfo
         /// <summary>
         /// 清洗盘旋转
         /// </summary>
+        /// <param name="strModel">级联机器编号</param>
         /// <param name="num">孔位</param>
         /// <returns></returns>
-        public static int WashTurn(int num)
+        public static int WashTurn(string strModel, int num)
         {
             string order = "";
             if (num > 0)
             {
-                order = "EB 90 31 03 01 " + (num).ToString("X2");
+                order = "EB "+ strModel + " 31 03 01 " + (num).ToString("X2");
             }
             else if (num < 0)
             {
-                order = "EB 90 31 03 01 " + (num).ToString("X2").Substring(6, 2);
+                order = "EB " + strModel + " 31 03 01 " + (num).ToString("X2").Substring(6, 2);
             }
             NetCom3.Instance.Send(NetCom3.Cover(order), (int)OrderSendType.Wash);
             NetCom3.Instance.WashQuery();
@@ -63,21 +64,23 @@ namespace BioBase.HSCIADebug.ControlInfo
         /// <summary>
         /// 清洗盘旋转到目标孔位
         /// </summary>
+        /// <param name="strModel">级联机器编号</param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static int WashTurnTo(int num)
+        public static int WashTurnTo(string strModel,int num)
         {
-            NetCom3.Instance.Send(NetCom3.Cover("EB 90 31 03 02 " + num.ToString("x2") + ""), (int)OrderSendType.Wash);
+            NetCom3.Instance.Send(NetCom3.Cover("EB " + strModel + " 31 03 02 " + num.ToString("x2") + ""), (int)OrderSendType.Wash);
             NetCom3.Instance.WashQuery();
             return NetCom3.Instance.WasherrorFlag;
         }
         /// <summary>
         /// 注液/抽液/加底物/读数
         /// </summary>
+        /// <param name="strModel">级联机器编号</param>
         /// <returns></returns>
-        public static int WashAddLiquidR()
+        public static int WashAddLiquidR(string strModel)
         {
-            NetCom3.Instance.Send(NetCom3.Cover("EB 90 31 03 03 " + ImbibitionFlag.ToString("x2") + " " + LiquidInjectionFlag[0].ToString() +
+            NetCom3.Instance.Send(NetCom3.Cover("EB "+ strModel + " 31 03 03 " + ImbibitionFlag.ToString("x2") + " " + LiquidInjectionFlag[0].ToString() +
                     LiquidInjectionFlag[1].ToString() + " " + LiquidInjectionFlag[2].ToString() + AddSubstrateFlag.ToString() + " " + substratePipe.ToString() + ReadFlag.ToString()), (int)OrderSendType.Wash);
             NetCom3.Instance.WashQuery();
             return NetCom3.Instance.WasherrorFlag;

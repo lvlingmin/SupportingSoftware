@@ -17,39 +17,41 @@ namespace BioBase.HSCIADebug.ControlInfo
         /// <summary>
         /// 加样指令
         /// </summary>
+        /// <param name="strModel">仪器级联编号</param>
         /// <param name="startpos">加样开始位置</param>
         /// <param name="endpos">加样结束位置</param>
         /// <param name="liquidVol">加样体积</param>
         /// <param name="leftVol">剩余体积</param>
-        public static void AddSample(int startpos,int endpos, int liquidVol, int leftVol)
+        public static void AddSample(string strModel,int startpos,int endpos, int liquidVol, int leftVol)
         {
             string order = "";
             //加普通样本
             if (liquidstep == AddLiquidStep.AddLiquidCS)
-                order = "EB 90 31 02 01 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB "+ strModel + " 31 02 01 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                    + " " + liquidVol.ToString("x2")+" 00" ;
             //加急诊样本
             else if (liquidstep == AddLiquidStep.AddLiquidES)
-                order = "EB 90 31 02 01 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 02 01 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                   + " " + liquidVol.ToString("x2") + " 01";
             //加稀释样本
             else if(liquidstep == AddLiquidStep.AddLiquidDS)
-                order = "EB 90 31 02 02 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 02 02 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                   + " " + liquidVol.ToString("x2");
             //管路灌注
             else if (liquidstep==AddLiquidStep.AddstratePour)
-                order = "EB 90 31 02 08 ";
+                order = "EB " + strModel + " 31 02 08 ";
             NetCom3.Instance.Send(NetCom3.Cover(order), (int)OrderSendType.AddSp);
             NetCom3.Instance.SPQuery();
         }
         /// <summary>
         /// 加试剂指令
         /// </summary>
+        /// <param name="startpos">仪器级联编号</param>
         /// <param name="startpos">加样开始位置</param>
         /// <param name="endpos">加样结束位置</param>
         /// <param name="liquidVol">加样体积</param>
         /// <param name="leftVol">剩余体积</param>
-        public static void AddReagent(int startpos, int endpos, int liquidVol, int leftVol)
+        public static void AddReagent(string strModel, int startpos, int endpos, int liquidVol, int leftVol)
         {
             string order = "";
             string StrLeftdiuVol = leftVol.ToString("x2");
@@ -62,27 +64,27 @@ namespace BioBase.HSCIADebug.ControlInfo
             }
             //加稀释液
             if (liquidstep == AddLiquidStep.AddLiquidD)
-                order = "EB 90 31 12 06 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 12 06 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                    + " " + liquidVol.ToString("x2") + " " +StrLeftdiuVol.Substring(0, 2)
                                    + " " + StrLeftdiuVol.Substring(2, 2);
             //加R1
             else if (liquidstep == AddLiquidStep.AddSingleR1)
-                order = "EB 90 31 12 03 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 12 03 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                   + " " + liquidVol.ToString("x2") + " " + StrLeftdiuVol.Substring(0, 2)
                                   + " " + StrLeftdiuVol.Substring(2, 2);
             //加R2
             else if (liquidstep == AddLiquidStep.AddSingleR2)
-                order = "EB 90 31 12 04 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 12 04 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                   + " " + liquidVol.ToString("x2") + " " + StrLeftdiuVol.Substring(0, 2)
                                  + " " + StrLeftdiuVol.Substring(2, 2);
             //加R3 
             else if (liquidstep == AddLiquidStep.AddSingleR3)
-                order = "EB 90 31 12 05 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 12 05 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                   + " " + liquidVol.ToString("x2") + " " + StrLeftdiuVol.Substring(0, 2)
                                   + " " + StrLeftdiuVol.Substring(2, 2);
             //加磁珠
             else if (liquidstep == AddLiquidStep.AddBeads)
-                order = "EB 90 31 12 07 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
+                order = "EB " + strModel + " 31 12 07 " + startpos.ToString("x2") + " " + endpos.ToString("x2")
                                   + " " + liquidVol.ToString("x2") + " " + StrLeftdiuVol.Substring(0, 2)
                                   + " " + StrLeftdiuVol.Substring(2, 2);
             NetCom3.Instance.Send(NetCom3.Cover(order), (int)OrderSendType.AddSR);

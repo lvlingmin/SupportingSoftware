@@ -16,44 +16,45 @@ namespace BioBase.HSCIADebug.ControlInfo
         /// <summary>
         /// 移新管抓手发送指令
         /// </summary>
+        /// <param name="strModel">级联编号</param>
         /// <param name="movestate">动作状态</param>
         /// <param name="startpos">开始位置</param>
         /// <param name="goalpos">结束位置</param>
         /// <returns></returns>
-        public static void Move(int startpos = 0, int goalpos = 0)
+        public static void Move(string strModel, int startpos = 0, int goalpos = 0)
         {
             string order = "";
             //加新管到温育盘
             if (moveSate == MoveSate.NewtubeToReact)
             {
-                order = "EB 90 31 01 01 "+ startpos.ToString("x2");
+                order = "EB "+ strModel + " 31 01 01 "+ startpos.ToString("x2");
             }
             //温育盘夹管到清洗盘
             if (moveSate == MoveSate.ReactToWash)
             {
-                order = "EB 90 31 01 02 " + startpos.ToString("x2");
+                order = "EB " + strModel + " 31 01 02 " + startpos.ToString("x2");
             }
             //清洗盘夹管到温育盘
             if (moveSate == MoveSate.WashToReact)
             {
-                order = "EB 90 31 01 03 " + startpos.ToString("x2") + " " + goalpos.ToString("x2") + "";
+                order = "EB " + strModel + " 31 01 03 " + startpos.ToString("x2") + " " + goalpos.ToString("x2") + "";
             }
             //清洗盘扔废管
             if (moveSate == MoveSate.WashLoss)
             {
                 if (startpos == 0)
                     startpos = (int)WashLossPos.PutTubePos;
-                order = "EB 90 31 01 04 " + startpos.ToString("x2");
+                order = "EB " + strModel + " 31 01 04 " + startpos.ToString("x2");
             }
             //温育盘扔废管
             if (moveSate == MoveSate.ReactLoss)
             {
-                order = "EB 90 31 01 05 " + startpos.ToString("x2");
+                order = "EB " + strModel + " 31 01 05 " + startpos.ToString("x2");
             }
             //加新管到清洗盘
             if (moveSate == MoveSate.NewtubeToWash)
             {
-                order = "EB 90 31 01 06 ";
+                order = "EB " + strModel + " 31 01 06 ";
             }
             int sendType = (int)OrderSendType.MoveNewTube;
             NetCom3.Instance.Send(NetCom3.Cover(order), sendType);
@@ -62,42 +63,43 @@ namespace BioBase.HSCIADebug.ControlInfo
         /// <summary>
         /// 移管手发送指令
         /// </summary>
+        /// <param name="strModel">级联编号</param>
         /// <param name="startpos"></param>
         /// <param name="goalpos"></param>
-        public static void Move2(int startpos = 0, int goalpos = 0)
+        public static void Move2(string strModel, int startpos = 0, int goalpos = 0)
         {
             string order = "";
             //加新管到温育盘
             if (moveSate == MoveSate.NewtubeToReact)
             {
-                order = "EB 90 31 11 01 " + startpos.ToString("x2");
+                order = "EB "+ strModel + " 31 11 01 " + startpos.ToString("x2");
             }
             //温育盘夹管到清洗盘
             if (moveSate == MoveSate.ReactToWash)
             {
-                order = "EB 90 31 11 02 " + startpos.ToString("x2");
+                order = "EB " + strModel + " 31 11 02 " + startpos.ToString("x2");
             }
             //清洗盘夹管到温育盘
             if (moveSate == MoveSate.WashToReact)
             {
-                order = "EB 90 31 11 03 " + startpos.ToString("x2") + " " + goalpos.ToString("x2") + "";
+                order = "EB " + strModel + " 31 11 03 " + startpos.ToString("x2") + " " + goalpos.ToString("x2") + "";
             }
             //清洗盘扔废管
             if (moveSate == MoveSate.WashLoss)
             {
                 if (startpos == 0)
                     startpos = (int)WashLossPos.PutTubePos;
-                order = "EB 90 31 11 04 " + startpos.ToString("x2");
+                order = "EB " + strModel + " 31 11 04 " + startpos.ToString("x2");
             }
             //温育盘扔废管
             if (moveSate == MoveSate.ReactLoss)
             {
-                order = "EB 90 31 11 05 " + startpos.ToString("x2");
+                order = "EB " + strModel + " 31 11 05 " + startpos.ToString("x2");
             }
             //加新管到清洗盘
             if (moveSate == MoveSate.NewtubeToWash)
             {
-                order = "EB 90 31 11 06 ";
+                order = "EB " + strModel + " 31 11 06 ";
             }
             int sendType = (int)OrderSendType.MoveTube;
             NetCom3.Instance.Send(NetCom3.Cover(order), sendType);
