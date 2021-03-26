@@ -18,13 +18,15 @@ namespace BioBase.HSCIADebug
         #region 基础参数
         commands cmd = new commands();
         public static readonly NetCom3 Instance = new NetCom3();
-        IPAddress ipAddress = IPAddress.Parse("192.168.1.146");
+        //IPAddress ipAddress = IPAddress.Parse("192.168.1.146");
         //IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+        IPAddress ipAddress = IPAddress.Parse(OperateIniFile.ReadInIPara("NetSet", "IPAdress"));
         IPEndPoint remoteEP;
         /// <summary>
         /// 服务器端口号
         /// </summary>     
-        private const int port = 8087;
+        private static int port = Convert.ToInt32(OperateIniFile.ReadInIPara("NetSet", "Port"));
+        //private const int port = 8087;
         /// <summary>
         /// 创建客户端Socket
         /// </summary>
@@ -2481,7 +2483,7 @@ namespace BioBase.HSCIADebug
                 DiagnostDone.Set();
                 if (orderTemp == "11 AF") WhereToReceive = 2;
             }
-            else if (orderTemp == "00 00" || orderTemp == "10 00")//下位机收到上位机指令
+            else if (orderTemp == "00 00" || orderTemp == "10 00" || orderTemp == "01 A0" || orderTemp == "11 A0")//下位机收到上位机指令
                 MachineGetMessage(tempResponse);
             else if (orderTemp == "31 A1")//加新管模块动作执行完毕
                 MoveResultHandle(tempResponse);
