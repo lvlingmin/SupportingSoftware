@@ -236,11 +236,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
         private void frmDiagnost_Load(object sender, EventArgs e)
         {
             cmbMcontrol.SelectedIndex = 0;
+            cmbMcontrol2.SelectedIndex = 0;
             cmbMAddSR.SelectedIndex = 0;
+            cmbMAddSP.SelectedIndex = 0;
             cmbMMove.SelectedIndex = 0;
+            cmbMMove2.SelectedIndex = 0;
             cmbMOrbiter.SelectedIndex = 0;
+            //cmbMOrbiter2.SelectedIndex = 0;
             cmbMIncubation.SelectedIndex = 0;
+            //cmbMIncubation2.SelectedIndex = 0;
             cmbChooseMove.SelectedIndex = 0;
+            //cmbChooseMove2.SelectedIndex = 0;
             bClose = false;
             new Thread(new ParameterizedThreadStart((obj) =>
             {
@@ -405,7 +411,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         {
             formSizeChange(this);
         }
-        #region 加样模块
+        #region 加试剂模块
         /// <summary>
         /// 加样针模块表示 0-加样针模块 1-加试剂针模块
         /// </summary>
@@ -449,7 +455,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
        string NumMAddSR ="90";
         private void numMAddSR_ValueChanged(object sender, EventArgs e)
         {
-            string num = ((int)numMAddSR.Value-1).ToString("x2");
+            string num = ((int)numMAddSR1.Value-1).ToString("x2");
             NumMAddSR = "9" + num.Substring(1, 1).ToUpper();
         }
         private void cmbMAddSR_SelectedIndexChanged(object sender, EventArgs e)
@@ -1175,7 +1181,328 @@ namespace BioBase.HSCIADebug.SysMaintenance
             fbtnAddSR.Enabled = true;
         }
         #endregion
-        #region 移管手
+        #region 加样
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+        string NumMAddSP= "90";
+        private void numMAddSP_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMAddSP1.Value - 1).ToString("x2");
+            NumMAddSP = "9" + num.Substring(1, 1).ToUpper();
+        }
+        private void cmbMAddSP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbAddSPPos.Items.Clear();
+            cmbAElecMachine2.Items.Clear();
+            //cmbRegentTray.Items.Clear();
+            cmbAsArmX2.Items.Clear();
+            //cmbAddsamle.Items.Clear();
+            foreach (string pos in AddSPPos)
+            {
+                cmbAddSPPos.Items.Add(pos);
+                cmbAsArmX2.Items.Add(pos);
+                //if (!(pos == AddSPPos[AddSPPos.Length - 1] || pos == AddSPPos[AddSPPos.Length - 2]))
+                //    cmbRegentTray.Items.Add(pos);
+            }
+            foreach (string aem in AddSPAEM)
+            {
+                cmbAElecMachine2.Items.Add(aem);
+            }
+            foreach (string move in AddSMove)
+            {
+                cmbAddsamle.Items.Add(move);
+            }
+            btnRReset.Visible = false;
+        }
+        private void cmbAddSPPos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbAddSPPos.SelectedItem == null) return;
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMessageShow frmMsgShow = new frmMessageShow();
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            string pos = cmbAddSPPos.SelectedItem.ToString().Trim();
+            if (pos == "")
+            {
+                frmMessageShow frmMsgShow = new frmMessageShow();
+                frmMsgShow.MessageShow("仪器调试", "参数名为空，请稍等！");
+                return;
+            }
+            if (pos == AddSPPos[0].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 A1 01 03";
+            }
+            else if (pos == AddSPPos[1].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 A1 01 02";
+            }
+            else if (pos == AddSPPos[2].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 A1 01 00";
+            }
+            else if (pos == AddSPPos[3].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 A1 01 01";
+            }
+            cmbAddSPPos.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            cmbAddSPPos.Enabled = true;
+        }
+        private void btnSPInc_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (cmbAElecMachine.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择需调试的电机！");
+                return;
+            }
+            if (txtAddSRIncValue.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+                return;
+            }
+            string incream = int.Parse(txtAddSPIncValue.Text.Trim()).ToString("x8");
+            string strorder = "";
+            if (cmbAElecMachine2.SelectedItem.ToString().Trim() == AddSPAEM[0].Trim())
+            {
+                strorder = "EB " + NumMAddSP+ " 02 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            else if (cmbAElecMachine2.SelectedItem.ToString().Trim() == AddSPAEM[1].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            btnSPInc.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnSPInc.Enabled = true;
+        }
+
+        private void btnSPDec_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (cmbAElecMachine2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择需调试的电机！");
+                return;
+            }
+            if (txtAddSPIncValue.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+                return;
+            }
+            string incream = int.Parse("-" + txtAddSPIncValue.Text.Trim()).ToString("x8");
+            string strorder = "";
+            if (cmbAElecMachine2.SelectedItem.ToString().Trim() == AddSPAEM[0].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 01 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            else if (cmbAElecMachine2.SelectedItem.ToString().Trim() == AddSPAEM[1].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 02 10 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            btnSPDec.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnSPDec.Enabled = true;
+        }
+        private void btnSPInave_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            if (cmbAElecMachine2.SelectedItem.ToString().Trim() == AddSPAEM[0].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 01 13";
+            }
+            else if (cmbAElecMachine2.SelectedItem.ToString().Trim() == AddSPAEM[1].Trim())
+            {
+                strorder = "EB " + NumMAddSP + " 02 02 13";
+            }
+            btnSPInave.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnSPInave.Enabled = true;
+        }
+        private void btnSPInaveData_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnSPInaveData.Enabled = false;
+            List<string> data = new List<string>();
+            data = GetData(NumMAddSP, "02");
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 8) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnSPInaveData.Enabled = true;
+        }
+        private void btnSPAllReset_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + NumMAddSP + " 02 00";
+            btnSPAllReset.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnSPAllReset.Enabled = true;
+        }
+
+        private void btnSPXReset_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + NumMAddSP + " 02 01 00";
+            btnSPXReset.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnSPXReset.Enabled = true;
+        }
+        private void btnSPZReset_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + NumMAddSP + " 02 02 00";
+            btnSPZReset.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnSPZReset.Enabled = true;
+        }
+        private void btbAsArmZEx2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            if (cmbAsArmZ2.SelectedItem.ToString() == "下降")
+                strorder = "EB " + NumMAddSR + " 11 02 11 41 00 00";
+            else
+                strorder = "EB " + NumMAddSR + " 11 02 11 40 00 00";
+            btbAsArmZEx2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btbAsArmZEx2.Enabled = true;
+        }
+
+        private void btbAsArmXEx2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (cmbAsArmX2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择加样针旋转位置！");
+                return;
+            }
+            string strorder = "";
+            if (cmbAsArmX2.SelectedItem.ToString() == AddSPPos[0])
+            {
+
+                strorder = "EB " + NumMAddSP + " 11 02 12 03";
+            }
+            else if (cmbAsArmX2.SelectedItem.ToString() == AddSPPos[1])
+            {
+
+                strorder = "EB " + NumMAddSP + " 11 02 12 02";
+            }
+            else if (cmbAsArmX2.SelectedItem.ToString() == AddSPPos[2])
+            {
+
+                strorder = "EB " + NumMAddSP + " 11 02 12 00";
+            }
+            //else if (cmbAsArmX.SelectedItem.ToString() == AddSPPos[3])
+            //{
+
+            //    strorder = "EB "+ NumMAddSR + " 11 12 12 00 0A";
+            //}
+            else if (cmbAsArmX2.SelectedItem.ToString() == AddSPPos[3])
+            {
+
+                strorder = "EB " + NumMAddSP + " 11 02 12 01";
+            }
+            btbAsArmXEx2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int) OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btbAsArmXEx2.Enabled = true;
+        }
+       private void fbtnAsPumpEx2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (cmbAsPump2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择柱塞泵数值！");
+                return;
+            }
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            string temp = int.Parse(cmbAsPump2.SelectedItem.ToString()).ToString("x4");
+            string temp1 = temp.Substring(0, 2);
+            string temp2 = temp.Substring(2, 2);
+            strorder = "EB " + NumMAddSP + " 11 02 14 " + temp1 + " " + temp2 + " 00";
+            fbtnAsPumpEx2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            fbtnAsPumpEx2.Enabled = true;
+        }
+        #endregion
+        #region 理杯机
         /// <summary>
         /// 移管手模块标志 0-移管手(新) 1-移管手
         /// </summary>
@@ -1315,11 +1642,17 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "请选择要进行校准的电机！");
                 return;
             }
+            if (txtMoveIncValue.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+                return;
+            }
             if (!NetCom3.totalOrderFlag)
             {
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
+            
             string strorder = "";
             string incream = int.Parse(txtMoveIncValue.Text.Trim()).ToString("x8");
             if (MMove == 0)
@@ -1375,6 +1708,11 @@ namespace BioBase.HSCIADebug.SysMaintenance
             if (cmbMoveElecMachine.SelectedItem == null)
             {
                 frmMsgShow.MessageShow("仪器调试", "请选择要进行校准的电机！");
+                return;
+            }
+            if (txtMoveIncValue.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
                 return;
             }
             if (!NetCom3.totalOrderFlag)
@@ -1759,7 +2097,350 @@ namespace BioBase.HSCIADebug.SysMaintenance
             btnPutCup.Enabled = true;
         }
         #endregion
-        #region 温育盘
+        #region 移管手
+       
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+        string strMMove2 = "90";
+        private void numMMove2_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMMove2.Value - 1).ToString("x2");
+            strMMove2 = "9" + num.Substring(1, 1).ToUpper();
+        }
+       
+        private void cmbMMove2_SelectedIndexChanged(object sender, EventArgs e)
+       {
+           cmbMovePos2.Items.Clear();
+           cmbMoveX2.Items.Clear();
+           cmbMoveElecMachine2.Items.Clear();
+            foreach (string pos in MovePos)
+            {
+                cmbMovePos2.Items.Add(pos);
+                cmbMoveX2.Items.Add(pos);
+            }
+            foreach (string MoveE in MoveElecMachine)
+           {
+               cmbMoveElecMachine2.Items.Add(MoveE);
+           }
+       }
+       
+        private void cmbMovePos2_SelectedIndexChanged(object sender, EventArgs e)
+      {
+          frmMessageShow frmMsgShow = new frmMessageShow();
+          if (!NetCom3.totalOrderFlag)
+          {
+              frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+              return;
+          }
+          string strorder = "";
+            if (cmbMovePos2.SelectedItem.ToString() == MovePos[0])
+            {
+                strorder = "EB " + strMMove2 + " 21 01 02";
+            }
+            //else if (cmbMovePos.SelectedItem.ToString() == MovePos[1])
+            //{
+            //    strorder = "EB "+ strMMove+ " 21 01 02 00";
+            //}
+            else if (cmbMovePos2.SelectedItem.ToString() == MovePos[1])
+            {
+                strorder = "EB " + strMMove2 + " 21 01 03";
+            }
+            else if (cmbMovePos2.SelectedItem.ToString() == MovePos[2])
+            {
+                strorder = "EB " + strMMove2 + " 21 01 04";
+            }
+            else if (cmbMovePos2.SelectedItem.ToString() == MovePos[3])
+            {
+                strorder = "EB " + strMMove2 + " 21 01 06";
+            }
+          cmbMovePos2.Enabled = false;
+          NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+          NetCom3.Instance.SingleQuery();
+          cmbMovePos2.Enabled = true;
+      }
+       
+        private void btnMoveInc2_Click(object sender, EventArgs e)
+     {
+         frmMessageShow frmMsgShow = new frmMessageShow();
+         if (cmbMovePos2.SelectedItem == null)
+         {
+             frmMsgShow.MessageShow("仪器调试", "请选择校准位置！");
+             return;
+         }
+         if (cmbMoveElecMachine2.SelectedItem == null)
+         {
+             frmMsgShow.MessageShow("仪器调试", "请选择要进行校准的电机！");
+             return;
+         }
+        if (txtMoveIncValue2.Text.Trim() == "")
+        {
+            frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+            return;
+        }
+        if (!NetCom3.totalOrderFlag)
+         {
+             frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+             return;
+         }
+         string strorder = "";
+         string incream = int.Parse(txtMoveIncValue2.Text.Trim()).ToString("x8");
+        
+        if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[0])
+            strorder = "EB " + strMMove2 + " 21 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+        else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[1])
+            strorder = "EB " + strMMove2 + " 21 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+        else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[2])
+            strorder = "EB " + strMMove2 + " 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+        else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[3])
+            strorder = "EB " + strMMove2 + " 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+        else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[4])
+            strorder = "EB " + strMIncubation + " 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                    + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+         
+         btnMoveInc2.Enabled = false;
+         NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+         NetCom3.Instance.SingleQuery();
+         btnMoveInc2.Enabled = true;
+     }
+        private void btnMoveDec2_Click(object sender, EventArgs e)
+        {
+             frmMessageShow frmMsgShow = new frmMessageShow();
+             if (cmbMovePos2.SelectedItem == null)
+             {
+                 frmMsgShow.MessageShow("仪器调试", "请选择校准位置！");
+                 return;
+             }
+             if (cmbMoveElecMachine2.SelectedItem == null)
+             {
+                 frmMsgShow.MessageShow("仪器调试", "请选择要进行校准的电机！");
+                 return;
+             }
+            if (txtMoveIncValue2.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+                return;
+            }
+            if (!NetCom3.totalOrderFlag)
+             {
+                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                 return;
+             }
+             string strorder = "";
+             string incream = int.Parse("-" + txtMoveIncValue2.Text.Trim()).ToString("x8");
+        
+            if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[0])
+                strorder = "EB " + strMMove2 + " 21 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                        + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[1])
+                strorder = "EB " + strMMove2 + " 21 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                        + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[2])
+                strorder = "EB " + strMMove2 + " 01 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                        + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[3])
+                strorder = "EB " + strMMove2 + " 01 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                        + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            else if (cmbMoveElecMachine2.SelectedItem.ToString() == MoveElecMachine[4])
+                strorder = "EB " + strMIncubation + " 14 02 01 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                        + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+         btnMoveDec2.Enabled = false;
+         NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+         NetCom3.Instance.SingleQuery();
+         btnMoveDec2.Enabled = true;
+     }
+        
+        private void btnMoveSave2_Click(object sender, EventArgs e)
+    {
+        frmMessageShow frmMsgShow = new frmMessageShow();
+        if (!NetCom3.totalOrderFlag)
+        {
+            frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+            return;
+        }
+        string strorder = "";
+        strorder = "EB " + strMMove + " 21 13";
+        btnMoveSave2.Enabled = false;
+        NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+        NetCom3.Instance.SingleQuery();
+        btnMoveSave2.Enabled = true;
+    }
+   
+        private void btnMoveSaveData2_Click(object sender, EventArgs e)
+            {
+                frmMessageShow frmMsgShow = new frmMessageShow();
+                if (!NetCom3.totalOrderFlag)
+                {
+                    frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                    return;
+                }
+                btnMoveSaveData2.Enabled = false;
+                List<string> data = new List<string>();
+                data = GetData(strMMove, "21");
+                if (data.Count() < 1)
+                {
+                    MessageBox.Show("数据不存在");
+                }
+                foreach (string item in data)
+                {
+                    string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                    NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                    NetCom3.Instance.SingleQuery();
+                }
+                btnMoveSaveData2.Enabled = true;
+            }
+       
+        private void btnMoveAllReset2_Click(object sender, EventArgs e)
+           {
+               frmMessageShow frmMsgShow = new frmMessageShow();
+               if (!NetCom3.totalOrderFlag)
+               {
+                   frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                   return;
+               }
+               string strorder = "";
+               strorder = "EB " + strMMove2 + " 21 03";
+                btnMoveAllReset2.Enabled = false;
+               NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+               NetCom3.Instance.SingleQuery();
+               btnMoveAllReset2.Enabled = true;
+           }
+ 
+         private void btnMoveXReset2_Click(object sender, EventArgs e)
+  {
+      frmMessageShow frmMsgShow = new frmMessageShow();
+      if (!NetCom3.totalOrderFlag)
+      {
+          frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+          return;
+      }
+
+      string strorder = "";
+      strorder = "EB " + strMMove2 + " 21 03 04";
+      btnMoveXReset2.Enabled = false;
+      NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+      NetCom3.Instance.SingleQuery();
+      btnMoveXReset2.Enabled = true;
+  }
+       
+        private void btnHandOpen2_Click(object sender, EventArgs e)
+{
+    frmMessageShow frmMsgShow = new frmMessageShow();
+    if (!NetCom3.totalOrderFlag)
+    {
+        frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+        return;
+    }
+    string strorder = "";
+    strorder = "EB " + strMMove2 + " 11 11 03 31";
+    btnHandOpen2.Enabled = false;
+    NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+    NetCom3.Instance.SingleQuery();
+    btnHandOpen2.Enabled = true;
+}
+        private void btnMoveZReset2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMMove2 + " 21 03 03";
+            btnMoveZReset2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnMoveZReset2.Enabled = true;
+        }
+        private void btnHandClose2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMMove2 + " 11 11 03 30";
+            btnHandClose2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnHandClose2.Enabled = true;
+        }
+       
+
+        private void btnMoveX2_Click(object sender, EventArgs e)
+        {
+           frmMessageShow frmMsgShow = new frmMessageShow();
+           if (cmbMoveX2.SelectedItem == null)
+           {
+               frmMsgShow.MessageShow("仪器调试", "请选择抓手旋转位置！");
+               return;
+           }
+           if (!NetCom3.totalOrderFlag)
+           {
+               frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+               return;
+           }
+           string strorder = "";
+            if (cmbMoveX2.SelectedItem.ToString() == MovePos[0])
+            {
+                strorder = "EB " + strMMove2 + " 11 11 01 02 00 00";
+            }
+            else if (cmbMoveX2.SelectedItem.ToString() == MovePos[1])
+            {
+                strorder = "EB " + strMMove2 + " 11 11 01 03";
+            }
+            else if (cmbMoveX2.SelectedItem.ToString() == MovePos[2])
+            {
+                strorder = "EB " + strMMove2 + " 11 11 01 04";
+            }
+            else if (cmbMoveX2.SelectedItem.ToString() == MovePos[3])
+            {
+                strorder = "EB " + strMMove2 + " 11 11 01 05";
+            }
+           btnMoveX2.Enabled = false;
+           NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+           NetCom3.Instance.SingleQuery();
+           btnMoveX2.Enabled = true;
+        }
+        private void btnMoveY2_Click(object sender, EventArgs e)
+        {
+           frmMessageShow frmMsgShow = new frmMessageShow();
+           if (cmbMoveY2.SelectedItem == null)
+           {
+               frmMsgShow.MessageShow("仪器调试", "请选择抓手垂直位置！");
+               return;
+           }
+           if (!NetCom3.totalOrderFlag)
+           {
+               frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+               return;
+           }
+           string strorder = "";
+  
+               if (cmbMoveY2.SelectedItem.ToString() == "升到光电开关位置")
+               {
+                   strorder = "EB " + strMMove2 + " 11 11 02 30";
+               }
+               else if (cmbMoveY2.SelectedItem.ToString() == "在当前位置下降")
+               {
+                   strorder = "EB " + strMMove2 + " 11 11 02 31";
+               }
+           btnMoveY2.Enabled = false;
+           NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+           NetCom3.Instance.SingleQuery();
+           btnMoveY2.Enabled = true;
+        }
+
+        #endregion
+
+        #region 温育盘(外)
         /// <summary>
         /// 温育盘调试标识  1-外 0-内
         /// </summary>
@@ -2060,11 +2741,23 @@ namespace BioBase.HSCIADebug.SysMaintenance
             else
             {
                 bRRectClear = true;
+                //ThNewMove=new Thread(new ParameterizedThreadStart((object obj) =>
+                //{
+                //    reactTrayTubeClear(strMIncubation, 1);
+                //}));
+                //ThNewMove.IsBackground = true;
+                //ThNewMove.Start();
+                //ThMove =  new Thread(new ParameterizedThreadStart((object obj) =>
+                //{
+                //    reactTrayTubeClear(strMIncubation, 0);
+                //}));
+                //ThMove.IsBackground = true;
+                //ThMove.Start();
                 ThNewMove = new Thread(new ParameterizedThreadStart(reactNewTrayClear));
                 //ThNewMove = new Thread(reactNewTrayClear);
                 ThNewMove.IsBackground = true;
                 ThNewMove.Start(strMIncubation);
-                ThMove = new Thread(new ParameterizedThreadStart(reactNewTrayClear));
+                ThMove = new Thread(new ParameterizedThreadStart(reactTrayClear));
                 ThMove.IsBackground = true;
                 ThMove.Start(strMIncubation);
                 while (tubeCount < ReactTrayNum && bRRectClear)
@@ -2163,7 +2856,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 移管手清空温育盘
         /// </summary>
         /// <param name="strModel"></param>
-        private void reactTrayClear(string strModel)
+        private void reactTrayClear(object strModel)
         {
             DataTable dtInTrayIni = ReadReact();
             for (int j = 1; j < (ReactTrayNum / 40) + 1; j = j + 2)
@@ -2173,7 +2866,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
                     if (i >= 150) return;
                     if (!bRRectClear) return;
                     int statpos = int.Parse(dtInTrayIni.Rows[i][0].ToString().Substring(2));
-                    int errorflag = Move(strModel,MoveSate.ReactLoss, 1, statpos);
+                    int errorflag = Move(strModel.ToString(),MoveSate.ReactLoss, 1, statpos);
                     if (errorflag != (int)ErrorState.IsNull && errorflag != (int)ErrorState.Success)
                     {
                         bRRectClear = false;
@@ -2293,6 +2986,242 @@ namespace BioBase.HSCIADebug.SysMaintenance
             NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
             NetCom3.Instance.SingleQuery();
             fbtnMixStart.Enabled = true;
+        }
+        #endregion
+        #region 温育盘(内)
+        string strMIncubation2 = "90";
+        private void numMIncubation2_ValueChanged(object sender, EventArgs e)
+        {
+            string num = ((int)numMIncubation2.Value - 1).ToString("x2");
+            strMIncubation2 = "9" + num.Substring(1, 1).ToUpper();
+        }
+        private void cmbMIncubation2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (cmbMIncubation.SelectedItem.ToString() == "温育盘(内)")
+            //    MMIncubation = 0;
+            //else
+            //    MMIncubation = 1;
+        }
+        private void CmbIpara2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (CmbIpara2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择参数信息！");
+                return;
+            }
+            string strorder = "";
+            if (CmbIpara2.SelectedItem.ToString().Contains(IncubationPos[0]))
+            {
+                strorder = "EB " + strMIncubation2 + " 04 01 01";
+            }
+            else if (CmbIpara2.SelectedItem.ToString().Contains(IncubationPos[1]))
+            {
+                strorder = "EB " + strMIncubation2 + " 04 01 02";
+            }
+            else if (CmbIpara.SelectedItem.ToString().Contains(IncubationPos[2]))
+            {
+                strorder = "EB " + strMIncubation2 + " 04 01 03";
+            }
+            CmbIpara2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            CmbIpara2.Enabled = true;
+        }
+        private void btnIAdd2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (txtIIncrem2.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入电机增量！！");
+                return;
+            }
+            string strorder = "";
+            string incream = int.Parse(txtIIncrem2.Text.Trim()).ToString("x8");
+            if (cmbIElecMachine2.SelectedItem.ToString() == IncubaElecMachine[0])
+                strorder = "EB " + strMIncubation2 + " 04 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                          + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            else if (cmbIElecMachine2.SelectedItem.ToString() == IncubaElecMachine[1])
+                strorder = "EB " + strMIncubation2 + " 04 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                          + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            btnIAdd2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnIAdd2.Enabled = true;
+        }
+        private void btnISub2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (txtIIncrem2.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入电机增量！！");
+                return;
+            }
+            string strorder = "";
+            string incream = int.Parse("-" + txtIIncrem2.Text.Trim()).ToString("x8");
+            if (cmbIElecMachine2.SelectedItem.ToString() == IncubaElecMachine[0])
+                strorder = "EB " + strMIncubation2 + " 04 02 02 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                          + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            else if (cmbIElecMachine2.SelectedItem.ToString() == IncubaElecMachine[1])
+                strorder = "EB " + strMIncubation2 + " 04 02 03 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                          + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            btnISub2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnISub2.Enabled = true;
+        }
+        private void btnISave2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMIncubation2 + " 04 13";
+            btnISave2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnISave2.Enabled = true;
+        }
+        private void btnISaveData2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnISaveData2.Enabled = false;
+            List<string> data = new List<string>();
+            data = GetData(strMIncubation2, "04");
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnISaveData2.Enabled = true;
+        }
+
+        private void btnIAllInit2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMIncubation2 + " 14 03 00";
+            btnIAllInit2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnIAllInit2.Enabled = true;
+        }
+
+        private void btnIYInit2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMIncubation2 + " 04 03 02";
+            btnIYInit2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnIYInit2.Enabled = true;
+        }
+
+        private void fbtnPressCupZero2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMIncubation2 + " 04 03 03";
+            fbtnPressCupZero2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            fbtnPressCupZero2.Enabled = true;
+        }
+        private void fbtnMixArm2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            if (cmbMixArm2.SelectedItem.ToString() == "上（光电位置）")
+                strorder = "EB " + strMIncubation2 + " 11 0a 02 30";
+            else
+                strorder = "EB " + strMIncubation2 + " 11 0a 02 31";
+            fbtnMixArm2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            fbtnMixArm2.Enabled = true;
+        }
+        private void btnPressCup2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            if (cmbPressCup2.SelectedItem.ToString() == "归零")
+                strorder = "EB " + strMIncubation2 + " 11 0a 03 30";
+            else
+                strorder = "EB " + strMIncubation2 + " 11 0a 03 31";
+            btnPressCup2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnPressCup2.Enabled = true;
+        }
+
+        private void fbtnMixStart2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMIncubation2 + " 11 0a 04 30";
+            fbtnMixStart2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            fbtnMixStart2.Enabled = true;
         }
         #endregion
         #region 清洗盘
@@ -4098,7 +5027,7 @@ namespace BioBase.HSCIADebug.SysMaintenance
         string OrbOrder = "90";
         private void NumOrbiterID_ValueChanged(object sender, EventArgs e)
         {
-            numOrbiterID =int.Parse((NumOrbiterID.Value-1).ToString()).ToString("x2");
+            numOrbiterID =int.Parse((NumOrbiter.Value-1).ToString()).ToString("x2");
             OrbOrder = "9" + numOrbiterID.Substring(1, 1);
         }
         private void cmbMOrbiter_SelectedIndexChanged(object sender, EventArgs e)
@@ -4560,8 +5489,8 @@ namespace BioBase.HSCIADebug.SysMaintenance
         string strMControl = "90";
         private void numMcontrol_ValueChanged(object sender, EventArgs e)
         {
-            numOrbiterID = int.Parse((NumOrbiterID.Value - 1).ToString()).ToString("x2");
-            OrbOrder = "9" + numOrbiterID.Substring(1, 1);
+            strMControl = int.Parse((numMcontrol.Value - 1).ToString()).ToString("x2");
+            OrbOrder = "9" + strMControl.Substring(1, 1);
         }
         private void cmbMcontrol_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -4993,6 +5922,259 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 NetCom3.Instance.SingleQuery();
             }
             btnSend.Enabled = true;
+        }
+        #endregion
+        #region 调度二区
+        string NumMcontrol2 = "0";
+        /// <summary>
+        /// 级联机器编号
+        /// </summary>
+        string strMControl2 = "90";
+        
+        private void numMcontrol2_ValueChanged(object sender, EventArgs e)
+        {
+            NumMcontrol2 = int.Parse((numMcontrol2.Value - 1).ToString()).ToString("x2");
+            strMControl2 = "9" + NumMcontrol2.Substring(1, 1);
+        }
+        private void cmbMcontrol2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbConPos2.Items.Clear();
+            cmbConElecMach2.Items.Clear();
+            foreach (string pos in MControlPos2)
+            {
+                cmbConPos2.Items.Add(pos);
+            }
+            foreach (string emc in MConElecMach2)
+            {
+                cmbConElecMach2.Items.Add(emc);
+            }
+        }
+
+        private void cmbConPos2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (cmbConPos2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择位置调教参数！");
+                return;
+            }
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            if (cmbConPos2.SelectedItem.ToString() == MControlPos2[0])
+            {
+                strorder = "EB " + strMControl2 + " 05 01 06";
+            }
+            else if (cmbConPos2.SelectedItem.ToString() == MControlPos2[1])
+            {
+                strorder = "EB " + strMControl2 + " 05 01 07";
+            }
+            else if (cmbConPos2.SelectedItem.ToString() == MControlPos2[2])
+            {
+                strorder = "EB " + strMControl2 + " 05 01 08";
+            }
+            else if (cmbConPos2.SelectedItem.ToString() == MControlPos2[3])
+            {
+                strorder = "EB " + strMControl2 + " 05 01 09";
+            }
+            cmbConPos2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            cmbConPos2.Enabled = true;
+        }
+
+        private void btnConInc2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (cmbConElecMach2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择需调试的电机！");
+                return;
+            }
+            if (txtConIncValue2.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+                return;
+            }
+            string incream = int.Parse(txtConIncValue2.Text.Trim()).ToString("x8");
+            string strorder = "";
+            if (cmbConElecMach2.SelectedItem.ToString().Trim() == MConElecMach2[0].Trim())
+            {
+                strorder = "EB " + strMControl2 + " 05 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            else if (cmbConElecMach2.SelectedItem.ToString().Trim() == MConElecMach2[1].Trim())
+            {
+                strorder = "EB " + strMControl2 + " 05 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            else if (cmbConElecMach2.SelectedItem.ToString().Trim() == MConElecMach2[2].Trim())
+            {
+                strorder = "EB " + strMControl2 + " 05 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            btnConInc2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnConInc2.Enabled = true;
+        }
+
+        private void btnConDsc2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            if (cmbConElecMach2.SelectedItem == null)
+            {
+                frmMsgShow.MessageShow("仪器调试", "请选择需调试的电机！");
+                return;
+            }
+            if (txtConIncValue2.Text.Trim() == "")
+            {
+                frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
+                return;
+            }
+            string incream = int.Parse("-" + txtConIncValue2.Text.Trim()).ToString("x8");
+            string strorder = "";
+            if (cmbConElecMach2.SelectedItem.ToString().Trim() == MConElecMach2[0].Trim())
+            {
+                strorder = "EB " + strMControl2 + " 05 02 04 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            else if (cmbConElecMach2.SelectedItem.ToString().Trim() == MConElecMach2[1].Trim())
+            {
+                strorder = "EB " + strMControl2 + " 05 02 05 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            else if (cmbConElecMach2.SelectedItem.ToString().Trim() == MConElecMach2[2].Trim())
+            {
+                strorder = "EB " + strMControl2 + " 05 02 06 " + incream.Substring(0, 2) + " " + incream.Substring(2, 2) + " "
+                            + incream.Substring(4, 2) + " " + incream.Substring(6, 2);
+            }
+            btnConDsc2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnConDsc2.Enabled = true;
+        }
+
+        private void btnConSave2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMControl2 + " 05 23";
+            btnConSave2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnConSave2.Enabled = true;
+        }
+        private void btnConSaveData2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            btnConSaveData2.Enabled = false;
+            List<string> data = GetData(strMControl, "05");
+
+            if (data.Count() < 1)
+            {
+                MessageBox.Show("数据不存在");
+            }
+            foreach (string item in data)
+            {
+                string s = ("EB " + item.Substring(0, 5) + " 13 " + item.Substring(18)).TrimEnd();
+                NetCom3.Instance.Send(NetCom3.Cover(s), 5);
+                NetCom3.Instance.SingleQuery();
+            }
+            btnConSaveData2.Enabled = true;
+        }
+
+        private void btnConAllReset2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCon1Reset2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMControl2 + " 05 03 F2";
+            btnCon1Reset.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnCon1Reset.Enabled = true;
+        }
+
+        private void btnConSMReset2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMControl2 + " 05 03 03";
+            btnConSMReset2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnConSMReset2.Enabled = true;
+        }
+
+        private void btnConSDReset2_Click(object sender, EventArgs e)
+        {
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMControl2 + " 05 03 02";
+            btnConSDReset2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnConSDReset2.Enabled = true;
+        }
+
+        private void btnConFReset2_Click(object sender, EventArgs e)
+        {
+
+            frmMessageShow frmMsgShow = new frmMessageShow();
+            if (!NetCom3.totalOrderFlag)
+            {
+                frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
+                return;
+            }
+            string strorder = "";
+            strorder = "EB " + strMControl2 + " 05 03 06";
+            btnConFReset2.Enabled = false;
+            NetCom3.Instance.Send(NetCom3.Cover(strorder), (int)OrderSendType.Total);
+            NetCom3.Instance.SingleQuery();
+            btnConFReset2.Enabled = true;
         }
         #endregion
 
