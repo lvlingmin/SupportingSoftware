@@ -1184,12 +1184,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
         /// 移管手(新)调试位置
         /// 温育盘位置,暂存盘位置,废管位置,"理杯块位置","清洗盘位置"
         /// </summary>
-        string[] MoveNewPos = { "温育盘位置", "暂存盘位置", "废管位置", "理杯块位置","清洗盘位置" };
+        string[] MoveNewPos = { "温育盘外圈位置", "暂存盘位置", "废管位置", "理杯块位置","清洗盘位置","温育盘内圈位置" };
         /// <summary>
         /// 移管手调试位置
         /// 温育盘位置,清洗盘位置,废管位置
         /// </summary>
-        string[] MovePos = { "温育盘位置",  "清洗盘位置", "废管位置" };
+        string[] MovePos = { "温育盘外圈位置","清洗盘位置", "废管位置","温育盘内圈位置" };
         /// <summary>
         /// 抓手模块电机列表
         /// 垂直电机，旋转电机，暂存盘电机，理杯块电机,温育盘电机
@@ -1269,6 +1269,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 {
                     strorder = "EB " + strMMove + " 01 01 03";
                 }
+                else if (cmbMovePos.SelectedItem.ToString() == MoveNewPos[5])
+                {
+                    strorder = "EB " + strMMove + " 01 01 06";
+                }
             }
             else
             {
@@ -1287,6 +1291,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 else if (cmbMovePos.SelectedItem.ToString() == MovePos[2])
                 {
                     strorder = "EB "+ strMMove+ " 21 01 04";
+                }
+                else if (cmbMovePos.SelectedItem.ToString() == MovePos[3])
+                {
+                    strorder = "EB " + strMMove + " 21 01 06";
                 }
             }
             cmbMovePos.Enabled = false;
@@ -1654,6 +1662,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 {
                     strorder = "EB " + strMMove + " 11 01 01 03";
                 }
+                else if (cmbMoveX.SelectedItem.ToString() == MoveNewPos[5])
+                {
+                    strorder = "EB " + strMMove + " 11 01 01 05";
+                }
             }
             else
             {
@@ -1668,6 +1680,10 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 else if (cmbMoveX.SelectedItem.ToString() == MovePos[2])
                 {
                     strorder = "EB "+ strMMove+ " 11 11 01 04";
+                }
+                else if (cmbMoveX.SelectedItem.ToString() == MovePos[3])
+                {
+                    strorder = "EB " + strMMove + " 11 11 01 05";
                 }
             }
             btnMoveX.Enabled = false;
