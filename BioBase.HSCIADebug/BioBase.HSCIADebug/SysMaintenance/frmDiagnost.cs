@@ -1261,12 +1261,12 @@ namespace BioBase.HSCIADebug.SysMaintenance
                 frmMsgShow.MessageShow("仪器调试", "仪器正在运动，请稍等！");
                 return;
             }
-            if (cmbAElecMachine.SelectedItem == null)
+            if (cmbAElecMachine2.SelectedItem == null)
             {
                 frmMsgShow.MessageShow("仪器调试", "请选择需调试的电机！");
                 return;
             }
-            if (txtAddSRIncValue.Text.Trim() == "")
+            if (txtAddSPIncValue.Text.Trim() == "")
             {
                 frmMsgShow.MessageShow("仪器调试", "请输入增量值！");
                 return;
