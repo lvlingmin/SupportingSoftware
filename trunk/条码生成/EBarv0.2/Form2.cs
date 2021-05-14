@@ -121,9 +121,10 @@ namespace EBarv0._2
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("1");//条码编号，表示条码1
-            string time = string.Format("{0:yyyyMMdd}", prodectTime.Value);//8位时间
-            string timeYear = time.Substring(0, 4);
-            string timeDay = time.Substring(6, 2);
+            string btime = string.Format("{0:yyyyMMdd}", batchTime.Value);//8位时间
+            string ptime = string.Format("{0:yyyyMMdd}", prodectTime.Value);
+            string timeYear = btime.Substring(0, 4);
+            string timeDay = btime.Substring(6, 2);
             //将四位数年份和四位数月日异或，取较低两位作为校验位
 
             string checkNum = (int.Parse(timeYear.Substring(2, 2)) ^ int.Parse(timeDay)).ToString(); // 这是把年的后两位和日的两位异或
@@ -150,7 +151,8 @@ namespace EBarv0._2
             {
                 MessageBox.Show("当前实验项目不存在!");
             }
-            sb.Append(TimeToNewTime(time));     //将time日期转换为三位数，添加到sb字符串序列
+            sb.Append(TimeToNewTime(btime));     //将time日期转换为三位数，添加到sb字符串序列
+            sb.Append(TimeToNewTime(ptime));
             string num = Convert.ToString(num1.Value + add);
             while (num.Length < 4)              //如果num1控件内的数字位数不足4位，则前面填充0
             {
@@ -332,6 +334,7 @@ namespace EBarv0._2
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
+            batchTime.Value = DateTime.Now;
             prodectTime.Value = DateTime.Now;
             reagentName.SelectedIndex = -1;
             reagentStandard.SelectedIndex = -1;           
