@@ -137,5 +137,12 @@ namespace EBarv0._2
             frmDilute f = new frmDilute();
             f.ShowDialog();
         }
+
+        private void btnBarFromExcel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmBarFromExcel f = new frmBarFromExcel();
+            f.ShowDialog();
+        }
     }
 }

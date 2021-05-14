@@ -42,6 +42,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnElectronicLabelEntry = new System.Windows.Forms.Button();
+            this.btnBarFromExcel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -187,6 +188,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnBarFromExcel);
             this.groupBox2.Controls.Add(this.btnElectronicLabelEntry);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button6);
@@ -207,6 +209,16 @@
             this.btnElectronicLabelEntry.UseVisualStyleBackColor = true;
             this.btnElectronicLabelEntry.Visible = false;
             this.btnElectronicLabelEntry.Click += new System.EventHandler(this.btnElectronicLabelEntry_Click);
+            // 
+            // btnBarFromExcel
+            // 
+            this.btnBarFromExcel.Location = new System.Drawing.Point(318, 47);
+            this.btnBarFromExcel.Name = "btnBarFromExcel";
+            this.btnBarFromExcel.Size = new System.Drawing.Size(120, 80);
+            this.btnBarFromExcel.TabIndex = 12;
+            this.btnBarFromExcel.Text = "条码-Excel生成";
+            this.btnBarFromExcel.UseVisualStyleBackColor = true;
+            this.btnBarFromExcel.Click += new System.EventHandler(this.btnBarFromExcel_Click);
             // 
             // FrmMain
             // 
@@ -248,5 +260,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnBarFromExcel;
     }
 }

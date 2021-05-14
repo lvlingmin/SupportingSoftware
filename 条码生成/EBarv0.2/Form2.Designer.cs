@@ -58,6 +58,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.batchTime = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).BeginInit();
@@ -68,6 +70,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.batchTime);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.cbma);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.checkBox1);
@@ -135,7 +139,7 @@
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox2.Location = new System.Drawing.Point(314, 129);
+            this.checkBox2.Location = new System.Drawing.Point(314, 160);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(91, 20);
             this.checkBox2.TabIndex = 19;
@@ -207,7 +211,7 @@
             "100",
             "200",
             "300"});
-            this.reagentStandard.Location = new System.Drawing.Point(132, 125);
+            this.reagentStandard.Location = new System.Drawing.Point(132, 156);
             this.reagentStandard.Name = "reagentStandard";
             this.reagentStandard.Size = new System.Drawing.Size(121, 24);
             this.reagentStandard.TabIndex = 16;
@@ -225,7 +229,7 @@
             this.reagentName.Items.AddRange(new object[] {
             "试剂A",
             "试剂B"});
-            this.reagentName.Location = new System.Drawing.Point(132, 75);
+            this.reagentName.Location = new System.Drawing.Point(132, 106);
             this.reagentName.MaxDropDownItems = 16;
             this.reagentName.Name = "reagentName";
             this.reagentName.Size = new System.Drawing.Size(273, 24);
@@ -237,7 +241,7 @@
             this.prodectTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.prodectTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.prodectTime.Location = new System.Drawing.Point(132, 28);
+            this.prodectTime.Location = new System.Drawing.Point(132, 64);
             this.prodectTime.Name = "prodectTime";
             this.prodectTime.Size = new System.Drawing.Size(273, 26);
             this.prodectTime.TabIndex = 6;
@@ -276,7 +280,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 12F);
-            this.label7.Location = new System.Drawing.Point(33, 128);
+            this.label7.Location = new System.Drawing.Point(33, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 16);
             this.label7.TabIndex = 2;
@@ -286,7 +290,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F);
-            this.label2.Location = new System.Drawing.Point(33, 78);
+            this.label2.Location = new System.Drawing.Point(33, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 1;
@@ -296,7 +300,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(33, 35);
+            this.label1.Location = new System.Drawing.Point(33, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 0;
@@ -433,6 +437,26 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Paint += new System.Windows.Forms.PaintEventHandler(this.GroupBox4_Paint);
             // 
+            // batchTime
+            // 
+            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.batchTime.Location = new System.Drawing.Point(133, 20);
+            this.batchTime.Name = "batchTime";
+            this.batchTime.Size = new System.Drawing.Size(273, 26);
+            this.batchTime.TabIndex = 25;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 12F);
+            this.label9.Location = new System.Drawing.Point(34, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 16);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "批号";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -496,5 +520,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DateTimePicker batchTime;
+        private System.Windows.Forms.Label label9;
     }
 }
