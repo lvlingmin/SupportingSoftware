@@ -146,49 +146,52 @@ namespace EBarv0._2.user
             {
                 goto errorEnd;
             }
-            if (!spInfoSendInput(pro, "12"))
+            if(pro != "" && pro != null)
             {
-                goto errorEnd;
-            }
-            //if (!spInfoSendInput(conc1, "13"))
-            //{
-            //    goto errorEnd;
-            //}
-            //if (!spInfoSendInput(conc2, "14"))
-            //{
-            //    goto errorEnd;
-            //}
-            //if (!spInfoSendInput(value1, "15"))
-            //{
-            //    goto errorEnd;
-            //}
-            //if (!spInfoSendInput(value2, "16"))
-            //{
-            //    goto errorEnd;
-            //}
-            //if (!spInfoSendInput(value3, "17"))
-            //{
-            //    goto errorEnd;
-            //}
-            //if (value4 != "")
-            //{
-            //    if (!spInfoSendInput(value4, "18"))
-            //    {
-            //        goto errorEnd;
-            //    }
-            //}
-            if (qc1 != "")
-            {
-                if (!spInfoSendInput(qc1, "19"))
+                if (!spInfoSendInput(pro, "12"))
                 {
                     goto errorEnd;
                 }
-            }
-            if (qc2 != "")
-            {
-                if (!spInfoSendInput(qc2, "1A"))
+                //if (!spInfoSendInput(conc1, "13"))
+                //{
+                //    goto errorEnd;
+                //}
+                //if (!spInfoSendInput(conc2, "14"))
+                //{
+                //    goto errorEnd;
+                //}
+                //if (!spInfoSendInput(value1, "15"))
+                //{
+                //    goto errorEnd;
+                //}
+                //if (!spInfoSendInput(value2, "16"))
+                //{
+                //    goto errorEnd;
+                //}
+                //if (!spInfoSendInput(value3, "17"))
+                //{
+                //    goto errorEnd;
+                //}
+                //if (value4 != "")
+                //{
+                //    if (!spInfoSendInput(value4, "18"))
+                //    {
+                //        goto errorEnd;
+                //    }
+                //}
+                if (qc1 != "")
                 {
-                    goto errorEnd;
+                    if (!spInfoSendInput(qc1, "19"))
+                    {
+                        goto errorEnd;
+                    }
+                }
+                if (qc2 != "")
+                {
+                    if (!spInfoSendInput(qc2, "1A"))
+                    {
+                        goto errorEnd;
+                    }
                 }
             }
             dtable.Rows.RemoveAt(0);
