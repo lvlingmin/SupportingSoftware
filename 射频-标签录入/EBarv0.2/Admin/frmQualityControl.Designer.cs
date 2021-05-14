@@ -52,6 +52,8 @@
             this.back = new System.Windows.Forms.Button();
             this.btnGener = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.batchTime = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flpLevel.SuspendLayout();
@@ -59,6 +61,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.batchTime);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.flowLayoutPanel1);
             this.groupBox1.Controls.Add(this.flpLevel);
             this.groupBox1.Controls.Add(this.txtSD);
@@ -85,9 +89,9 @@
             this.flowLayoutPanel1.Controls.Add(this.cb2_2s);
             this.flowLayoutPanel1.Controls.Add(this.cb4_1s);
             this.flowLayoutPanel1.Controls.Add(this.cb10x);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(132, 179);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(134, 194);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(273, 63);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(273, 49);
             this.flowLayoutPanel1.TabIndex = 22;
             // 
             // cb1_2s
@@ -160,7 +164,7 @@
             this.flpLevel.Controls.Add(this.rbLow);
             this.flpLevel.Controls.Add(this.rbMid);
             this.flpLevel.Controls.Add(this.rbHigh);
-            this.flpLevel.Location = new System.Drawing.Point(132, 154);
+            this.flpLevel.Location = new System.Drawing.Point(134, 169);
             this.flpLevel.Name = "flpLevel";
             this.flpLevel.Size = new System.Drawing.Size(273, 23);
             this.flpLevel.TabIndex = 21;
@@ -199,14 +203,14 @@
             // 
             // txtSD
             // 
-            this.txtSD.Location = new System.Drawing.Point(132, 121);
+            this.txtSD.Location = new System.Drawing.Point(134, 136);
             this.txtSD.Name = "txtSD";
             this.txtSD.Size = new System.Drawing.Size(273, 21);
             this.txtSD.TabIndex = 15;
             // 
             // txtX
             // 
-            this.txtX.Location = new System.Drawing.Point(132, 94);
+            this.txtX.Location = new System.Drawing.Point(134, 109);
             this.txtX.Name = "txtX";
             this.txtX.Size = new System.Drawing.Size(273, 21);
             this.txtX.TabIndex = 2;
@@ -215,7 +219,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("宋体", 12F);
-            this.label6.Location = new System.Drawing.Point(33, 183);
+            this.label6.Location = new System.Drawing.Point(35, 198);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 16);
             this.label6.TabIndex = 11;
@@ -225,7 +229,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 12F);
-            this.label5.Location = new System.Drawing.Point(33, 154);
+            this.label5.Location = new System.Drawing.Point(35, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 10;
@@ -235,7 +239,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F);
-            this.label4.Location = new System.Drawing.Point(33, 126);
+            this.label4.Location = new System.Drawing.Point(35, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 16);
             this.label4.TabIndex = 9;
@@ -245,7 +249,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 12F);
-            this.label3.Location = new System.Drawing.Point(33, 99);
+            this.label3.Location = new System.Drawing.Point(35, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 16);
             this.label3.TabIndex = 8;
@@ -264,7 +268,7 @@
             this.reagentName.Items.AddRange(new object[] {
             "试剂A",
             "试剂B"});
-            this.reagentName.Location = new System.Drawing.Point(132, 63);
+            this.reagentName.Location = new System.Drawing.Point(134, 78);
             this.reagentName.MaxDropDownItems = 16;
             this.reagentName.Name = "reagentName";
             this.reagentName.Size = new System.Drawing.Size(273, 24);
@@ -275,7 +279,7 @@
             this.prodectTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.prodectTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.prodectTime.Location = new System.Drawing.Point(132, 28);
+            this.prodectTime.Location = new System.Drawing.Point(134, 43);
             this.prodectTime.Name = "prodectTime";
             this.prodectTime.Size = new System.Drawing.Size(273, 26);
             this.prodectTime.TabIndex = 6;
@@ -284,7 +288,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F);
-            this.label2.Location = new System.Drawing.Point(33, 66);
+            this.label2.Location = new System.Drawing.Point(35, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 1;
@@ -294,7 +298,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(33, 35);
+            this.label1.Location = new System.Drawing.Point(35, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 0;
@@ -331,6 +335,26 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // batchTime
+            // 
+            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.batchTime.Location = new System.Drawing.Point(134, 10);
+            this.batchTime.Name = "batchTime";
+            this.batchTime.Size = new System.Drawing.Size(273, 26);
+            this.batchTime.TabIndex = 24;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 12F);
+            this.label7.Location = new System.Drawing.Point(35, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 16);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "批号";
             // 
             // frmQualityControl
             // 
@@ -381,5 +405,7 @@
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.Button btnGener;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.DateTimePicker batchTime;
+        private System.Windows.Forms.Label label7;
     }
 }
