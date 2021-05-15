@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.batchTime = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.num2 = new System.Windows.Forms.NumericUpDown();
@@ -45,8 +47,6 @@
             this.btnGener = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.back = new System.Windows.Forms.Button();
-            this.batchTime = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).BeginInit();
@@ -73,6 +73,26 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息选定";
+            // 
+            // batchTime
+            // 
+            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.batchTime.Location = new System.Drawing.Point(149, 50);
+            this.batchTime.Name = "batchTime";
+            this.batchTime.Size = new System.Drawing.Size(197, 26);
+            this.batchTime.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 12F);
+            this.label6.Location = new System.Drawing.Point(50, 57);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 16);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "批号";
             // 
             // checkBox1
             // 
@@ -171,7 +191,6 @@
             // 
             // txtTestNum
             // 
-            this.txtTestNum.Enabled = false;
             this.txtTestNum.Location = new System.Drawing.Point(149, 139);
             this.txtTestNum.Name = "txtTestNum";
             this.txtTestNum.Size = new System.Drawing.Size(197, 21);
@@ -275,26 +294,6 @@
             this.back.Text = "返回";
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
-            // 
-            // batchTime
-            // 
-            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.batchTime.Location = new System.Drawing.Point(149, 50);
-            this.batchTime.Name = "batchTime";
-            this.batchTime.Size = new System.Drawing.Size(197, 26);
-            this.batchTime.TabIndex = 24;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 12F);
-            this.label6.Location = new System.Drawing.Point(50, 57);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 16);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "批号";
             // 
             // frmSubstrate
             // 

@@ -111,7 +111,7 @@ namespace EBarv0._2
             string strNo1 = "A"; //条码序号
             string strBatchDate = "";//批号
             string strProductDate = ""; //生产日期
-            string strSubNum = "1F4"; //底物默认测数 500测十六进制1F4
+            string strSubNum = int.Parse(txtTestNum.Text).ToString("X3"); //底物默认测数 500测十六进制1F4
 
             string bTime = string.Format("{0:yyyyMMdd}", batchTime.Value);
             strBatchDate = TimeToNewTime(bTime);     //将time日期转换为三位数，添加到sb字符串序列
@@ -121,7 +121,7 @@ namespace EBarv0._2
 
             string num = Convert.ToInt32(num1.Value + add).ToString("X4");
 
-            string check = ((10 + 500 + int.Parse(bTime) + int.Parse(pTime) + Convert.ToInt32(num , 16)) % 7).ToString();
+            string check = ((10 + int.Parse(txtTestNum.Text) + int.Parse(bTime) + int.Parse(pTime) + Convert.ToInt32(num , 16)) % 7).ToString();
             string originalStr = strNo1 + strBatchDate + strProductDate + strSubNum + num +  check;
             return originalStr;
         }
