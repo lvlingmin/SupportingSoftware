@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.batchTime = new System.Windows.Forms.DateTimePicker();
+            this.rbtnDilute = new System.Windows.Forms.RadioButton();
+            this.rbtnRg = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.prodectTime = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.btnQcReset = new System.Windows.Forms.Button();
             this.btnQC2 = new System.Windows.Forms.Button();
@@ -41,19 +44,14 @@
             this.num2 = new System.Windows.Forms.NumericUpDown();
             this.num1 = new System.Windows.Forms.NumericUpDown();
             this.reagentName = new System.Windows.Forms.ComboBox();
-            this.prodectTime = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.rbtnRg = new System.Windows.Forms.RadioButton();
-            this.rbtnDilute = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
@@ -65,7 +63,7 @@
             this.groupBox1.Controls.Add(this.rbtnDilute);
             this.groupBox1.Controls.Add(this.rbtnRg);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.batchTime);
+            this.groupBox1.Controls.Add(this.prodectTime);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnQcReset);
             this.groupBox1.Controls.Add(this.btnQC2);
@@ -74,11 +72,9 @@
             this.groupBox1.Controls.Add(this.num2);
             this.groupBox1.Controls.Add(this.num1);
             this.groupBox1.Controls.Add(this.reagentName);
-            this.groupBox1.Controls.Add(this.prodectTime);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(409, 382);
@@ -86,15 +82,50 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息选定";
             // 
-            // batchTime
+            // rbtnDilute
             // 
-            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.rbtnDilute.AutoSize = true;
+            this.rbtnDilute.Location = new System.Drawing.Point(239, 31);
+            this.rbtnDilute.Name = "rbtnDilute";
+            this.rbtnDilute.Size = new System.Drawing.Size(59, 16);
+            this.rbtnDilute.TabIndex = 35;
+            this.rbtnDilute.TabStop = true;
+            this.rbtnDilute.Text = "稀释液";
+            this.rbtnDilute.UseVisualStyleBackColor = true;
+            this.rbtnDilute.CheckedChanged += new System.EventHandler(this.rbtnDilute_CheckedChanged);
+            // 
+            // rbtnRg
+            // 
+            this.rbtnRg.AutoSize = true;
+            this.rbtnRg.Checked = true;
+            this.rbtnRg.Location = new System.Drawing.Point(117, 33);
+            this.rbtnRg.Name = "rbtnRg";
+            this.rbtnRg.Size = new System.Drawing.Size(47, 16);
+            this.rbtnRg.TabIndex = 34;
+            this.rbtnRg.TabStop = true;
+            this.rbtnRg.Text = "试剂";
+            this.rbtnRg.UseVisualStyleBackColor = true;
+            this.rbtnRg.CheckedChanged += new System.EventHandler(this.rbtnRg_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 12F);
+            this.label6.Location = new System.Drawing.Point(17, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 16);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "试剂类型：";
+            // 
+            // prodectTime
+            // 
+            this.prodectTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.batchTime.Location = new System.Drawing.Point(116, 73);
-            this.batchTime.Name = "batchTime";
-            this.batchTime.Size = new System.Drawing.Size(238, 26);
-            this.batchTime.TabIndex = 32;
+            this.prodectTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.prodectTime.Location = new System.Drawing.Point(116, 73);
+            this.prodectTime.Name = "prodectTime";
+            this.prodectTime.Size = new System.Drawing.Size(238, 26);
+            this.prodectTime.TabIndex = 32;
             // 
             // label4
             // 
@@ -108,7 +139,7 @@
             // 
             // btnQcReset
             // 
-            this.btnQcReset.Location = new System.Drawing.Point(279, 265);
+            this.btnQcReset.Location = new System.Drawing.Point(279, 226);
             this.btnQcReset.Name = "btnQcReset";
             this.btnQcReset.Size = new System.Drawing.Size(75, 23);
             this.btnQcReset.TabIndex = 30;
@@ -118,7 +149,7 @@
             // 
             // btnQC2
             // 
-            this.btnQC2.Location = new System.Drawing.Point(151, 265);
+            this.btnQC2.Location = new System.Drawing.Point(151, 226);
             this.btnQC2.Name = "btnQC2";
             this.btnQC2.Size = new System.Drawing.Size(85, 23);
             this.btnQC2.TabIndex = 29;
@@ -128,7 +159,7 @@
             // 
             // btnQC1
             // 
-            this.btnQC1.Location = new System.Drawing.Point(20, 265);
+            this.btnQC1.Location = new System.Drawing.Point(20, 226);
             this.btnQC1.Name = "btnQC1";
             this.btnQC1.Size = new System.Drawing.Size(85, 23);
             this.btnQC1.TabIndex = 28;
@@ -171,7 +202,7 @@
             this.num2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.num2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.num2.Location = new System.Drawing.Point(268, 211);
+            this.num2.Location = new System.Drawing.Point(268, 172);
             this.num2.Maximum = new decimal(new int[] {
             65000,
             0,
@@ -191,7 +222,7 @@
             this.num1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.num1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.num1.Location = new System.Drawing.Point(117, 211);
+            this.num1.Location = new System.Drawing.Point(117, 172);
             this.num1.Maximum = new decimal(new int[] {
             65000,
             0,
@@ -219,28 +250,18 @@
             this.reagentName.Items.AddRange(new object[] {
             "试剂A",
             "试剂B"});
-            this.reagentName.Location = new System.Drawing.Point(116, 161);
+            this.reagentName.Location = new System.Drawing.Point(116, 122);
             this.reagentName.MaxDropDownItems = 16;
             this.reagentName.Name = "reagentName";
             this.reagentName.Size = new System.Drawing.Size(238, 24);
             this.reagentName.TabIndex = 7;
             this.reagentName.SelectedIndexChanged += new System.EventHandler(this.reagentName_SelectedIndexChanged);
             // 
-            // prodectTime
-            // 
-            this.prodectTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.prodectTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.prodectTime.Location = new System.Drawing.Point(116, 118);
-            this.prodectTime.Name = "prodectTime";
-            this.prodectTime.Size = new System.Drawing.Size(238, 26);
-            this.prodectTime.TabIndex = 6;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 12F);
-            this.label5.Location = new System.Drawing.Point(225, 215);
+            this.label5.Location = new System.Drawing.Point(225, 176);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 16);
             this.label5.TabIndex = 5;
@@ -250,7 +271,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 12F);
-            this.label3.Location = new System.Drawing.Point(17, 215);
+            this.label3.Location = new System.Drawing.Point(17, 176);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 16);
             this.label3.TabIndex = 3;
@@ -260,21 +281,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F);
-            this.label2.Location = new System.Drawing.Point(17, 165);
+            this.label2.Location = new System.Drawing.Point(17, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "名称";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(17, 122);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "生产时间";
             // 
             // btnGenerate
             // 
@@ -327,41 +338,6 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 12F);
-            this.label6.Location = new System.Drawing.Point(17, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 16);
-            this.label6.TabIndex = 33;
-            this.label6.Text = "试剂类型：";
-            // 
-            // rbtnRg
-            // 
-            this.rbtnRg.AutoSize = true;
-            this.rbtnRg.Checked = true;
-            this.rbtnRg.Location = new System.Drawing.Point(117, 33);
-            this.rbtnRg.Name = "rbtnRg";
-            this.rbtnRg.Size = new System.Drawing.Size(47, 16);
-            this.rbtnRg.TabIndex = 34;
-            this.rbtnRg.TabStop = true;
-            this.rbtnRg.Text = "试剂";
-            this.rbtnRg.UseVisualStyleBackColor = true;
-            this.rbtnRg.CheckedChanged += new System.EventHandler(this.rbtnRg_CheckedChanged);
-            // 
-            // rbtnDilute
-            // 
-            this.rbtnDilute.AutoSize = true;
-            this.rbtnDilute.Location = new System.Drawing.Point(239, 31);
-            this.rbtnDilute.Name = "rbtnDilute";
-            this.rbtnDilute.Size = new System.Drawing.Size(59, 16);
-            this.rbtnDilute.TabIndex = 35;
-            this.rbtnDilute.TabStop = true;
-            this.rbtnDilute.Text = "稀释液";
-            this.rbtnDilute.UseVisualStyleBackColor = true;
-            this.rbtnDilute.CheckedChanged += new System.EventHandler(this.rbtnDilute_CheckedChanged);
-            // 
             // frmInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -397,11 +373,9 @@
         private System.Windows.Forms.NumericUpDown num2;
         private System.Windows.Forms.NumericUpDown num1;
         private System.Windows.Forms.ComboBox reagentName;
-        private System.Windows.Forms.DateTimePicker prodectTime;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnQC2;
         private System.Windows.Forms.Button btnQC1;
         private System.Windows.Forms.Button btnGenerate;
@@ -410,7 +384,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnQcReset;
         private System.Windows.Forms.Button back;
-        private System.Windows.Forms.DateTimePicker batchTime;
+        private System.Windows.Forms.DateTimePicker prodectTime;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton rbtnDilute;
         private System.Windows.Forms.RadioButton rbtnRg;

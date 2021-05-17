@@ -587,20 +587,17 @@ namespace EBarv0._2.Administrator
                 for(int add = 0;add <= num_2-num_1; add++)
                 {
                     string strNo1 = "B"; //条码序号
-                    string strpDate = ""; //生产日期
                     string strbdate = "";//批号日期
                     string strDilute = "19"; //稀释液默认容量 25ml十六进制19
                     string strType = (reagentName.SelectedIndex + 1).ToString("X2");
 
-                    string bTime = string.Format("{0:yyyyMMdd}", batchTime.Value);
+                    string bTime = string.Format("{0:yyyyMMdd}", prodectTime.Value);
                     strbdate = TimeToNewTime(bTime);
-                    string pTime = string.Format("{0:yyyyMMdd}", prodectTime.Value);
-                    strpDate = TimeToNewTime(pTime);     //将time日期转换为三位数，添加到sb字符串序列
 
                     string num = Convert.ToInt32(num1.Value + add).ToString("X4");
 
-                    string check = ((11 + 25 + Convert.ToInt32(strType, 16) + int.Parse(bTime) + int.Parse(pTime) + Convert.ToInt32(num, 16)) % 7).ToString();
-                    string originalStr = strNo1 + strType + strbdate + strpDate + strDilute + num + check;
+                    string check = ((11 + 25 + Convert.ToInt32(strType, 16) + int.Parse(bTime) + Convert.ToInt32(num, 16)) % 7).ToString();
+                    string originalStr = strNo1 + strType + strbdate + strDilute + num + check;
                     string encrystr = Utils.instance.ToEncryption(originalStr); //加密后
                     diluteList.Add(encrystr);
                 }
@@ -716,8 +713,7 @@ namespace EBarv0._2.Administrator
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("1");//条码编号，表示条码1
-            string btime = string.Format("{0:yyyyMMdd}", batchTime.Value);
-            string ptime = string.Format("{0:yyyyMMdd}", prodectTime.Value);//8位时间
+            string btime = string.Format("{0:yyyyMMdd}", prodectTime.Value);
             string timeYear = btime.Substring(0, 4);
             string timeDay = btime.Substring(6, 2);
             //将四位数年份和四位数月日异或，取较低两位作为校验位
@@ -747,7 +743,6 @@ namespace EBarv0._2.Administrator
                 MessageBox.Show("当前实验项目不存在!");
             }
             sb.Append(TimeToNewTime(btime));
-            sb.Append(TimeToNewTime(ptime));     //将time日期转换为三位数，添加到sb字符串序列
             string num = Convert.ToString(num1.Value + add);
             while (num.Length < 4)              //如果num1控件内的数字位数不足4位，则前面填充0
             {
