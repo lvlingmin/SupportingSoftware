@@ -126,19 +126,19 @@ namespace EBarv0._2
         {
             string strNo1 = "B"; //条码序号
             string strpDate = ""; //生产日期
-            string strbdate = "";//批号日期
+            //string strbdate = "";//批号日期
             string strDilute = "19"; //稀释液默认容量 25ml十六进制19
             string strType = (cmbDiluteType.SelectedIndex + 1).ToString("X2");
 
-            string bTime = string.Format("{0:yyyyMMdd}", batchTime.Value);
-            strbdate = TimeToNewTime(bTime);
+            //string bTime = string.Format("{0:yyyyMMdd}", batchTime.Value);
+            //strbdate = TimeToNewTime(bTime);
             string pTime = string.Format("{0:yyyyMMdd}", prodectTime.Value);
             strpDate = TimeToNewTime(pTime);     //将time日期转换为三位数，添加到sb字符串序列
 
             string num = Convert.ToInt32(num1.Value + add).ToString("X4");
 
-            string check = ((11 + 25 + Convert.ToInt32(strType ,16) + int.Parse(bTime) + int.Parse(pTime) + Convert.ToInt32(num, 16)) % 7).ToString();
-            string originalStr = strNo1 + strType + strbdate+ strpDate + strDilute + num + check;
+            string check = ((11 + 25 + Convert.ToInt32(strType ,16) /*+ int.Parse(bTime)*/ + int.Parse(pTime) + Convert.ToInt32(num, 16)) % 7).ToString();
+            string originalStr = strNo1 + strType /*+ strbdate*/+ strpDate + strDilute + num + check;
             return originalStr;
         }
         string TimeToNewTime(string time)  //将yyyyMMDD日期 转译为三位，大于10时用大写字母表示
