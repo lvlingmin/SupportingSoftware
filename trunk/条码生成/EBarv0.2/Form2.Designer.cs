@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.batchTime = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
             this.cbma = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -58,8 +60,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.batchTime = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).BeginInit();
@@ -80,19 +80,37 @@
             this.groupBox1.Controls.Add(this.num1);
             this.groupBox1.Controls.Add(this.reagentStandard);
             this.groupBox1.Controls.Add(this.reagentName);
-            this.groupBox1.Controls.Add(this.prodectTime);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(24, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(444, 263);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息选定";
+            // 
+            // batchTime
+            // 
+            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.batchTime.Location = new System.Drawing.Point(133, 33);
+            this.batchTime.Name = "batchTime";
+            this.batchTime.Size = new System.Drawing.Size(273, 26);
+            this.batchTime.TabIndex = 25;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 12F);
+            this.label9.Location = new System.Drawing.Point(34, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 16);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "批号";
             // 
             // cbma
             // 
@@ -102,7 +120,7 @@
             this.cbma.Items.AddRange(new object[] {
             "Code128",
             "交叉25码"});
-            this.cbma.Location = new System.Drawing.Point(338, 232);
+            this.cbma.Location = new System.Drawing.Point(338, 207);
             this.cbma.Name = "cbma";
             this.cbma.Size = new System.Drawing.Size(67, 20);
             this.cbma.TabIndex = 22;
@@ -111,7 +129,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Enabled = false;
-            this.label10.Location = new System.Drawing.Point(303, 236);
+            this.label10.Location = new System.Drawing.Point(303, 211);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(29, 12);
             this.label10.TabIndex = 23;
@@ -123,7 +141,7 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox1.Location = new System.Drawing.Point(133, 230);
+            this.checkBox1.Location = new System.Drawing.Point(133, 205);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(91, 20);
             this.checkBox1.TabIndex = 20;
@@ -139,7 +157,7 @@
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox2.Location = new System.Drawing.Point(314, 160);
+            this.checkBox2.Location = new System.Drawing.Point(314, 135);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(91, 20);
             this.checkBox2.TabIndex = 19;
@@ -153,7 +171,7 @@
             this.num2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.num2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.num2.Location = new System.Drawing.Point(284, 188);
+            this.num2.Location = new System.Drawing.Point(284, 163);
             this.num2.Maximum = new decimal(new int[] {
             20000,
             0,
@@ -179,7 +197,7 @@
             this.num1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.num1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.num1.Location = new System.Drawing.Point(133, 188);
+            this.num1.Location = new System.Drawing.Point(133, 163);
             this.num1.Maximum = new decimal(new int[] {
             20000,
             0,
@@ -211,7 +229,7 @@
             "100",
             "200",
             "300"});
-            this.reagentStandard.Location = new System.Drawing.Point(132, 156);
+            this.reagentStandard.Location = new System.Drawing.Point(132, 131);
             this.reagentStandard.Name = "reagentStandard";
             this.reagentStandard.Size = new System.Drawing.Size(121, 24);
             this.reagentStandard.TabIndex = 16;
@@ -229,7 +247,7 @@
             this.reagentName.Items.AddRange(new object[] {
             "试剂A",
             "试剂B"});
-            this.reagentName.Location = new System.Drawing.Point(132, 106);
+            this.reagentName.Location = new System.Drawing.Point(132, 81);
             this.reagentName.MaxDropDownItems = 16;
             this.reagentName.Name = "reagentName";
             this.reagentName.Size = new System.Drawing.Size(273, 24);
@@ -241,16 +259,17 @@
             this.prodectTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.prodectTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.prodectTime.Location = new System.Drawing.Point(132, 64);
+            this.prodectTime.Location = new System.Drawing.Point(130, 516);
             this.prodectTime.Name = "prodectTime";
             this.prodectTime.Size = new System.Drawing.Size(273, 26);
             this.prodectTime.TabIndex = 6;
+            this.prodectTime.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 12F);
-            this.label5.Location = new System.Drawing.Point(259, 190);
+            this.label5.Location = new System.Drawing.Point(259, 165);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 16);
             this.label5.TabIndex = 5;
@@ -260,7 +279,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F);
-            this.label4.Location = new System.Drawing.Point(103, 190);
+            this.label4.Location = new System.Drawing.Point(103, 165);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 16);
             this.label4.TabIndex = 4;
@@ -270,7 +289,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 12F);
-            this.label3.Location = new System.Drawing.Point(33, 190);
+            this.label3.Location = new System.Drawing.Point(33, 165);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 3;
@@ -280,7 +299,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 12F);
-            this.label7.Location = new System.Drawing.Point(33, 159);
+            this.label7.Location = new System.Drawing.Point(33, 134);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 16);
             this.label7.TabIndex = 2;
@@ -290,7 +309,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F);
-            this.label2.Location = new System.Drawing.Point(33, 109);
+            this.label2.Location = new System.Drawing.Point(33, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 1;
@@ -300,11 +319,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(33, 71);
+            this.label1.Location = new System.Drawing.Point(31, 523);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "生产时间";
+            this.label1.Visible = false;
             // 
             // label6
             // 
@@ -437,26 +457,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Paint += new System.Windows.Forms.PaintEventHandler(this.GroupBox4_Paint);
             // 
-            // batchTime
-            // 
-            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.batchTime.Location = new System.Drawing.Point(133, 20);
-            this.batchTime.Name = "batchTime";
-            this.batchTime.Size = new System.Drawing.Size(273, 26);
-            this.batchTime.TabIndex = 25;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 12F);
-            this.label9.Location = new System.Drawing.Point(34, 27);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 16);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "批号";
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -471,6 +471,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.back);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.prodectTime);
+            this.Controls.Add(this.label1);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "试剂-信息";
@@ -486,6 +488,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
