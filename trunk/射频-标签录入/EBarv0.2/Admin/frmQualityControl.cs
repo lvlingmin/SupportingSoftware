@@ -163,7 +163,6 @@ namespace EBarv0._2.Admin
             string strNo1 = "9"; //条码序号
             string strItemNum = ""; //项目名称
             string batchDate = "";
-            string productDate = ""; //生产日期
             string strX = ""; //质控靶值
             string strSD = ""; //质控标准差
             string strLevel = ""; //质控类别
@@ -185,9 +184,7 @@ namespace EBarv0._2.Admin
                 return "";
             }
 
-            string time = string.Format("{0:yyyyMMdd}", prodectTime.Value);
-            productDate = TimeToNewTime(time);     //将time日期转换为三位数，添加到sb字符串序列
-            string time2 = string.Format("{0:yyyyMMdd}", batchTime.Value);
+            string time2 = string.Format("{0:yyyyMMdd}", prodectTime.Value);
             batchDate = TimeToNewTime(time2);
 
             string[] tempX = txtX.Text.Trim().Split('.');
@@ -225,7 +222,7 @@ namespace EBarv0._2.Admin
                 strRule += "0";
             strRule = Convert.ToInt32(strRule, 2).ToString("X4");
 
-            string originalStr = strNo1 + strItemNum + batchDate + productDate + strX + strSD + strLevel + strRule;
+            string originalStr = strNo1 + strItemNum + batchDate /*+ productDate*/ + strX + strSD + strLevel + strRule;
 
             return originalStr;
         }
