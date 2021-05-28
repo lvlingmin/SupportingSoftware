@@ -13,8 +13,9 @@ namespace EBarv0._2.Model
         string[] lightVal = new string[4];
         string qualityControls1;
         string qualityControls2;
+        string itemXml;
 
-        public SpCode(string reagent, string pro, string[] sca , string[] light, string QC1 = "", string QC2 = "")
+        public SpCode(string reagent, string pro, string[] sca , string[] light, string QC1 = "", string QC2 = "", string item = "")
         {
             reagentInfo = reagent;
             projectFlow = pro;
@@ -22,6 +23,7 @@ namespace EBarv0._2.Model
             lightVal = light;
             qualityControls1 = QC1;
             qualityControls2 = QC2;
+            itemXml = item;
         }
         public string getReagentInfo()
         {
@@ -62,6 +64,10 @@ namespace EBarv0._2.Model
         public string getQualityControls2()
         {
             return this.qualityControls2;
+        }
+        public string getItemXml()
+        {
+            return this.itemXml;
         }
     }
 }
