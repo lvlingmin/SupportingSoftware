@@ -198,7 +198,7 @@ namespace EBarv0._2
         ///  <param name="dt">存放数据的DataTable</param>
         ///  <param name="FileName">存放一维码的文件夹</param>
         /// </summary>
-        public void saveImage(DataTable dt,string FileName ,int flag) //lyq mod 20190821
+        public void saveImage(DataTable dt,string FileName ,int flag, int? from = 0) //lyq mod 20190821
         {
             if (dt.Rows.Count < 1)
             {
@@ -252,7 +252,8 @@ namespace EBarv0._2
                     MessageBox.Show("保存出现异常!");
                 }
             }
-            MessageBox.Show("保存成功", "成功");
+            if(from == 0)
+                MessageBox.Show("保存成功", "成功");
         }
 
         /// <summary>
