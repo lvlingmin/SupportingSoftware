@@ -81,6 +81,7 @@
     <Compile Include="BLL\tbProject.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Common\commands.cs" />
+    <Compile Include="Common\OperateExcel.cs" />
     <Compile Include="Common\OperateIniFile.cs" />
     <Compile Include="Common\ProjectXml.cs" />
     <Compile Include="Common\SerializerHelper.cs" />

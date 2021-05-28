@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace EBarv0._2
 {
@@ -58,49 +59,174 @@ namespace EBarv0._2
 
         private void btnLoadItem_Click(object sender, EventArgs e)
         {
-            DbHelperOleDb db = new DbHelperOleDb(0);
+            #region
+            //DbHelperOleDb db = new DbHelperOleDb(0);
+            //using (OpenFileDialog dialog = new OpenFileDialog())
+            //{
+            //    dialog.InitialDirectory = System.Windows.Forms.Application.StartupPath;
+            //    dialog.Filter = "xml文件|*.xml";
+            //    if (dialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        filePath = dialog.FileName;
+            //        proInfoXml = Common.ProjectXml.GetProjectInfo(filePath);
+            //        //增加一个判断，是否已经存在当前要导入的项目 jun add 20190422
+            //        string shortName = proInfoXml.ShortName;
+            //        XmlToModel(proInfoXml, mProject);
+            //        if (bllProject.Exists_(shortName))
+            //        {
+            //            DialogResult dr = MessageBox.Show("温馨提示,项目已经存在，导入将删除原有项目，是否继续？");
+            //            if (dr != DialogResult.OK)
+            //            {
+            //                return;
+            //            }
+            //            if (!bllProject.Delete_(shortName))
+            //            {
+            //                return;
+            //            }
+            //        }
+            //        if (bllProject.Add(mProject))
+            //        {
+            //            dtItemInfo = bllProject.GetAllList().Tables[0];
+            //            dtGetShortName = GetItemShortName(dtItemInfo);
+
+            //            //与下面的+=组合使用，原因：当datagridview赋值时内部会触发选中事件，故此处先注销掉，再在后面注册上。
+            //            dgvItemList.SelectionChanged -= dgvItemList_SelectionChanged;
+            //            dgvItemList.DataSource = dtGetShortName;
+            //            dgvItemList.Columns[0].Width = 40;
+            //            dgvItemList.SelectionChanged += dgvItemList_SelectionChanged;
+            //            MessageBox.Show("导入成功！");
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("导入格式不正确！");
+            //        }
+            //    }
+
+            //}
+            #endregion
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
                 dialog.InitialDirectory = System.Windows.Forms.Application.StartupPath;
                 dialog.Filter = "xml文件|*.xml";
+                dialog.Multiselect = true;//等于true表示可以选择多个文件
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    filePath = dialog.FileName;
-                    proInfoXml = Common.ProjectXml.GetProjectInfo(filePath);
-                    //增加一个判断，是否已经存在当前要导入的项目 jun add 20190422
-                    string shortName = proInfoXml.ShortName;
-                    XmlToModel(proInfoXml, mProject);
-                    if (bllProject.Exists_(shortName))
+                    foreach (string file in dialog.FileNames)
                     {
-                        DialogResult dr = MessageBox.Show("温馨提示,项目已经存在，导入将删除原有项目，是否继续？");
-                        if (dr != DialogResult.OK)
+                        filePath = dialog.FileName = file;
+                        XElement document = XElement.Load(filePath);
+                        //proInfoXml = Common.ProjectXml.GetProjectInfo(filePath);
+                        //增加一个判断，是否已经存在当前要导入的项目 jun add 20190422
+                        //string shortName = proInfoXml.ShortName;
+                        try
                         {
+                            document = XmlRemoveSpaces(document); //lyq add 20191029
+                            mProject = XmlToModelNew(document);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("error");
                             return;
                         }
-                        if (!bllProject.Delete_(shortName))
+                        string shortName = mProject.ShortName;
+                        if (bllProject.Exists_(shortName))
                         {
-                            return;
+                            DialogResult dr = MessageBox.Show("项目已经存在，导入将删除原有项目，是否继续", "项目管理"); 
+                            if (dr != DialogResult.OK)
+                            {
+                                return;
+                            }
+                            if (!bllProject.Delete_(shortName))
+                            {
+                                return;
+                            }
                         }
-                    }
-                    if (bllProject.Add(mProject))
-                    {
-                        dtItemInfo = bllProject.GetAllList().Tables[0];
-                        dtGetShortName = GetItemShortName(dtItemInfo);
+                        if (bllProject.Add(mProject))
+                        {
+                            dtItemInfo = bllProject.GetAllList().Tables[0];
+                            dtGetShortName = GetItemShortName(dtItemInfo);
 
-                        //与下面的+=组合使用，原因：当datagridview赋值时内部会触发选中事件，故此处先注销掉，再在后面注册上。
-                        dgvItemList.SelectionChanged -= dgvItemList_SelectionChanged;
-                        dgvItemList.DataSource = dtGetShortName;
-                        dgvItemList.Columns[0].Width = 40;
-                        dgvItemList.SelectionChanged += dgvItemList_SelectionChanged;
-                        MessageBox.Show("导入成功！");
-                    }
-                    else
-                    {
-                        MessageBox.Show("导入格式不正确！");
+                            //与下面的+=组合使用，原因：当datagridview赋值时内部会触发选中事件，故此处先注销掉，再在后面注册上。
+                            //dgvItemList.SelectionChanged -= dgvItemList_SelectionChanged;
+                            dgvItemList.DataSource = dtGetShortName;
+                            dgvItemList.Columns[0].Width = 40;
+                            //dgvItemList.SelectionChanged += dgvItemList_SelectionChanged;
+                            MessageBox.Show("导入项目成功", "项目管理");
+                            //ShowReportSort();
+                        }
+                        else
+                        {
+                            MessageBox.Show("导入格式不正确", "项目管理");
+                        }
                     }
                 }
-                
             }
+        }
+        /// <summary>
+        /// 把导入的项目信息文件消除空格
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        private XElement XmlRemoveSpaces(XElement document)
+        {
+            //////
+            document.Element("ProjectNumber").Value = document.Element("ProjectNumber").Value.Replace(" ", "");
+            document.Element("ProjectProcedure").Value = document.Element("ProjectProcedure").Value.Replace(" ", "");
+            document.Element("ProjectType").Value = document.Element("ProjectType").Value.Replace(" ", "");
+            document.Element("QCPointNumber").Value = document.Element("QCPointNumber").Value.Replace(" ", "");
+            document.Element("QCPoints").Value = document.Element("QCPoints").Value.Replace(" ", "");
+            document.Element("RangeType").Value = document.Element("RangeType").Value.Replace(" ", "");
+            document.Element("ShortName").Value = document.Element("ShortName").Value.Replace(" ", "");
+            document.Element("ValueRange1").Value = document.Element("ValueRange1").Value.Replace(" ", "");
+            document.Element("ValueRange2").Value = document.Element("ValueRange2").Value.Replace(" ", "");
+            document.Element("ValueUnit").Value = document.Element("ValueUnit").Value.Replace(" ", "");
+            document.Element("MinValue").Value = document.Element("MinValue").Value.Replace(" ", "");
+            document.Element("MaxValue").Value = document.Element("MaxValue").Value.Replace(" ", "");
+            document.Element("LoadType").Value = document.Element("LoadType").Value.Replace(" ", "");
+            document.Element("FullName").Value = document.Element("FullName").Value.Replace(" ", "");
+            document.Element("DiluteCount").Value = document.Element("DiluteCount").Value.Replace(" ", "");
+            document.Element("CalPointNumber").Value = document.Element("CalPointNumber").Value.Replace(" ", "");
+            document.Element("CalPointConc").Value = document.Element("CalPointConc").Value.Replace(" ", "");
+            document.Element("CalMode").Value = document.Element("CalMode").Value.Replace(" ", "");
+            document.Element("CalMethod").Value = document.Element("CalMethod").Value.Replace(" ", "");
+            document.Element("CalculateMethod").Value = document.Element("CalculateMethod").Value.Replace(" ", "");
+            document.Element("ActiveStatus").Value = document.Element("ActiveStatus").Value.Replace(" ", "");
+            document.Element("DiluteName").Value = document.Element("DiluteName").Value.Replace(" ", "");
+            document.Element("ExpiryDate").Value = document.Element("ExpiryDate").Value.Replace(" ", "");
+            document.Element("NoUsePro").Value = document.Element("NoUsePro").Value.Replace(" ", "");
+            document.Element("VRangeType").Value = document.Element("VRangeType").Value.Replace(" ", "");
+
+            return document;
+        }
+        private Model.tbProject XmlToModelNew(XElement document)
+        {
+            Model.tbProject mp = new Model.tbProject();
+            mp.ProjectNumber = document.Element("ProjectNumber").Value.ToString();
+            mp.ProjectProcedure = document.Element("ProjectProcedure").Value.ToString();
+            mp.ProjectType = document.Element("ProjectType").Value.ToString();
+            mp.QCPointNumber = Convert.ToInt32(document.Element("QCPointNumber").Value.ToString());
+            mp.QCPoints = document.Element("QCPoints").Value.ToString();
+            mp.RangeType = document.Element("RangeType").Value.ToString();
+            mp.ShortName = document.Element("ShortName").Value.ToString();
+            mp.ValueRange1 = document.Element("ValueRange1").Value.ToString();
+            mp.ValueRange2 = document.Element("ValueRange2").Value.ToString();
+            mp.ValueUnit = document.Element("ValueUnit").Value.ToString();
+            mp.MinValue = Convert.ToDouble(document.Element("MinValue").Value.ToString());
+            mp.MaxValue = Convert.ToDouble(document.Element("MaxValue").Value.ToString());
+            mp.LoadType = Convert.ToInt32(document.Element("LoadType").Value.ToString());
+            mp.FullName = document.Element("FullName").Value.ToString();
+            mp.DiluteCount = Convert.ToInt32(document.Element("DiluteCount").Value.ToString());
+            mp.CalPointNumber = Convert.ToInt32(document.Element("CalPointNumber").Value.ToString());
+            mp.CalPointConc = document.Element("CalPointConc").Value.ToString();
+            mp.CalMode = Convert.ToInt32(document.Element("CalMode").Value.ToString());
+            mp.CalMethod = Convert.ToInt32(document.Element("CalMethod").Value.ToString());
+            mp.CalculateMethod = document.Element("CalculateMethod").Value.ToString();
+            mp.ActiveStatus = Convert.ToInt32(document.Element("ActiveStatus").Value.ToString());
+            mp.DiluteName = document.Element("DiluteName").Value.ToString(); ;
+            mp.ExpiryDate = Convert.ToInt32(document.Element("ExpiryDate").Value.ToString());
+            mp.NoUsePro = document.Element("NoUsePro").Value.ToString(); ;
+            mp.VRangeType = document.Element("VRangeType").Value.ToString();
+            return mp;
         }
 
         private void XmlToModel(Common.ProjectXml xp, Model.tbProject mp)
