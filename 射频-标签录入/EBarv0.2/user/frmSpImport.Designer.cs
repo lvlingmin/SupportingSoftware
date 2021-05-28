@@ -44,6 +44,7 @@
             this.data8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.data11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +83,8 @@
             this.data7,
             this.data8,
             this.data9,
-            this.data10});
+            this.data10,
+            this.data11});
             this.dgvSp.Location = new System.Drawing.Point(12, 102);
             this.dgvSp.Name = "dgvSp";
             this.dgvSp.ReadOnly = true;
@@ -139,7 +141,6 @@
             this.data3.HeaderText = "data3";
             this.data3.Name = "data3";
             this.data3.ReadOnly = true;
-            this.data3.Visible = false;
             // 
             // data4
             // 
@@ -147,7 +148,6 @@
             this.data4.HeaderText = "data4";
             this.data4.Name = "data4";
             this.data4.ReadOnly = true;
-            this.data4.Visible = false;
             // 
             // data5
             // 
@@ -155,7 +155,6 @@
             this.data5.HeaderText = "data5";
             this.data5.Name = "data5";
             this.data5.ReadOnly = true;
-            this.data5.Visible = false;
             // 
             // data6
             // 
@@ -163,7 +162,6 @@
             this.data6.HeaderText = "data6";
             this.data6.Name = "data6";
             this.data6.ReadOnly = true;
-            this.data6.Visible = false;
             // 
             // data7
             // 
@@ -171,7 +169,6 @@
             this.data7.HeaderText = "data7";
             this.data7.Name = "data7";
             this.data7.ReadOnly = true;
-            this.data7.Visible = false;
             // 
             // data8
             // 
@@ -179,7 +176,6 @@
             this.data8.HeaderText = "data8";
             this.data8.Name = "data8";
             this.data8.ReadOnly = true;
-            this.data8.Visible = false;
             // 
             // data9
             // 
@@ -194,6 +190,13 @@
             this.data10.HeaderText = "data10";
             this.data10.Name = "data10";
             this.data10.ReadOnly = true;
+            // 
+            // data11
+            // 
+            this.data11.DataPropertyName = "data11";
+            this.data11.HeaderText = "data11";
+            this.data11.Name = "data11";
+            this.data11.ReadOnly = true;
             // 
             // frmSpImport
             // 
@@ -232,5 +235,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn data8;
         private System.Windows.Forms.DataGridViewTextBoxColumn data9;
         private System.Windows.Forms.DataGridViewTextBoxColumn data10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn data11;
     }
 }
