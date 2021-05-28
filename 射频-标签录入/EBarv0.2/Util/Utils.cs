@@ -153,6 +153,28 @@ namespace EBarv0._2
             //return sb.ToString();
             #endregion
         }
+        /// <summary>
+        /// 加密itemXml
+        /// </summary>
+        /// <returns>加密后字符串</returns>
+        public string ToItemXmlEncryption(string content)
+        {
+            int key = 1;
+            char[] chs = content.ToCharArray();
+            for (int i = 0; i < chs.Length; i++)
+            {
+                if (chs[i] > 31)
+                {
+                    chs[i] = (char)(chs[i] + key);
+                }
+                else
+                {
+                    MessageBox.Show("error,请联系技术人员!"+ chs[i]+"--"+(int)chs[i]);
+                    return "";
+                }
+            }
+            return new string(chs);
+        }
         #region 字符串转换成一维码
         /// <summary>
         /// 字符串转换成一维码
