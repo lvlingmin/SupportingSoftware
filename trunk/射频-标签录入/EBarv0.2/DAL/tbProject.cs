@@ -296,7 +296,7 @@ namespace EBarv0._2.DAL
 		{
 
 			StringBuilder strSql = new StringBuilder();
-			strSql.Append("select ProjectID,ProjectNumber,ShortName,FullName,ProjectType,DiluteName,DiluteCount,RangeType,ValueRange1,ValueRange2,ValueUnit,MinValue,MaxValue,CalPointNumber,CalPointConc,QCPointNumber,QCPoints,ProjectProcedure,CalMode,CalMethod,CalculateMethod,LoadType,ActiveStatus from tbProject ");
+			strSql.Append("select ProjectID,ProjectNumber,ShortName,FullName,ProjectType,DiluteName,DiluteCount,RangeType,ValueRange1,ValueRange2,ValueUnit,MinValue,MaxValue,CalPointNumber,CalPointConc,QCPointNumber,QCPoints,ProjectProcedure,CalMode,CalMethod,CalculateMethod,LoadType,ActiveStatus,ExpiryDate,NoUsePro from tbProject ");
 			strSql.Append(" where ProjectID=@ProjectID");
 			OleDbParameter[] parameters = {
 					new OleDbParameter("@ProjectID", OleDbType.Integer,4)
@@ -370,6 +370,14 @@ namespace EBarv0._2.DAL
 				}
 				//model.MinValue=row["MinValue"].ToString();
 				//model.MaxValue=row["MaxValue"].ToString();
+				if (row["MinValue"] != null && row["MinValue"].ToString() != "")
+				{
+					model.MinValue = double.Parse(row["MinValue"].ToString());
+				}
+				if (row["MaxValue"] != null && row["MaxValue"].ToString() != "")
+				{
+					model.MaxValue = double.Parse(row["MaxValue"].ToString());
+				}
 				if (row["CalPointNumber"] != null && row["CalPointNumber"].ToString() != "")
 				{
 					model.CalPointNumber = int.Parse(row["CalPointNumber"].ToString());
@@ -409,6 +417,14 @@ namespace EBarv0._2.DAL
 				if (row["ActiveStatus"] != null && row["ActiveStatus"].ToString() != "")
 				{
 					model.ActiveStatus = int.Parse(row["ActiveStatus"].ToString());
+				}
+				if (row["ExpiryDate"] != null && row["ExpiryDate"].ToString() != "")
+				{
+					model.ExpiryDate = int.Parse(row["ExpiryDate"].ToString());
+				}
+				if (row["NoUsePro"] != null && row["NoUsePro"].ToString() != "")
+				{
+					model.NoUsePro = row["NoUsePro"].ToString();
 				}
 			}
 			return model;
