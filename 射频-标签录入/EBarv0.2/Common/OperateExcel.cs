@@ -53,6 +53,31 @@ namespace EBarv0._2.Common
             return dtOld;
         }
         /// <summary>
+        /// ;
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static DataTable SpImPortExcel(string path)
+        {
+            DataTable dtOld = new DataTable();
+            String sConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1'";
+            using (OleDbConnection ole_conn = new OleDbConnection(sConnectionString))
+            {
+                ole_conn.Open();
+                using (OleDbCommand ole_cmd = ole_conn.CreateCommand())
+                {
+                    String tableName = null;
+                    DataTable dt = ole_conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                    tableName = dt.Rows[0][2].ToString().Trim();
+                    //类似SQL的查询语句这个[Sheet1$对应Excel文件中的一个工作表]
+                    ole_cmd.CommandText = @"select * from [" + tableName + "]";
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(ole_cmd);
+                    adapter.Fill(dtOld);
+                }
+            }
+            return dtOld;
+        }
+        /// <summary>
         /// 由系统向外部导出数据
         /// </summary>
         /// <param name="OleConn"></param>
