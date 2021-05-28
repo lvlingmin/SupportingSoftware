@@ -137,8 +137,9 @@ namespace EBarv0._2.user
             string value2 = dtable.Rows[0][6].ToString();
             string value3 = dtable.Rows[0][7].ToString();
             string value4 = "";
-            string qc1 = dtable.Rows[0][9].ToString(); ;
-            string qc2 = dtable.Rows[0][10].ToString(); ;
+            string qc1 = dtable.Rows[0][9].ToString();
+            string qc2 = dtable.Rows[0][10].ToString();
+            string itemXml = dtable.Rows[0][11].ToString();
             if (num == 7)
                 value4 = dtable.Rows[0][8].ToString();
 
@@ -152,33 +153,33 @@ namespace EBarv0._2.user
                 {
                     goto errorEnd;
                 }
-                //if (!spInfoSendInput(conc1, "13"))
-                //{
-                //    goto errorEnd;
-                //}
-                //if (!spInfoSendInput(conc2, "14"))
-                //{
-                //    goto errorEnd;
-                //}
-                //if (!spInfoSendInput(value1, "15"))
-                //{
-                //    goto errorEnd;
-                //}
-                //if (!spInfoSendInput(value2, "16"))
-                //{
-                //    goto errorEnd;
-                //}
-                //if (!spInfoSendInput(value3, "17"))
-                //{
-                //    goto errorEnd;
-                //}
-                //if (value4 != "")
-                //{
-                //    if (!spInfoSendInput(value4, "18"))
-                //    {
-                //        goto errorEnd;
-                //    }
-                //}
+                if (!spInfoSendInput(conc1, "13"))
+                {
+                    goto errorEnd;
+                }
+                if (!spInfoSendInput(conc2, "14"))
+                {
+                    goto errorEnd;
+                }
+                if (!spInfoSendInput(value1, "15"))
+                {
+                    goto errorEnd;
+                }
+                if (!spInfoSendInput(value2, "16"))
+                {
+                    goto errorEnd;
+                }
+                if (!spInfoSendInput(value3, "17"))
+                {
+                    goto errorEnd;
+                }
+                if (value4 != "")
+                {
+                    if (!spInfoSendInput(value4, "18"))
+                    {
+                        goto errorEnd;
+                    }
+                }
                 if (qc1 != "")
                 {
                     if (!spInfoSendInput(qc1, "19"))
@@ -189,6 +190,13 @@ namespace EBarv0._2.user
                 if (qc2 != "")
                 {
                     if (!spInfoSendInput(qc2, "1A"))
+                    {
+                        goto errorEnd;
+                    }
+                }
+                if(itemXml != "")
+                {
+                    if (!spInfoSendInput(itemXml, "1B"))
                     {
                         goto errorEnd;
                     }
@@ -216,8 +224,11 @@ namespace EBarv0._2.user
         private bool spInfoSendInput(string code, string tpye)
         {
             byte[] tempByte = System.Text.Encoding.Default.GetBytes(code.ToString());
+            string codeLength = code.Length.ToString("X2"); ;
             //string content = "EB 90 CA 11 " + code.Length.ToString("X2");
-            string content = "EB 90 CA " + tpye + " " + code.Length.ToString("X2");
+            if(tpye =="1B")
+                codeLength = tempByte.Length.ToString("X4").Insert(2," ");
+            string content = "EB 90 CA " + tpye + " " + codeLength;
             foreach (byte byte1 in tempByte)
             {
                 content += " " + byte1.ToString("x2");
