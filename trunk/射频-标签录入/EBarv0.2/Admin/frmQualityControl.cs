@@ -191,7 +191,19 @@ namespace EBarv0._2.Admin
             if (tempX.Length == 1)
                 strX = int.Parse(tempX[0]).ToString("X3") + "00";
             else
+            {
+                //strX = int.Parse(tempX[0]).ToString("X3") + int.Parse(tempX[1]).ToString("X2");
+                while (tempX[1].Length < 2)
+                {
+                    tempX[1] += "0";
+                }
+                //倒置
+                string tempX1 = tempX[1];
+                tempX1 = tempX1.Substring(1, 1) + tempX1.Substring(0, 1);
+                tempX[1] = tempX1;
+                //X3
                 strX = int.Parse(tempX[0]).ToString("X3") + int.Parse(tempX[1]).ToString("X2");
+            }
 
             string[] tempSD = txtSD.Text.Trim().Split('.');
             if (tempSD.Length == 1)

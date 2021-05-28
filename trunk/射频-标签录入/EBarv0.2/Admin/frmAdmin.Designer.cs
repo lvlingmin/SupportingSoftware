@@ -33,6 +33,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnUserList = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImportToCreate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImportToCreate);
             this.groupBox1.Controls.Add(this.btnItemImport);
             this.groupBox1.Controls.Add(this.btnUserList);
             this.groupBox1.Controls.Add(this.btnInfo);
@@ -86,6 +88,16 @@
             this.groupBox1.Size = new System.Drawing.Size(681, 122);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // btnImportToCreate
+            // 
+            this.btnImportToCreate.Location = new System.Drawing.Point(442, 35);
+            this.btnImportToCreate.Name = "btnImportToCreate";
+            this.btnImportToCreate.Size = new System.Drawing.Size(115, 50);
+            this.btnImportToCreate.TabIndex = 3;
+            this.btnImportToCreate.Text = "Excel信息生成";
+            this.btnImportToCreate.UseVisualStyleBackColor = true;
+            this.btnImportToCreate.Click += new System.EventHandler(this.btnImportToCreate_Click);
             // 
             // frmAdmin
             // 
@@ -109,5 +121,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnUserList;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnImportToCreate;
     }
 }
