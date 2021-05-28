@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBarv0._2.Admin;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,6 +47,13 @@ namespace EBarv0._2.Administrator
         {
             this.Hide();
             frmUserList f = new frmUserList();
+            f.ShowDialog();
+        }
+
+        private void btnImportToCreate_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmInfo2 f = new frmInfo2();
             f.ShowDialog();
         }
     }
