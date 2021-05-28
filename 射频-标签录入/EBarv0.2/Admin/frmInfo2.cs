@@ -262,7 +262,16 @@ namespace EBarv0._2.Admin
                             qc2[j] = dtable.Rows[i + 15][j + 2].ToString();
                         }
                         //生成除了Rg条码其他条码（每一批相同）
-                        string encryPro = getRgProOriginal(itemName);
+                        string encryPro = "";
+                        try
+                        {
+                            encryPro = getRgProOriginal(itemName);
+                        }
+                        catch(System.Exception ex)
+                        {
+                            MessageBox.Show("请导入最新项目信息文件，更新项目信息数据库！");
+                            goto errorOrEnd;
+                        }
                         string[] encryConc = getMainCurveConcOriginal(calMainCurveConc);
                         string[] encryValue = getMainCurveValueOriginal(calMainCurveValue);
                         string encryQC1 = getQcOriginal(itemName, qcBatch, "2", qc1);
@@ -451,10 +460,10 @@ namespace EBarv0._2.Admin
                 dtStep.Columns.Add("step", typeof(string));
                 dtStep.Columns.Add("para", typeof(string));
                 dtStep.Columns.Add("unit", typeof(string));
-                sql = "select ProjectProcedure from tbProject where ShortName = '" + itemName + "'";             
+                sql = "select ProjectProcedure from tbProject where ShortName = '" + itemName + "'";
                 string[] Procedure = dtProAll.Select("ShortName='" + itemName + "'")[0]["ProjectProcedure"].ToString().Split(';'); //DbHelperOleDb.Query(0, sql).Tables[0];
-                //Procedure = dtProcedure.Rows[0][0].ToString().Split(';');
-                //数据库存在当前项目
+                                                                                                                                   //Procedure = dtProcedure.Rows[0][0].ToString().Split(';');
+                                                                                                                                   //数据库存在当前项目
                 if (Procedure.Length > 0)
                 {
                     foreach (var proce in Procedure)
