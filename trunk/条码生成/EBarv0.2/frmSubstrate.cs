@@ -91,7 +91,7 @@ namespace EBarv0._2
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            prodectTime.Value = DateTime.Now;
+            productTime.Value = DateTime.Now;
             num2.Value = num1.Value = 1;
             dtProject.Clear();
             panel3.Controls.Clear();
@@ -119,10 +119,59 @@ namespace EBarv0._2
             //string pTime = string.Format("{0:yyyyMMdd}", prodectTime.Value);
             //strProductDate = TimeToNewTime(pTime);     //将time日期转换为三位数，添加到sb字符串序列
 
-            string num = Convert.ToInt32(num1.Value + add).ToString("X4");
+            //string num = Convert.ToInt32(num1.Value + add).ToString("X4");
+            string num = Convert.ToString(num1.Value + add);
+            #region 生产日期
+            int productDateAdd = productTime.Value.Date.Subtract(batchTime.Value.Date).Days;
+            string productDate = "";
+            if (productDateAdd >= 10)
+            {
+                productDate = ((char)((productDateAdd - 10) + 'A')).ToString();
+                if (productDate.ToCharArray()[0] > 'Z')
+                    productDate = ((char)(productDate.ToCharArray()[0] + 6)).ToString();
+            }
+            else
+            {
+                if (productDateAdd == 0)
+                {
+                    productDate = "z";
+                }
+                else
+                    productDate = productDateAdd.ToString();
+            }
+            if (productDate.Length > 1)
+            {
+                MessageBox.Show("生产日期异常！");
+                return "";
+            }
+            #endregion
+            int tempNum = int.Parse(num);
+            int usedCheckNum = tempNum;
+            num = "";
+            while (tempNum != 0)
+            {
+                int temp = tempNum % 62;
+                string tempStr = "";
+                if (temp >= 10)
+                {
+                    tempStr = ((char)((temp - 10) + 'A')).ToString();
+                    if (tempStr.ToCharArray()[0] > 'Z')
+                        tempStr = ((char)(tempStr.ToCharArray()[0] + 6)).ToString();
+                }
+                else
+                {
+                    tempStr = temp.ToString();
+                }
+                tempNum = tempNum / 62;
+                num = tempStr + num;
+            }
+            while (num.Length < 3)              //如果num1控件内的数字位数不足4位，则前面填充0
+            {
+                num = num.Insert(0, "0");
+            }
 
-            string check = ((10 + int.Parse(txtTestNum.Text) + int.Parse(bTime) /*+ int.Parse(pTime)*/ + Convert.ToInt32(num , 16)) % 7).ToString();
-            string originalStr = strNo1 + strBatchDate /*+ strProductDate*/ + strSubNum + num +  check;
+            string check = ((10 + int.Parse(txtTestNum.Text) + int.Parse(bTime) /*+ int.Parse(pTime)*/ + productDateAdd + usedCheckNum/*Convert.ToInt32(num , 16)*/) % 7).ToString();
+            string originalStr = strNo1 + strBatchDate /*+ strProductDate*/ + strSubNum + productDate + num +  check;
             return originalStr;
         }
         /// <summary>
@@ -138,6 +187,8 @@ namespace EBarv0._2
             if (timeYear >= 10)
             {
                 stringTimeYear = ((char)((timeYear - 10) + 'A')).ToString();  //年的后两位转译
+                if (stringTimeYear.ToCharArray()[0] > 'Z')
+                    stringTimeYear = ((char)(stringTimeYear.ToCharArray()[0] + 6)).ToString();
             }
             else
             {

@@ -36,8 +36,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbDiluteType = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.batchTime = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.num2 = new System.Windows.Forms.NumericUpDown();
@@ -46,8 +44,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTestNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.prodectTime = new System.Windows.Forms.DateTimePicker();
+            this.productTime = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.batchTime = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -116,7 +116,9 @@
             // 
             this.groupBox1.Controls.Add(this.cmbDiluteType);
             this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.batchTime);
             this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.num2);
             this.groupBox1.Controls.Add(this.num1);
@@ -124,7 +126,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtTestNum);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.prodectTime);
+            this.groupBox1.Controls.Add(this.productTime);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -158,28 +160,6 @@
             this.label7.Size = new System.Drawing.Size(56, 16);
             this.label7.TabIndex = 25;
             this.label7.Text = "类型：";
-            // 
-            // batchTime
-            // 
-            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.batchTime.Location = new System.Drawing.Point(155, 388);
-            this.batchTime.Name = "batchTime";
-            this.batchTime.Size = new System.Drawing.Size(197, 26);
-            this.batchTime.TabIndex = 24;
-            this.batchTime.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 12F);
-            this.label6.Location = new System.Drawing.Point(42, 395);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 16);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "批号";
-            this.label6.Visible = false;
             // 
             // checkBox1
             // 
@@ -279,7 +259,7 @@
             // txtTestNum
             // 
             this.txtTestNum.Enabled = false;
-            this.txtTestNum.Location = new System.Drawing.Point(143, 102);
+            this.txtTestNum.Location = new System.Drawing.Point(143, 112);
             this.txtTestNum.Name = "txtTestNum";
             this.txtTestNum.Size = new System.Drawing.Size(197, 21);
             this.txtTestNum.TabIndex = 8;
@@ -289,31 +269,51 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F);
-            this.label2.Location = new System.Drawing.Point(30, 107);
+            this.label2.Location = new System.Drawing.Point(30, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "默认容量（ml）";
             // 
-            // prodectTime
+            // productTime
             // 
-            this.prodectTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.productTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.prodectTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.prodectTime.Location = new System.Drawing.Point(143, 58);
-            this.prodectTime.Name = "prodectTime";
-            this.prodectTime.Size = new System.Drawing.Size(197, 26);
-            this.prodectTime.TabIndex = 6;
+            this.productTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.productTime.Location = new System.Drawing.Point(143, 81);
+            this.productTime.Name = "productTime";
+            this.productTime.Size = new System.Drawing.Size(197, 26);
+            this.productTime.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(30, 65);
+            this.label1.Location = new System.Drawing.Point(30, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "批号";
+            // 
+            // batchTime
+            // 
+            this.batchTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.batchTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.batchTime.Location = new System.Drawing.Point(143, 48);
+            this.batchTime.Name = "batchTime";
+            this.batchTime.Size = new System.Drawing.Size(197, 26);
+            this.batchTime.TabIndex = 24;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("宋体", 12F);
+            this.label6.Location = new System.Drawing.Point(30, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 16);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "批号";
             // 
             // back
             // 
@@ -333,8 +333,6 @@
             this.ClientSize = new System.Drawing.Size(758, 421);
             this.Controls.Add(this.back);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.batchTime);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnGener);
@@ -352,7 +350,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.num2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -372,7 +369,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTestNum;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker prodectTime;
+        private System.Windows.Forms.DateTimePicker productTime;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.Label label7;

@@ -65,17 +65,18 @@ namespace EBarv0._2
                 {
                     try
                     {
-                        jumpI = 4;
+                        jumpI = 5;
                         //处理稀释液参数
                         string batch = dtable.Rows[i + 1][2].ToString();
-                        int vol = int.Parse(dtable.Rows[i + 2][2].ToString());
-                        int startNum = int.Parse(dtable.Rows[i + 3][2].ToString());
-                        int saveNum = int.Parse(dtable.Rows[i + 4][2].ToString());
+                        string productDate = dtable.Rows[i + 2][2].ToString();
+                        int vol = int.Parse(dtable.Rows[i + 3][2].ToString());
+                        int startNum = int.Parse(dtable.Rows[i + 4][2].ToString());
+                        int saveNum = int.Parse(dtable.Rows[i + 5][2].ToString());
                         //循环生成条码
                         for (int temporary = 0; temporary < saveNum; temporary++)
                         {
                             dtProject.Clear();
-                            string encrystr = getDiluteInfoOriginal(itemName, batch, vol, startNum, temporary);
+                            string encrystr = getDiluteInfoOriginal(itemName, batch, productDate, vol, startNum, temporary);
                             dtProject.Rows.Add("", encrystr);
                             Utils.instance.saveImage(dtProject, fPath + "\\" + itemName + "_" + (startNum + temporary), 7 , 1);
                         }
@@ -93,17 +94,18 @@ namespace EBarv0._2
                 {
                     try
                     {
-                        jumpI = 4;
+                        jumpI = 5;
                         //处理底物参数
                         string batch = dtable.Rows[i + 1][2].ToString();
-                        int vol = int.Parse(dtable.Rows[i + 2][2].ToString());
-                        int startNum = int.Parse(dtable.Rows[i + 3][2].ToString());
-                        int saveNum = int.Parse(dtable.Rows[i + 4][2].ToString());
+                        string productDate = dtable.Rows[i + 2][2].ToString();
+                        int vol = int.Parse(dtable.Rows[i + 3][2].ToString());
+                        int startNum = int.Parse(dtable.Rows[i + 4][2].ToString());
+                        int saveNum = int.Parse(dtable.Rows[i + 5][2].ToString());
                         //循环生成条码
                         for (int temporary = 0; temporary < saveNum; temporary++)
                         {
                             dtProject.Clear();
-                            string encrystr = getSubstrateInfoOriginal(itemName, batch, vol, startNum, temporary);
+                            string encrystr = getSubstrateInfoOriginal(itemName, batch, productDate, vol, startNum, temporary);
                             dtProject.Rows.Add("", encrystr);
                             Utils.instance.saveImage(dtProject, fPath + "\\" + itemName + "_" + (startNum + temporary), 6, 1);
                         }
@@ -121,19 +123,20 @@ namespace EBarv0._2
                 {
                     try
                     {
-                        jumpI = 15;
+                        jumpI = 16;
                         //处理试剂参数
                         string batch = dtable.Rows[i + 1][2].ToString();
-                        int vol = int.Parse(dtable.Rows[i + 2][2].ToString());
-                        int startNum = int.Parse(dtable.Rows[i + 3][2].ToString());
-                        int saveNum = int.Parse(dtable.Rows[i + 4][2].ToString());
-                        string calNum = dtable.Rows[i + 5][2].ToString();
+                        string productDate = dtable.Rows[i + 2][2].ToString();
+                        int vol = int.Parse(dtable.Rows[i + 3][2].ToString());
+                        int startNum = int.Parse(dtable.Rows[i + 4][2].ToString());
+                        int saveNum = int.Parse(dtable.Rows[i + 5][2].ToString());
+                        string calNum = dtable.Rows[i + 6][2].ToString();
                         string[] calMainCurveConc = new string[int.Parse(calNum)];
                         string[] calMainCurveValue = new string[int.Parse(calNum)];
                         for (int j = 1; j <= calMainCurveValue.Length; j++)
                         {
-                            calMainCurveConc[j - 1] = dtable.Rows[i + 5 + j][2].ToString();
-                            calMainCurveValue[j - 1] = ((int)double.Parse(dtable.Rows[i + 5 + j][3].ToString())).ToString();
+                            calMainCurveConc[j - 1] = dtable.Rows[i + 6 + j][2].ToString();
+                            calMainCurveValue[j - 1] = ((int)double.Parse(dtable.Rows[i + 6 + j][3].ToString())).ToString();
                         }
                         //生成除了Rg条码其他条码（每一批相同）
                         string encryPro = "";
@@ -153,7 +156,7 @@ namespace EBarv0._2
                         for (int temporary = 0; temporary < saveNum; temporary++)
                         {
                             dtProject.Clear();
-                            string oristr = getRgInfoOriginal(itemName, batch, vol, startNum, temporary);
+                            string oristr = getRgInfoOriginal(itemName, batch, productDate, vol, startNum, temporary);
                             string encrystr = Utils.instance.ToEncryption(oristr); //加密后
 
                             dtProject.Rows.Add("" , encrystr);
@@ -250,20 +253,20 @@ namespace EBarv0._2
             }
             #endregion
             #region 检查是否符合标准模版
-            string[] excelRgSortMode = new string[] { "试剂短名称", "批号", "规格", "编号", "数量", "主曲线", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "质控批号", "质控1", "质控2" };
-            string[] excelDiluteSortMode = new string[] { "稀释液名称", "批号", "规格", "编号", "数量" };
-            string[] excelSubstrateSortMode = new string[] { "底物名称", "批号", "规格", "编号", "数量" };
+            string[] excelRgSortMode = new string[] { "试剂短名称", "批号","生产日期", "规格", "编号", "数量", "主曲线", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "质控批号", "质控1", "质控2" };
+            string[] excelDiluteSortMode = new string[] { "稀释液名称", "批号", "生产日期", "规格", "编号", "数量" };
+            string[] excelSubstrateSortMode = new string[] { "底物名称", "批号", "生产日期", "规格", "编号", "数量" };
             int firstIndex = 0;
             check:
             if (dtable.Rows[firstIndex][1].ToString().Contains("试剂"))
             {
                 int temp = firstIndex;
                 int addNum = 0;
-                for (int i = firstIndex; i < temp + 16/*dtable.Rows.Count*/; i++)
+                for (int i = firstIndex; i < temp + 17/*dtable.Rows.Count*/; i++)
                 {
-                    if (!dtable.Rows[i][1].ToString().Contains(excelRgSortMode[addNum++ % 16]))
+                    if (!dtable.Rows[i][1].ToString().Contains(excelRgSortMode[addNum++ % 17]))
                     {
-                        MessageBox.Show("检查不符合试剂标准模版参数顺序，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelRgSortMode[(addNum - 1) % 16]);
+                        MessageBox.Show("检查不符合试剂标准模版参数顺序，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelRgSortMode[(addNum - 1) % 17]);
                         dtable = new DataTable();
                         dgvInfo.DataSource = dtable;
                         goto errorOrEnd;
@@ -277,11 +280,11 @@ namespace EBarv0._2
             {
                 int temp = firstIndex;
                 int addNum = 0;
-                for (int i = firstIndex; i < temp + 5; i++)
+                for (int i = firstIndex; i < temp + 6; i++)
                 {
-                    if (!dtable.Rows[i][1].ToString().Contains(excelDiluteSortMode[addNum++ % 5]))
+                    if (!dtable.Rows[i][1].ToString().Contains(excelDiluteSortMode[addNum++ % 6]))
                     {
-                        MessageBox.Show("检查不符合稀释液标准模版参数顺序，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelDiluteSortMode[(addNum - 1) % 5]);
+                        MessageBox.Show("检查不符合稀释液标准模版参数顺序，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelDiluteSortMode[(addNum - 1) % 6]);
                         dtable = new DataTable();
                         dgvInfo.DataSource = dtable;
                         goto errorOrEnd;
@@ -295,11 +298,11 @@ namespace EBarv0._2
             {
                 int temp = firstIndex;
                 int addNum = 0;
-                for (int i = firstIndex; i < temp + 5; i++)
+                for (int i = firstIndex; i < temp + 6; i++)
                 {
-                    if (!dtable.Rows[i][1].ToString().Contains(excelSubstrateSortMode[addNum++ % 5]))
+                    if (!dtable.Rows[i][1].ToString().Contains(excelSubstrateSortMode[addNum++ % 6]))
                     {
-                        MessageBox.Show("检查不符合底物液标准模版参数顺序，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelSubstrateSortMode[(addNum - 1) % 5]);
+                        MessageBox.Show("检查不符合底物液标准模版参数顺序，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelSubstrateSortMode[(addNum - 1) % 6]);
                         dtable = new DataTable();
                         dgvInfo.DataSource = dtable;
                         goto errorOrEnd;
@@ -338,7 +341,7 @@ namespace EBarv0._2
             this.Close();
         }
         #region 获取加密条码
-        private string getRgInfoOriginal(string itemName, string batch, int vol, int startNum, decimal? add = 0)
+        private string getRgInfoOriginal(string itemName, string batch,string productTime, int vol, int startNum, decimal? add = 0)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("1");//条码编号，表示条码1
@@ -372,20 +375,65 @@ namespace EBarv0._2
             }
             sb.Append(TimeToNewTime(btime));
             string num = Convert.ToString(startNum + add);
-            while (num.Length < 4)              //如果num1控件内的数字位数不足4位，则前面填充0
+            #region 生产日期
+            int productDateAdd = DateTime.Parse(productTime.Insert(4,"/").Insert(7,"/")).Subtract(DateTime.Parse(batch.Insert(4, "/").Insert(7, "/"))).Days;
+            string productDate = "";
+            if (productDateAdd >= 10)
+            {
+                productDate = ((char)((productDateAdd - 10) + 'A')).ToString();
+                if (productDate.ToCharArray()[0] > 'Z')
+                    productDate = ((char)(productDate.ToCharArray()[0] + 6)).ToString();
+            }
+            else
+            {
+                if (productDateAdd == 0)
+                {
+                    productDate = "z";
+                }
+                else
+                    productDate = productDateAdd.ToString();
+            }
+            if (productDate.Length > 1)
+            {
+                MessageBox.Show("生产日期异常！");
+                return "";
+            }
+            #endregion
+            int tempNum = int.Parse(num);
+            num = "";
+            while (tempNum != 0)
+            {
+                int temp = tempNum % 62;
+                string tempStr = "";
+                if (temp >= 10)
+                {
+                    tempStr = ((char)((temp - 10) + 'A')).ToString();
+                    if (tempStr.ToCharArray()[0] > 'Z')
+                        tempStr = ((char)(tempStr.ToCharArray()[0] + 6)).ToString();
+                }
+                else
+                {
+                    tempStr = temp.ToString();
+                }
+                tempNum = tempNum / 62;
+                num = tempStr + num;
+            }
+            while (num.Length < 3)              //如果num1控件内的数字位数不足4位，则前面填充0
             {
                 num = num.Insert(0, "0");
             }
+
             string allTest = (vol / 10).ToString();//10倍乘表示测数   、、comboBox 100测/10
             while (allTest.ToString().Length < 2)      //测数小于两位前面填充0
             {
                 allTest = allTest.Insert(0, "0");
             }
             sb.Append(allTest);         //将测数（两位）添加到sb后面
+            sb.Append(productDate);
             sb.Append(num);             //将编号（四位）添加到sb后面
             return sb.ToString();
         }
-        private string getDiluteInfoOriginal(string itemName, string batch, int vol, int startNum, decimal? add = 0)
+        private string getDiluteInfoOriginal(string itemName, string batch,string productTime, int vol, int startNum, decimal? add = 0)
         {
             string strNo1 = "B"; //条码序号
             string strbdate = "";//批号日期
@@ -421,15 +469,64 @@ namespace EBarv0._2
             string bTime = batch;
             strbdate = TimeToNewTime(bTime);
 
-            string num = Convert.ToInt32(startNum + add).ToString("X4");
+            //string num = Convert.ToInt32(startNum + add).ToString("X4");
+            string num = Convert.ToString(startNum + add);
+            #region 生产日期
+            int productDateAdd = DateTime.Parse(productTime.Insert(4, "/").Insert(7, "/")).Subtract(DateTime.Parse(batch.Insert(4, "/").Insert(7, "/"))).Days;
+            string productDate = "";
+            if (productDateAdd >= 10)
+            {
+                productDate = ((char)((productDateAdd - 10) + 'A')).ToString();
+                if (productDate.ToCharArray()[0] > 'Z')
+                    productDate = ((char)(productDate.ToCharArray()[0] + 6)).ToString();
+            }
+            else
+            {
+                if (productDateAdd == 0)
+                {
+                    productDate = "z";
+                }
+                else
+                    productDate = productDateAdd.ToString();
+            }
+            if (productDate.Length > 1)
+            {
+                MessageBox.Show("生产日期异常！");
+                return "";
+            }
+            #endregion
+            int tempNum = int.Parse(num);
+            int usedCheckNum = tempNum;
+            num = "";
+            while (tempNum != 0)
+            {
+                int temp = tempNum % 62;
+                string tempStr = "";
+                if (temp >= 10)
+                {
+                    tempStr = ((char)((temp - 10) + 'A')).ToString();
+                    if (tempStr.ToCharArray()[0] > 'Z')
+                        tempStr = ((char)(tempStr.ToCharArray()[0] + 6)).ToString();
+                }
+                else
+                {
+                    tempStr = temp.ToString();
+                }
+                tempNum = tempNum / 62;
+                num = tempStr + num;
+            }
+            while (num.Length < 3)              //如果num1控件内的数字位数不足4位，则前面填充0
+            {
+                num = num.Insert(0, "0");
+            }
 
-            string check = ((11 + vol + Convert.ToInt32(strType, 16) + int.Parse(bTime) + Convert.ToInt32(num, 16)) % 7).ToString();
-            string originalStr = strNo1 + strType + strbdate + strDilute + num + check;
+            string check = ((11 + vol + Convert.ToInt32(strType, 16) + int.Parse(bTime) + productDateAdd + usedCheckNum/*Convert.ToInt32(num, 16)*/) % 7).ToString();
+            string originalStr = strNo1 + strType + strbdate + strDilute + productDate + num + check;
             string encrystr = Utils.instance.ToEncryption(originalStr); //加密后
 
             return encrystr;
         }
-        private string getSubstrateInfoOriginal(string itemName, string batch, int vol, int startNum, decimal? add = 0)
+        private string getSubstrateInfoOriginal(string itemName, string batch, string productTime, int vol, int startNum, decimal? add = 0)
         {
             string strNo1 = "A"; //条码序号
             string strBatchDate = batch;//批号
@@ -437,10 +534,59 @@ namespace EBarv0._2
             string bTime = batch;
             strBatchDate = TimeToNewTime(bTime);     //将time日期转换为三位数，添加到sb字符串序列
 
-            string num = Convert.ToInt32(startNum + add).ToString("X4");
+            //string num = Convert.ToInt32(startNum + add).ToString("X4");
+            string num = Convert.ToString(startNum + add);
+            #region 生产日期
+            int productDateAdd = DateTime.Parse(productTime.Insert(4, "/").Insert(7, "/")).Subtract(DateTime.Parse(batch.Insert(4, "/").Insert(7, "/"))).Days;
+            string productDate = "";
+            if (productDateAdd >= 10)
+            {
+                productDate = ((char)((productDateAdd - 10) + 'A')).ToString();
+                if (productDate.ToCharArray()[0] > 'Z')
+                    productDate = ((char)(productDate.ToCharArray()[0] + 6)).ToString();
+            }
+            else
+            {
+                if (productDateAdd == 0)
+                {
+                    productDate = "z";
+                }
+                else
+                    productDate = productDateAdd.ToString();
+            }
+            if (productDate.Length > 1)
+            {
+                MessageBox.Show("生产日期异常！");
+                return "";
+            }
+            #endregion
+            int tempNum = int.Parse(num);
+            int usedCheckNum = tempNum;
+            num = "";
+            while (tempNum != 0)
+            {
+                int temp = tempNum % 62;
+                string tempStr = "";
+                if (temp >= 10)
+                {
+                    tempStr = ((char)((temp - 10) + 'A')).ToString();
+                    if (tempStr.ToCharArray()[0] > 'Z')
+                        tempStr = ((char)(tempStr.ToCharArray()[0] + 6)).ToString();
+                }
+                else
+                {
+                    tempStr = temp.ToString();
+                }
+                tempNum = tempNum / 62;
+                num = tempStr + num;
+            }
+            while (num.Length < 3)              //如果num1控件内的数字位数不足4位，则前面填充0
+            {
+                num = num.Insert(0, "0");
+            }
 
-            string check = ((10 + vol + int.Parse(bTime)  + Convert.ToInt32(num, 16)) % 7).ToString();
-            string originalStr = strNo1 + strBatchDate + strSubNum + num + check;
+            string check = ((10 + vol + int.Parse(bTime)  + productDateAdd + usedCheckNum/*Convert.ToInt32(num, 16)*/) % 7).ToString();
+            string originalStr = strNo1 + strBatchDate + strSubNum + productDate + num + check;
             string encrystr = Utils.instance.ToEncryption(originalStr); //加密后
             return encrystr;
         }
@@ -689,6 +835,8 @@ namespace EBarv0._2
             if (timeYear >= 10)
             {
                 stringTimeYear = ((char)((timeYear - 10) + 'A')).ToString();  //年的后两位转译
+                if (stringTimeYear.ToCharArray()[0] > 'Z')
+                    stringTimeYear = ((char)(stringTimeYear.ToCharArray()[0] + 6)).ToString();
             }
             else
             {

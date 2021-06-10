@@ -179,6 +179,8 @@ namespace EBarv0._2
             if (timeYear >= 10)
             {
                 stringTimeYear = ((char)((timeYear - 10) + 'A')).ToString();  //年的后两位转译
+                if (stringTimeYear.ToCharArray()[0] > 'Z')
+                    stringTimeYear = ((char)(stringTimeYear.ToCharArray()[0] + 6)).ToString();
             }
             else
             {
