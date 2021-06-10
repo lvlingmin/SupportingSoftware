@@ -154,7 +154,50 @@ namespace EBarv0._2
             sb.Append(TimeToNewTime(btime));     //将time日期转换为三位数，添加到sb字符串序列
             //sb.Append(TimeToNewTime(ptime));
             string num = Convert.ToString(num1.Value + add);
-            while (num.Length < 4)              //如果num1控件内的数字位数不足4位，则前面填充0
+            #region 生产日期
+            int productDateAdd = productTime.Value.Date.Subtract(batchTime.Value.Date).Days;
+            string productDate = "";
+            if (productDateAdd >= 10)
+            {
+                productDate = ((char)((productDateAdd - 10) + 'A')).ToString();
+                if (productDate.ToCharArray()[0] > 'Z')
+                    productDate = ((char)(productDate.ToCharArray()[0] + 6)).ToString();
+            }
+            else
+            {
+                if(productDateAdd == 0)
+                {
+                    productDate = "z";
+                }
+                else
+                    productDate = productDateAdd.ToString();
+            }
+            if(productDate.Length > 1)
+            {
+                MessageBox.Show("生产日期异常！");
+                return "";
+            }
+            #endregion
+            int tempNum = int.Parse(num);
+            num = "";
+            while(tempNum != 0)
+            {
+                int temp = tempNum % 62;
+                string tempStr = "";
+                if (temp >= 10)
+                {
+                    tempStr = ((char)((temp - 10) + 'A')).ToString();
+                    if (tempStr.ToCharArray()[0] > 'Z')
+                        tempStr = ((char)(tempStr.ToCharArray()[0] + 6)).ToString();
+                }
+                else
+                {
+                    tempStr = temp.ToString();
+                }
+                tempNum = tempNum / 62;
+                num = tempStr + num;
+            }
+            while (num.Length < 3)              //如果num1控件内的数字位数不足4位，则前面填充0
             {
                 num = num.Insert(0, "0");
             }
@@ -165,6 +208,7 @@ namespace EBarv0._2
                 allTest = allTest.Insert(0, "0");
             }
             sb.Append(allTest);         //将测数（两位）添加到sb后面
+            sb.Append(productDate);
             sb.Append(num);             //将编号（四位）添加到sb后面
                                         //time = 
                                         //string name = reagentName.Text;//试剂名称，接下来获取对应的代号，两位
@@ -219,6 +263,8 @@ namespace EBarv0._2
             if (timeYear >= 10)
             {
                 stringTimeYear = ((char)((timeYear - 10) + 'A')).ToString();  //年的后两位转译
+                if (stringTimeYear.ToCharArray()[0] > 'Z')
+                    stringTimeYear = ((char)(stringTimeYear.ToCharArray()[0] + 6)).ToString();
             }
             else
             {
@@ -296,6 +342,16 @@ namespace EBarv0._2
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            if (productTime.Value.Date < batchTime.Value.Date)
+            {
+                MessageBox.Show("生产日期需大于等于批号日期！");
+                return;
+            }
+            else if(productTime.Value.Subtract(batchTime.Value).Days > 60)
+            {
+                MessageBox.Show("生产日期过大于批号!请联系技术人员!");
+                return;
+            }
             Utils.instance.clearShowData(panel3, dtProject);  //清空原始字符串的dataGridView 和 显示条码的Panel1
             if (reagentName.Text != "" && reagentStandard.Text != "" && num1.Value != 0)//非空判断
             {
@@ -335,7 +391,7 @@ namespace EBarv0._2
         private void BtnReset_Click(object sender, EventArgs e)
         {
             batchTime.Value = DateTime.Now;
-            prodectTime.Value = DateTime.Now;
+            productTime.Value = DateTime.Now;
             reagentName.SelectedIndex = -1;
             reagentStandard.SelectedIndex = -1;           
             num1.Value = 0;
