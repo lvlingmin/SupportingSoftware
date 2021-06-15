@@ -114,6 +114,13 @@ namespace EBarv0._2.Admin
                         dgvInfo.DataSource = dtable;
                         goto errorOrEnd;
                     }
+                    if (dtable.Rows[i][1].ToString().Contains("A1") && (dtable.Rows[i][2].ToString().Trim() != "0" && dtable.Rows[i][2].ToString().Trim() != "0.1" && dtable.Rows[i][2].ToString().Trim() != "0.01"))
+                    {
+                        MessageBox.Show("检查存在定标点A1不为0的情况，请检查后重试！" + "----" + dtable.Rows[temp][2].ToString() + "--" + excelRgSortMode[(addNum - 1) % 17]);
+                        dtable = new DataTable();
+                        dgvInfo.DataSource = dtable;
+                        goto errorOrEnd;
+                    }
                     firstIndex++;
                 }
                 if(firstIndex < dtable.Rows.Count)
