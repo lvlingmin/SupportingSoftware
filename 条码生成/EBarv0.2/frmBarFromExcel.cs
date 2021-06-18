@@ -431,6 +431,9 @@ namespace EBarv0._2
             sb.Append(allTest);         //将测数（两位）添加到sb后面
             sb.Append(productDate);
             sb.Append(num);             //将编号（四位）添加到sb后面
+            string checkUsedNum = ((1 + int.Parse(dr[0]["ProjectNumber"].ToString()) + int.Parse(btime) + int.Parse(allTest) + productDateAdd + Convert.ToInt32(startNum + add)) % 97).ToString("X2");
+            sb.Remove(1, 2);
+            sb.Insert(1, checkUsedNum);
             return sb.ToString();
         }
         private string getDiluteInfoOriginal(string itemName, string batch,string productTime, int vol, int startNum, decimal? add = 0)

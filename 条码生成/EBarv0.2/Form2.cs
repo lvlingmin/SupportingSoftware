@@ -210,43 +210,10 @@ namespace EBarv0._2
             sb.Append(allTest);         //将测数（两位）添加到sb后面
             sb.Append(productDate);
             sb.Append(num);             //将编号（四位）添加到sb后面
-                                        //time = 
-                                        //string name = reagentName.Text;//试剂名称，接下来获取对应的代号，两位
-                                        //string standard = reagentStandard.Text;//该试剂的规格，接下来获取此代并赋值号，一位
-                                        //string batch = Convert.ToString( batchNum.Value);//批号，两位，通过maximun属性值控制
-                                        //string num = Convert.ToString(num1.Value + add);//试剂编号，两位，通过maximun属性值控制
-                                        //while (batch.Length < 2)
-                                        //{
-                                        //    batch = batch.Insert(0, "0");
-                                        //}
-                                        //while (num.Length < 2)
-                                        //{
-                                        //    num = num.Insert(0, "0");
-                                        //}
 
-            //if (name == "试剂A") name = "01";//获取试剂名称对应的编号，后期改为查询数据库
-            //else if (name == "试剂B") name = "02";
-            //else
-            //{
-            //    MessageBox.Show("错误", "品名代码转换错误");
-            //    return null;
-            //}
-
-            //if (standard == "500测") standard = "1";//获取规格代号，后期改为查询数据库
-            //else if (standard == "600测") standard = "2";
-            //else
-            //{
-            //    MessageBox.Show("错误", "规格代码转换错误");
-            //    return null;
-            //}
-
-            //if (batch=="0")
-            //{
-            //    MessageBox.Show("错误", "未选择批号");
-            //    return null;
-            //}
-
-            //string str = time + name + standard + batch + num;
+            string checkUsedNum = ((1 + int.Parse(dr[0]["ProjectNumber"].ToString()) + int.Parse(btime) + int.Parse(allTest) + productDateAdd + Convert.ToInt32(num1.Value + add)) % 97).ToString("X2");
+            sb.Remove(1,2);
+            sb.Insert(1, checkUsedNum);
             return sb.ToString();
         }
 
