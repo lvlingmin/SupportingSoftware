@@ -49,12 +49,13 @@
             // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(167, 35);
+            this.btnInfo.Location = new System.Drawing.Point(380, 335);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(115, 50);
             this.btnInfo.TabIndex = 1;
             this.btnInfo.Text = "信息生成";
             this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Visible = false;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnExit
@@ -69,7 +70,7 @@
             // 
             // btnUserList
             // 
-            this.btnUserList.Location = new System.Drawing.Point(304, 35);
+            this.btnUserList.Location = new System.Drawing.Point(166, 35);
             this.btnUserList.Name = "btnUserList";
             this.btnUserList.Size = new System.Drawing.Size(115, 50);
             this.btnUserList.TabIndex = 2;
@@ -82,7 +83,6 @@
             this.groupBox1.Controls.Add(this.btnImportToCreate);
             this.groupBox1.Controls.Add(this.btnItemImport);
             this.groupBox1.Controls.Add(this.btnUserList);
-            this.groupBox1.Controls.Add(this.btnInfo);
             this.groupBox1.Location = new System.Drawing.Point(54, 40);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(681, 122);
@@ -91,7 +91,7 @@
             // 
             // btnImportToCreate
             // 
-            this.btnImportToCreate.Location = new System.Drawing.Point(442, 35);
+            this.btnImportToCreate.Location = new System.Drawing.Point(304, 35);
             this.btnImportToCreate.Name = "btnImportToCreate";
             this.btnImportToCreate.Size = new System.Drawing.Size(115, 50);
             this.btnImportToCreate.TabIndex = 3;
@@ -106,6 +106,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnInfo);
             this.Name = "frmAdmin";
             this.Text = "管理界面";
             this.Load += new System.EventHandler(this.frmAdmin_Load);
