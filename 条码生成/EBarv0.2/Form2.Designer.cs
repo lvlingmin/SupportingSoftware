@@ -38,15 +38,15 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.num2 = new System.Windows.Forms.NumericUpDown();
             this.num1 = new System.Windows.Forms.NumericUpDown();
+            this.productTime = new System.Windows.Forms.DateTimePicker();
             this.reagentStandard = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.reagentName = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.productTime = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.back = new System.Windows.Forms.Button();
@@ -220,6 +220,16 @@
             0});
             this.num1.ValueChanged += new System.EventHandler(this.Num1_ValueChanged);
             // 
+            // productTime
+            // 
+            this.productTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.productTime.Location = new System.Drawing.Point(133, 72);
+            this.productTime.Name = "productTime";
+            this.productTime.Size = new System.Drawing.Size(273, 26);
+            this.productTime.TabIndex = 6;
+            // 
             // reagentStandard
             // 
             this.reagentStandard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -228,13 +238,23 @@
             this.reagentStandard.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.reagentStandard.FormattingEnabled = true;
             this.reagentStandard.Items.AddRange(new object[] {
+            "50",
             "100",
-            "200",
-            "300"});
+            "200"});
             this.reagentStandard.Location = new System.Drawing.Point(132, 148);
             this.reagentStandard.Name = "reagentStandard";
             this.reagentStandard.Size = new System.Drawing.Size(121, 24);
             this.reagentStandard.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 12F);
+            this.label1.Location = new System.Drawing.Point(34, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "生产时间";
             // 
             // reagentName
             // 
@@ -305,26 +325,6 @@
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "试剂品名";
-            // 
-            // productTime
-            // 
-            this.productTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.productTime.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.productTime.Location = new System.Drawing.Point(133, 72);
-            this.productTime.Name = "productTime";
-            this.productTime.Size = new System.Drawing.Size(273, 26);
-            this.productTime.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 12F);
-            this.label1.Location = new System.Drawing.Point(34, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "生产时间";
             // 
             // label6
             // 
