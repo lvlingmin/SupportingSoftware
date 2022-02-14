@@ -18,13 +18,25 @@ namespace fourLogistic.Forms
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        ///夹心法主曲线列表
+        /// </summary>
+        List<Conc_PMT> ListMainPoint2 = new List<Conc_PMT>();
+        /// <summary>
+        ///竞争法主曲线列表
+        /// </summary>
+        List<Conc_PMT> ListMainPoint0 = new List<Conc_PMT>();
         private void MainForm_Load(object sender, EventArgs e)
         {
             #region 夹心
             dataGridView1.Rows.Add(500);
-            double[] nongdu = { 0.15, 0.5, 1.5, 4.5, 50 };
-            double[] faguagnzhi = { 43205, 121537, 352335, 1149230, 11664921 };
+            double[] nongdu = { 0,0.15, 0.5, 1.5, 4.5, 50 };
+            double[] faguagnzhi = { 100, 43205, 121537, 352335, 1149230, 11664921 };
+            //for (int i = 0; i < nongdu.Length; i++)
+            //{
+            //    dataGridView1.Rows[i].Cells[0].Value = nongdu[i];
+            //    dataGridView1.Rows[i].Cells[1].Value = faguagnzhi[i];
+            //}
             //double[] nongdu = {  10, 40,100, 180, 400 };
             //double[] faguagnzhi = {  251795, 740941, 2081760, 2863564, 3543672 };
             double[] canshu = new double[5];
@@ -34,6 +46,8 @@ namespace fourLogistic.Forms
             double[] nongduall = { 0, 0.15, 0.5, 1.5, 4.5, 50 };
             double[] faguagnzhiall = { 12216, 43205, 121537, 352335, 1149230, 11664921 };
             result = resultvalue(faguagnzhi1, nongduall, faguagnzhiall);  //拟合浓度计算
+            dataGridView3.Rows.Add(500);
+            dataGridView4.Rows.Add(500);
             #endregion
 
             #region 竞争
@@ -41,8 +55,16 @@ namespace fourLogistic.Forms
             cmbFit.SelectedIndex = 5;
             cmbX.SelectedIndex = 0;
             cmbY.SelectedIndex = 0;
+            double[] faguagnzhi0 = { 180000, 90000, 30000, 10000, 4500, 500 };
+            //for (int i = 0; i < nongduall.Length; i++)
+            //{
+            //    dataGridView2.Rows[i].Cells[0].Value = nongduall[i];
+            //    dataGridView2.Rows[i].Cells[1].Value = faguagnzhi0[i];
+            //}
             dataGridView2.ClearSelection();
             rbtnPmtToConc.Checked = true;
+            dataGridView5.Rows.Add(500);
+            dataGridView6.Rows.Add(500);
             #endregion 
         }
 
@@ -1483,7 +1505,7 @@ namespace fourLogistic.Forms
             }
             double[] canshu = new double[5];
             canshu = canshuvalue(nongdu, faguagnzhi);    //计算4参数的numA numB numC numD  R2
-            richTextBox1.Text ="\n A= "+canshu[0]+
+            richTextBox1.Text = "\n A= " + canshu[0] +
                 "\n B= " + canshu[1] +
                 "\n C= " + canshu[2] +
                 "\n D= " + canshu[3] +
@@ -1492,7 +1514,7 @@ namespace fourLogistic.Forms
 
             double[] result = new double[1];
             double[] faguagnzhi1 = { 43000, 43500, 12250, 43205, 121537, 352335, 1149230, 11664921, 14388476 };
-            
+
             double[] nongduall = new double[mainDatas.Count];
             double[] faguagnzhiall = new double[mainDatas.Count];
             for (int index = 0; index < mainDatas.Count; index++)
@@ -1595,7 +1617,7 @@ namespace fourLogistic.Forms
             #region 浓度到发光值
             if (rbtnConcToPmt0.Checked) //浓度到发光值
             {
-                List<Data_Value> data_Values= GetMainData_DataValue();
+                List<Data_Value> data_Values = GetMainData_DataValue();
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)//想要预测的数据
                 {
                     if (dataGridView1[0, i].Value == null && dataGridView1[1, i].Value == null && dataGridView1[2, i].Value != null)
@@ -1623,13 +1645,14 @@ namespace fourLogistic.Forms
             #endregion
 
         }
+       
         /// <summary>
         /// 夹心法由浓度计算发光值
         /// </summary>
         /// <param name="xValue">浓度</param>
         /// <param name="parameters">ABCD四个参数</param>
         /// <returns></returns>
-        public double GetResultSandwich(double xValue,double[] parameters)
+        public double GetResultSandwich(double xValue, double[] parameters)
         {
             //if (xValue < 0)
             //    xValue = 0;
@@ -2154,7 +2177,7 @@ namespace fourLogistic.Forms
                 for (int j = 0; j < count; j++)//原有数据的预测值
                 {
                     double PMT = double.Parse(dataGridView2[1, j].Value.ToString());
-                    if (PMT <= CurveData[0].DataValue && PMT > CurveData[1].DataValue) 
+                    if (PMT <= CurveData[0].DataValue && PMT > CurveData[1].DataValue)
                     {
                         double lineResultInverse = GetLineInverseResult(PMT);
                         double resultInverse = er.GetResultInverse(CurveData[1].DataValue);
@@ -2214,7 +2237,7 @@ namespace fourLogistic.Forms
                             {
                                 double borderPMT = er.GetResult(ltData[ltData.Count - 1].DataValue * 1.3);
 
-                                if (PMT < borderPMT) 
+                                if (PMT < borderPMT)
                                 {
                                     conc = ltData[ltData.Count - 1].DataValue * 1.3;
                                     dataGridView2[2, i].Value = ">" + ltData[ltData.Count - 1].Data * 1.3;
@@ -2259,7 +2282,7 @@ namespace fourLogistic.Forms
                     if (dataGridView2[0, i].Value == null && dataGridView2[1, i].Value == null && dataGridView2[2, i].Value != null)
                     {
                         double conc = double.Parse(dataGridView2[2, i].Value.ToString());
-                        if (conc >= CurveData[0].Data && conc <= CurveData[1].Data) 
+                        if (conc >= CurveData[0].Data && conc <= CurveData[1].Data)
                         {
                             dataGridView2[1, i].Value = GetLineResult(conc).ToString("0.000");
                             continue;
@@ -2294,12 +2317,195 @@ namespace fourLogistic.Forms
             }
             #endregion
         }
+        public void EquationCurvet2(DataGridView dataGridView, Calculater er, DataTable dt,Panel showCurvePnl)
+        {
+            #region 开始
+            double tempCal = 0;
+            string newPars = string.Empty;
+            foreach (string par in er.StrPars.Split('|'))
+            {
+                if (double.TryParse(par, out tempCal))
+                {
+                    if (double.IsInfinity(tempCal) || double.IsNaN(tempCal))
+                    {
+                        newPars += "0|";
+                    }
+                    else
+                    {
+                        newPars += par + "|";
+                    }
+                }
+                else
+                {
+                    newPars += par + "0|";
+                }
+            }
+            List<double> listPar = new List<double>();
+            foreach (string str in er.StrPars.Split('|'))
+            {
+                listPar.Add(double.Parse(str));
+            }
+            fourLogistic.Calculate.CalculateFactory fy = new fourLogistic.Calculate.CalculateFactory();
+            List<Data_Value> litData_Value = new List<Data_Value>();
+            Calculater er1 = fy.getCaler(listPar);
+            dc.paintEliseScaling(showCurvePnl, dt, er.GetResult, "", cmbFit.SelectedIndex);
+            GetParaAndShow2(er);//设置参数显示
+            List<double> lsDouble = new List<double>();
+            foreach (var v in ltData)
+            {
+                lsDouble.Add(v.DataValue);
+            }
+            if (rbtnPmtToConc.Checked)
+            {
+                for (int j = 0; j < count; j++)//原有数据的预测值
+                {
+                    double PMT = double.Parse(dataGridView[1, j].Value.ToString());
+                    if (PMT <= CurveData[0].DataValue && PMT > CurveData[1].DataValue)
+                    {
+                        double lineResultInverse = GetLineInverseResult(PMT);
+                        double resultInverse = er.GetResultInverse(CurveData[1].DataValue);
+                        dataGridView[2, j].Value = (lineResultInverse > resultInverse ?
+                            resultInverse : lineResultInverse).ToString("0.000");
+                        continue;
+                    }
+                    double conc;
+                    conc = er.GetResultInverse(PMT);
+                    if (double.IsNaN(conc))
+                    {
+                        if ((ltData[0].DataValue < ltData[1].DataValue && PMT <= ltData[0].DataValue) ||
+                            (ltData[0].DataValue > ltData[1].DataValue && PMT >= ltData[0].DataValue))
+                        {
+                            conc = 0.001;
+                        }
+                        else
+                        {
+                            conc = ltData[ltData.Count - 1].DataValue;
+                        }
+                    }
+                    if (conc <= ltData[0].Data)
+                    {
+                        conc = ltData[0].Data + 0.001;
+                    }
+                    if (conc >= (ltData[ltData.Count - 1].Data + ltData[ltData.Count - 1].Data * 0.3))
+                    {
+                        dataGridView[2, j].Value = ">" + ltData[ltData.Count - 1].Data * 1.3;
+                    }
+                    else
+                    {
+                        dataGridView[2, j].Value = Convert.ToDouble(conc).ToString("0.000");
+                    }
+                }
+                for (int i = 0; i < dataGridView.Rows.Count; i++)//想要预测的数据
+                {
+                    if (dataGridView[0, i].Value == null && dataGridView[1, i].Value != null)
+                    {
+                        double conc;
+                        double PMT = double.Parse(dataGridView[1, i].Value.ToString());
+                        if (PMT <= CurveData[0].DataValue && PMT > CurveData[1].DataValue)
+                        {
+                            double lineResultInverse = GetLineInverseResult(PMT);
+                            double resultInverse = er.GetResultInverse(CurveData[1].DataValue);
+                            dataGridView[2, i].Value = (lineResultInverse > resultInverse ?
+                                resultInverse : lineResultInverse).ToString("0.000");
+                            continue;
+                        }
+                        if (PMT < ltData[0].DataValue && ltData[0].DataValue < ltData[1].DataValue)
+                        {
+                            conc = ltData[0].Data;
+                        }
+                        else
+                        {
+                            conc = er.GetResultInverse(PMT);
+                            if (double.IsNaN(conc))
+                            {
+                                double borderPMT = er.GetResult(ltData[ltData.Count - 1].DataValue * 1.3);
+
+                                if (PMT < borderPMT)
+                                {
+                                    conc = ltData[ltData.Count - 1].DataValue * 1.3;
+                                    dataGridView[2, i].Value = ">" + ltData[ltData.Count - 1].Data * 1.3;
+                                    continue;
+                                }
+
+                                if ((ltData[0].DataValue < ltData[1].DataValue && PMT <= ltData[0].DataValue) ||
+                                    (ltData[0].DataValue > ltData[1].DataValue && PMT >= ltData[0].DataValue))
+                                {
+                                    conc = 0.001;
+                                }
+                                else if (PMT >= ltData[1].DataValue && PMT <= ltData[0].DataValue)
+                                {
+                                    conc = ltData[0].Data + 0.001;
+                                }
+                                else
+                                {
+                                    conc = ltData[ltData.Count - 1].Data;
+                                }
+                            }
+                        }
+                        if (conc <= ltData[0].Data)
+                        {
+                            conc = ltData[0].Data + 0.001;
+                        }
+                        if (conc >= (ltData[ltData.Count - 1].Data + ltData[ltData.Count - 1].Data * 0.3))
+                        {
+                            dataGridView[2, i].Value = ">" + ltData[ltData.Count - 1].Data * 1.3;
+                        }
+                        else
+                        {
+                            dataGridView[2, i].Value = Convert.ToDouble(conc).ToString("0.000");
+                        }
+                    }
+                }
+            }
+            if (rbtnConcToPmt.Checked)
+            {
+                for (int i = 0; i < dataGridView.Rows.Count; i++)//想要预测的数据
+                {
+                    double PMT;
+                    if (dataGridView[0, i].Value == null && dataGridView[1, i].Value == null && dataGridView[2, i].Value != null)
+                    {
+                        double conc = double.Parse(dataGridView[2, i].Value.ToString());
+                        if (conc >= CurveData[0].Data && conc <= CurveData[1].Data)
+                        {
+                            dataGridView[1, i].Value = GetLineResult(conc).ToString("0.000");
+                            continue;
+                        }
+                        if (conc == 0)
+                        {
+                            conc = 0.001;
+                        }
+                        if ((ltData[0].Data <= conc && conc <= ltData[1].Data) || (ltData[0].Data >= conc && conc >= ltData[1].Data))
+                        {
+                            Calculater linear = new Linear();
+                            ltData.Sort(new Data_ValueDataAsc());
+                            for (int l = 0; l < 2; l++)
+                            {
+                                if (ltData[l].Data == 0.001)
+                                {
+                                    ltData[l].Data = 0;
+                                }
+                            }
+                            linear.AddData(ltData);
+                            linear.Fit();
+                            PMT = linear.GetResult(conc);
+                            dataGridView[1, i].Value = Convert.ToDouble(PMT).ToString("0.000");
+                        }
+                        else
+                        {
+                            PMT = er.GetResult(conc);
+                            dataGridView[1, i].Value = Convert.ToDouble(PMT).ToString("0.000");
+                        }
+                    }
+                }
+            }
+            #endregion
+        }
         /// <summary>
         /// 竞争法得到线性发光值到浓度计算结果
         /// </summary>
         /// <param name="PMT">发光值</param>
         /// <returns></returns>
-        private double GetLineInverseResult(double PMT) 
+        private double GetLineInverseResult(double PMT)
         {
             List<Data_Value> linearData = new List<Data_Value>();
             linearData.Add(CurveData[0].Data == 0.0001 ? new Data_Value() { Data = 0, DataValue = CurveData[0].DataValue } : CurveData[0]);
@@ -2395,6 +2601,60 @@ namespace fourLogistic.Forms
                         rtbPara.Clear();
                         Furmula = "方程式： y=A+B/(1+exp(-(C+D*ln(x))))";
                         rtbPara.AppendText("四参数Logistic曲线拟合：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[0] + "\r\n" + "B: " + strpar[1] + "\r\n" + "C: " + strpar[2] + "\r\n" + "D: " + strpar[3] + "\r\n" + "R^2: " + er.R2);
+                        break;
+                }
+            }
+        }
+        private void GetParaAndShow2(Calculater er)
+        {
+            string[] strpar = er.StrPars.Split('|');
+            string Furmula = string.Empty;
+            if (strpar.Length > 0)
+            {
+                switch (cmbFit.SelectedIndex)
+                {
+                    case 0:
+                        richTextBox3.Clear();
+                        Furmula = "方程式： y = A + B*x";
+                        richTextBox3.AppendText("直线回归：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[1] + "\r\n" + "B: " + strpar[0] + "\r\n" + "R^2: " + er.R2);
+                        break;
+                    case 1:
+                        richTextBox3.Clear();
+                        Furmula = "";
+                        break;
+                    case 2:
+                        richTextBox3.Clear();
+                        Furmula = "方程式： y = A + B*x + C*x^2";
+                        richTextBox3.AppendText("二次多项式" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[2] + "\r\n" + "B: " + strpar[1] + "\r\n" + "C: " + strpar[0] + "\r\n" + "R^2: " + er.R2);
+                        break;
+                    case 3:
+                        richTextBox3.Clear();
+                        Furmula = "方程式： y = A + B*x + C*x^2 + D*x^3";
+                        richTextBox3.AppendText("三次多项式：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[3] + "\r\n" + "B: " + strpar[2] + "\r\n" + "C: " + strpar[1] + "\r\n" + "D: " + strpar[0] + "\r\n" + "R^2: " + er.R2 + "\r\n" + Math.Pow(er.R2, 0.5));
+                        break;
+                    case 5:
+                        richTextBox3.Clear();
+                        Furmula = "方程式： y = (A - D) / [1 + (x/C)^B] + D";
+                        //rtbPara.AppendText("四参数Logistic曲线拟合：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[0] + "\r\n" + "B: " + strpar[1] + "\r\n" + "C: " + strpar[2] + "\r\n" + "D: " + strpar[3] + "\r\n" + "R^2: " + er.R2+ "\r\n");
+                        richTextBox3.AppendText("四参数Logistic曲线拟合：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[0] + "\r\n" + "B: " + strpar[1] + "\r\n" + "C: " + strpar[2] + "\r\n" + "D: " + strpar[3] + "\r\n" + "R: " + Math.Pow(er.R2, 0.5) + "\r\n" + "R^2 : " + er.R2 + "\r\n");
+                        break;
+                    #region
+                    case 6:
+                        richTextBox3.Clear();
+                        Furmula = "方程式： y = (A - D) / [(1 + (x/C)^B)]^n + D";
+                        richTextBox3.AppendText("五参数Logistic曲线拟合：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[0] + "\r\n" + "B: " + strpar[1] + "\r\n" + "C: " + strpar[2] + "\r\n" + "D: " + strpar[3] + "\r\n" + "n: " + strpar[4] + "\r\n" + "R^2: " + er.R2);
+                        break;
+                    #endregion
+                    case 4:
+                        richTextBox3.Clear();
+                        //进行了描述补充 2017.12.16
+                        Furmula = " p=1/(1+e^-(A+B*x)),p = OD/OD0,  q = 1 - p," + "\r\n" + "y = ln (p / q)" + "\r\n" + "OD:" + "反应值" + ",OD0 :" + "浓度为0时的反应值的均值" + "\r\n" + "方程式：y = A + B*log(x)";
+                        richTextBox3.AppendText("Logit-log :" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[1] + "\r\n" + "B: " + strpar[0] + "\r\n" + "R^2: " + er.R);
+                        break;
+                    case 7:
+                        richTextBox3.Clear();
+                        Furmula = "方程式： y=A+B/(1+exp(-(C+D*ln(x))))";
+                        richTextBox3.AppendText("四参数Logistic曲线拟合：" + "\r\n" + Furmula + "\r\n" + "A: " + strpar[0] + "\r\n" + "B: " + strpar[1] + "\r\n" + "C: " + strpar[2] + "\r\n" + "D: " + strpar[3] + "\r\n" + "R^2: " + er.R2);
                         break;
                 }
             }
@@ -2683,5 +2943,1038 @@ namespace fourLogistic.Forms
             Clipboard.SetDataObject(this.dataGridView2.GetClipboardContent());
         }
         #endregion
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ListMainPoint2.Clear();
+            ListMainPoint2 = GetMainCurve();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ListMainPoint0.Clear();
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)//DataGridView中的数据
+            {
+                if (dataGridView2[0, i].Value != null && dataGridView2[1, i].Value != null)
+                {
+                    Conc_PMT conc_PMT = new Conc_PMT();
+                    conc_PMT.Conc = Convert.ToDouble(dataGridView2[0, i].Value);
+                    conc_PMT.PMT = Convert.ToDouble(dataGridView2[1, i].Value);
+                    ListMainPoint0.Add(conc_PMT);
+                }
+            }
+        }
+        /// <summary>
+        /// 获取新的定标信息
+        /// </summary>
+        /// <param name="MainPoint">主曲线</param>
+        /// <param name="newPoint">新的校准值</param>
+        /// <param name="select">校准选择 0-A点不变 1-A点变 2-浓度取对数</param>
+        List<Conc_PMT> GetNewPoint(List<Conc_PMT> MainPoint, List<Conc_PMT> newPoint, int select)
+        {
+            if (newPoint.Count < 2)
+            {
+                MessageBox.Show("校准点小于两个点");
+                return null;
+            }
+            if (MainPoint.Count < 2)
+            {
+                MessageBox.Show("没有相关的主曲线");
+                return null;
+            }
+            List<Conc_PMT> NewPoint = null;
+            switch (select)
+            {
+                case 0:
+                    NewPoint = GetAPointKeep(MainPoint, newPoint);
+                    break;
+                case 1:
+                    NewPoint = GetAPointChange(MainPoint, newPoint);
+                    break;
+                case 2:
+                    NewPoint = GetPointChange(MainPoint, newPoint);
+                    break;
+                case 3:
+                    NewPoint = GetPointLgCon(MainPoint, newPoint);
+                    break;
+                default:
+                    break;
+            }
+            return NewPoint;
+        }
+        /// <summary>
+        /// 保持A点不变计算新的定标点
+        /// </summary>
+        /// <param name="MainPoint">主曲线定标信息</param>
+        /// <param name="newPoint">校准定标信息</param>
+        List<Conc_PMT> GetAPointKeep(List<Conc_PMT> MainPoint, List<Conc_PMT> newPoint)
+        {
+            double[] listK = new double[2];
+            for(int i=0;i<newPoint.Count;i++)
+            {
+                Conc_PMT OPoint = MainPoint.Find(x => x.Conc== newPoint[i].Conc);
+                double k = (newPoint[i].PMT - OPoint.PMT) / OPoint.PMT;
+                listK[i]=k;
+            }
+            double k1 = 0;
+            foreach (double k in listK)
+            {
+                k1 = k1 + k;
+            }
+            double k2 = k1 / listK.Length ;
+            List<Conc_PMT> NewPoint1 = new List<Conc_PMT>();
+            for (int i = 0; i < MainPoint.Count; i++)
+            {
+                if (i == 0)
+                    NewPoint1.Add(MainPoint[i]);
+                else
+                {
+                    Conc_PMT point = null;
+                    foreach (Conc_PMT temp in newPoint)
+                    {
+                        if (temp.Conc== MainPoint[i].Conc)
+                        {
+                            point = temp;
+                            continue;
+                        }
+                    }
+                    if (point == null)
+                    {
+                        point = new Conc_PMT();
+                        point.Conc  = MainPoint[i].Conc;
+                        point.PMT = Math.Round(MainPoint[i].PMT * (k2 + 1), 0);
+                    }
+                    NewPoint1.Add(point);
+                }
+            }
+            return NewPoint1;
+        }
+        /// <summary>
+        /// A点变化计算新的定标点
+        /// </summary>
+        /// <param name="MainPoint">主曲线定标信息</param>
+        /// <param name="newPoint">校准定标信息</param>
+        List<Conc_PMT> GetAPointChange(List<Conc_PMT> MainPoint, List<Conc_PMT> newPoint)
+        {
+            double[] listK = new double[2];
+            for (int i = 0; i < newPoint.Count; i++)
+            {
+                Conc_PMT OPoint = MainPoint.Find(x => x.Conc == newPoint[i].Conc);
+                double k = (newPoint[i].PMT - OPoint.PMT) / OPoint.PMT;
+                listK[i] = k;
+            }
+            double k1 = 0;
+            foreach (double k in listK)
+            {
+                k1 = k1 + k;
+            }
+            double k2 = k1 / listK.Length;
+            List<Conc_PMT> NewPoint1 = new List<Conc_PMT>();
+            for (int i = 0; i < MainPoint.Count; i++)
+            {
+                    Conc_PMT point = null;
+                    foreach (Conc_PMT temp in newPoint)
+                    {
+                        if (temp.Conc == MainPoint[i].Conc)
+                        {
+                            point = temp;
+                            continue;
+                        }
+                    }
+                    if (point == null)
+                    {
+                        point = new Conc_PMT();
+                        point.Conc = MainPoint[i].Conc;
+                        point.PMT = Math.Round(MainPoint[i].PMT * (k2 + 1), 0);
+                    }
+                    NewPoint1.Add(point);
+            }
+            return NewPoint1;
+        }
+        /// <summary>
+        /// 获获取拟合曲线参数(夹心法)
+        /// </summary>
+        /// <param name="mainDatas"></param>
+        double[] GetCanshu2(List<Conc_PMT> mainDatas)
+        {
+            double[] nongdu = new double[mainDatas.Count - 1];
+            double[] faguagnzhi = new double[mainDatas.Count - 1];
+            for (int index = 1; index < mainDatas.Count; index++)
+            {
+                nongdu[index - 1] = mainDatas[index].Conc;
+                faguagnzhi[index - 1] = mainDatas[index].PMT;
+            }
+            double[] canshu = new double[5];
+            canshu = canshuvalue(nongdu, faguagnzhi);
+            return canshu;
+        }
+        /// <summary>
+        /// 根据浓度计算发光值
+        /// </summary>
+        /// <param name="conc">需要预测的浓度</param>
+        /// <param name="mainDatas">使用的计算曲线信息</param>
+        /// <param name="canshu">参数信息</param>
+        double GetPMT2(double conc, List<Conc_PMT> mainDatas, double[] canshu)
+        {
+            List<Data_Value> data_Values = new List<Data_Value>();
+            for (int i = 0; i < mainDatas.Count; i++)//想要预测的数据
+            {
+                if (mainDatas != null)
+                {
+                    data_Values.Add(new Data_Value()
+                    {
+                        Data = mainDatas[i].Conc,
+                        DataValue = mainDatas[i].PMT
+                    }); ;
+                }
+            }
+            double resultSandwich = 0;
+            if (conc == 0)
+            {
+                conc = 0.001;
+            }
+            if ((data_Values[0].Data <= conc && conc <= data_Values[1].Data))
+            {
+                double resultLine = GetLineResultSandwich(conc, data_Values);
+                resultSandwich = resultLine < data_Values[0].Data ? (data_Values[0].Data + 0.001) : resultLine;
+            }
+            else
+            {
+                double resultSandwich1 = GetResultSandwich(Convert.ToDouble(conc), canshu);
+                resultSandwich = resultSandwich1 > data_Values[data_Values.Count - 1].DataValue * 1.2 ?
+                data_Values[data_Values.Count - 1].DataValue * 1.2 : resultSandwich1;
+            }
+            return resultSandwich;
+        }
+        double GetPMT0(double conc, List<Conc_PMT> mainDatas, Calculater er)
+        {
+            double PMT = 0;
+            if (conc >= mainDatas[0].Conc && conc <= mainDatas[1].Conc)
+            {
+                PMT = GetLineResult(conc);
+            }
+            if (conc == 0)
+            {
+                conc = 0.001;
+            }
+            if ((mainDatas[0].Conc <= conc && conc <= mainDatas[1].Conc) || (mainDatas[0].Conc >= conc && conc >= mainDatas[1].Conc))
+            {
+                Calculater linear = new Linear();
+                ltData.Sort(new Data_ValueDataAsc());
+                for (int l = 0; l < 2; l++)
+                {
+                    if (ltData[l].Data == 0.001)
+                    {
+                        ltData[l].Data = 0;
+                    }
+                }
+                linear.AddData(ltData);
+                linear.Fit();
+                PMT = linear.GetResult(conc);
+                //dataGridView2[1, i].Value = Convert.ToDouble(PMT).ToString("0.000");
+            }
+            else
+            {
+                PMT = er.GetResult(conc);
+                //dataGridView2[1, i].Value = Convert.ToDouble(PMT).ToString("0.000");
+            }
+            return PMT;
+        }
+        /// <summary>
+        /// 根据发光值计算浓度
+        /// </summary>
+        /// <param name="dataGrid"></param>
+        /// <param name="zedGraphControl"></param>
+        /// <param name="mainDatas"></param>
+        /// <param name="canshu"></param>
+        void GetConnettion2(DataGridView dataGrid, ZedGraphControl zedGraphControl, List<Conc_PMT> mainDatas, double[] canshu)
+        {
+            double[] nongduall = new double[mainDatas.Count];
+            double[] faguagnzhiall = new double[mainDatas.Count];
+            for (int index = 0; index < mainDatas.Count; index++)
+            {
+                nongduall[index] = mainDatas[index].Conc;
+                faguagnzhiall[index] = mainDatas[index].PMT;
+            }
+            List<double> preconcs = new List<double>();
+            double[] result = new double[1];
+            #region 预测
+            List<double> predata = new List<double>();
+            for (int i = 1; i < mainDatas.Count; i++)//想要预测的数据
+            {
+                double[] array = { Convert.ToDouble(dataGrid[1, i].Value) };
+                result = resultvalue(array,
+                    nongduall, faguagnzhiall);  //拟合浓度计算
+                                                //dataGridView1[2, i].Value = result[0];
+                predata.Add(result[0]);
+            }
+            for (int i = 0; i < dataGrid.Rows.Count; i++)//想要预测的数据
+            {
+                if (dataGrid[0, i].Value != null && dataGrid[1, i].Value != null)
+                {
+                    if (Convert.ToDouble(dataGrid[1, i].Value) > mainDatas[1].PMT)
+                    {
+                        double[] array = { Convert.ToDouble(dataGrid[1, i].Value) };
+                        result = resultvalue(array,
+                            nongduall, faguagnzhiall);
+                        dataGrid[2, i].Value = result[0].ToString("0.000");
+                        preconcs.Add(result[0]);
+                    }
+                    else
+                    {
+                        List<Data_Value> temp = new List<Data_Value>();
+                        temp.Add(new Data_Value() { Data = mainDatas[0].Conc, DataValue = mainDatas[0].PMT });
+                        temp.Add(new Data_Value() { Data = predata[0], DataValue = mainDatas[1].PMT });
+                        double tempNum = CountLinearResult(temp, Convert.ToDouble(dataGridView4[1, i].Value));
+                        dataGrid[2, i].Value = (tempNum <= mainDatas[0].Conc ?
+                            mainDatas[0].Conc + 0.001 : tempNum).ToString("0.000");
+                        preconcs.Add(tempNum);
+                    }
+                }
+                if (dataGrid[0, i].Value == null && dataGrid[1, i].Value != null)
+                {
+                    if (Convert.ToDouble(dataGrid[1, i].Value) > mainDatas[1].PMT)
+                    {
+                        double[] array = { Convert.ToDouble(dataGrid[1, i].Value) };
+                        result = resultvalue(array,
+                            nongduall, faguagnzhiall);
+                        double d = mainDatas[mainDatas.Count() - 1].Conc;
+                        dataGrid[2, i].Value = (result[0] > mainDatas[mainDatas.Count() - 1].Conc * 1.2 || double.IsNaN(result[0])) ?
+                            ">" + mainDatas[mainDatas.Count() - 1].Conc * 1.2 : result[0].ToString("0.000");
+                    }
+                    else
+                    {
+                        List<Data_Value> temp = new List<Data_Value>();
+                        temp.Add(new Data_Value() { Data = mainDatas[0].Conc, DataValue = mainDatas[0].PMT });
+                        temp.Add(new Data_Value() { Data = predata[0], DataValue = mainDatas[1].PMT });
+                        double tempNum = CountLinearResult(temp, Convert.ToDouble(dataGrid[1, i].Value));
+                        dataGrid[2, i].Value = (tempNum <= mainDatas[0].Conc ? mainDatas[0].Conc + 0.001 : tempNum).ToString("0.000");
+                    }
+                }
+            }
+
+            #region 画图
+            DataTable datas = new DataTable();
+            datas.Columns.Add("consistence", Type.GetType("System.String"));
+            datas.Columns.Add("absorbency", Type.GetType("System.String"));
+            datas.Columns.Add("geneA", Type.GetType("System.String"));
+            datas.Columns.Add("geneB", Type.GetType("System.String"));
+            datas.Columns.Add("geneC", Type.GetType("System.String"));
+            datas.Columns.Add("geneD", Type.GetType("System.String"));
+            datas.Columns.Add("geneE", Type.GetType("System.String"));
+            for (int i = 0; i < mainDatas.Count; i++)
+            {
+                if (i == 0)
+                {
+                    datas.Rows.Add(preconcs[0], mainDatas[i].PMT, canshu[0].ToString(),
+                    canshu[1].ToString(), canshu[2].ToString(), canshu[3].ToString(), 0.ToString());
+                }
+                else
+                {
+                    datas.Rows.Add(predata[i - 1], mainDatas[i].PMT, canshu[0].ToString(),
+                    canshu[1].ToString(), canshu[2].ToString(), canshu[3].ToString(), 0.ToString());
+                }
+            }
+            zedGraphControl.GraphPane.CurveList.Clear();
+            CreateGraph(zedGraphControl, datas, mainDatas.Count);
+            string path3 = "123.bmp";
+            Image image = zedGraphControl.GetImage();
+            image.Save(path3, System.Drawing.Imaging.ImageFormat.Bmp);
+            #endregion
+            #endregion
+        }
+        /// <summary>
+        /// 所有的点都进行改变，浓度不求对数(夹心法)
+        /// </summary>
+        /// <param name="MainPoint">主曲线那个地信息</param>
+        /// <param name="newPoint">新的测试浓度</param>
+        /// <returns></returns>
+        List<Conc_PMT> GetPointChange(List<Conc_PMT> MainPoint, List<Conc_PMT> newPoint)
+        {
+            double[] maincanshu = GetCanshu2(MainPoint);
+            //将浓度带入主曲线计算C1，E1两点的发光值
+            List<Conc_PMT> newPoint1 = new List<Conc_PMT>();
+            foreach (Conc_PMT point in newPoint)
+            {
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc = point.Conc;
+                conc_PMT.PMT = GetPMT2(point.Conc, MainPoint, maincanshu);
+                newPoint1.Add(conc_PMT);
+            }
+            //计算（C1-C）/C,（E1-E）/E
+            List<Conc_PMT> newPoint2 = new List<Conc_PMT>();
+            foreach (Conc_PMT point in newPoint)
+            {
+                Conc_PMT p1 = newPoint1.Find(x => x.Conc == point.Conc);
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc = point.Conc;
+                conc_PMT.PMT = (p1.PMT - point.PMT)/ point.PMT;
+                newPoint2.Add(conc_PMT);
+            }
+            //计算k值
+            double k = (newPoint2[1].PMT - newPoint2[0].PMT) / (newPoint[1].Conc - newPoint[0].Conc);
+            //计算b值
+            double b = newPoint2[0].PMT - (newPoint[0].Conc * k);
+            //将主曲线浓度带入主曲线中计算发光值
+            List<Conc_PMT> CMainPoint = new List<Conc_PMT>();
+            foreach (Conc_PMT point in MainPoint)
+            {
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc = point.Conc;
+                conc_PMT.PMT = GetPMT2(point.Conc, MainPoint, maincanshu);
+                CMainPoint.Add(conc_PMT);
+            }
+            //计算新的定标曲线
+            List<Conc_PMT> NewMainPoint = new List<Conc_PMT>();
+            foreach (Conc_PMT point in CMainPoint)
+            {
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc = point.Conc;
+                if (conc_PMT.Conc == 0)
+                    conc_PMT.Conc = 0.001;
+                conc_PMT.PMT =Math.Round(point.PMT*(k* conc_PMT.Conc + b)+ point.PMT,0);
+                NewMainPoint.Add(conc_PMT);
+            }
+            return NewMainPoint;
+        }
+        /// <summary>
+        /// 所有的点都进行改变，浓度不求对数(竞争法)
+        /// </summary>
+        /// <param name="MainPoint"></param>
+        /// <param name="newPoint"></param>
+        /// <returns></returns>
+        List<Conc_PMT> GetPointChange0(List<Conc_PMT> MainPoint, List<Conc_PMT> newPoint)
+        {
+            CalculateFactory ft = new CalculateFactory();
+            Calculater er = null;
+            er = ft.getCaler(cmbFit.SelectedIndex);//取到公式
+            //double[] maincanshu = GetCanshu2(MainPoint);
+            //将浓度带入主曲线计算C1，E1两点的发光值
+            //List<Conc_PMT> newPoint1 = new List<Conc_PMT>();
+            //foreach (Conc_PMT point in newPoint)
+            //{
+            //    Conc_PMT conc_PMT = new Conc_PMT();
+            //    conc_PMT.Conc = point.Conc;
+            //    conc_PMT.PMT = GetPMT2(point.Conc, MainPoint, maincanshu);
+            //    newPoint1.Add(conc_PMT);
+            //}
+            ////计算（C1-C）/C,（E1-E）/E
+            //List<Conc_PMT> newPoint2 = new List<Conc_PMT>();
+            //foreach (Conc_PMT point in newPoint)
+            //{
+            //    Conc_PMT p1 = newPoint1.Find(x => x.Conc == point.Conc);
+            //    Conc_PMT conc_PMT = new Conc_PMT();
+            //    conc_PMT.Conc = point.Conc;
+            //    conc_PMT.PMT = (p1.PMT - point.PMT) / point.PMT;
+            //    newPoint2.Add(conc_PMT);
+            //}
+            ////计算k值
+            //double k = (newPoint2[1].PMT - newPoint2[0].PMT) / (newPoint[1].Conc - newPoint[0].Conc);
+            ////计算b值
+            //double b = newPoint2[0].PMT - (newPoint[0].Conc * k);
+            ////将主曲线浓度带入主曲线中计算发光值
+            //List<Conc_PMT> CMainPoint = new List<Conc_PMT>();
+            //foreach (Conc_PMT point in MainPoint)
+            //{
+            //    Conc_PMT conc_PMT = new Conc_PMT();
+            //    conc_PMT.Conc = point.Conc;
+            //    conc_PMT.PMT = GetPMT2(point.Conc, MainPoint, maincanshu);
+            //    CMainPoint.Add(conc_PMT);
+            //}
+            ////计算新的定标曲线
+            List<Conc_PMT> NewMainPoint = new List<Conc_PMT>();
+            //foreach (Conc_PMT point in CMainPoint)
+            //{
+            //    Conc_PMT conc_PMT = new Conc_PMT();
+            //    conc_PMT.Conc = point.Conc;
+            //    conc_PMT.PMT = Math.Round(point.PMT * (k * point.PMT + b) + conc_PMT.PMT, 0);
+            //    NewMainPoint.Add(conc_PMT);
+            //}
+            return NewMainPoint;
+        }
+        /// <summary>
+        /// 所有的点都进行改变，浓度求对数(夹心法)
+        /// </summary>
+        /// <param name="MainPoint">主曲线摸那个地信息</param>
+        /// <param name="newPoint">新的测试浓度</param>
+        /// <returns></returns>
+        List<Conc_PMT> GetPointLgCon(List<Conc_PMT> MainPoint, List<Conc_PMT> newPoint)
+        {
+            double[] maincanshu = GetCanshu2(MainPoint);
+            //将浓度带入主曲线计算C1，E1两点的发光值
+            List<Conc_PMT> newPoint1 = new List<Conc_PMT>();
+            List<double> Lgconc = new List<double>();
+            foreach (Conc_PMT point in newPoint)
+            {
+                Conc_PMT conc_PMT = new Conc_PMT();
+                double d = Math.Log10(conc_PMT.Conc);
+                Lgconc.Add(d);
+                conc_PMT.Conc = d;
+                conc_PMT.PMT = GetPMT2(d, MainPoint, maincanshu);
+                newPoint1.Add(conc_PMT);
+            }
+            //计算（C1-C）/C,（E1-E）/E
+            List<Conc_PMT> newPoint2 = new List<Conc_PMT>();
+            foreach (Conc_PMT point in newPoint)
+            {
+                Conc_PMT p1 = newPoint1.Find(x => x.Conc == point.Conc);
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc = point.Conc;
+                try
+                {
+                    conc_PMT.PMT = (p1.PMT - point.PMT) / point.PMT;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(point.Conc +"浓度求对数失败，结束本次计算");
+                    return null;
+                }
+                newPoint2.Add(conc_PMT);
+            }
+            //计算k值
+            double k = (newPoint2[1].PMT - newPoint2[0].PMT) / (newPoint[1].Conc - newPoint[0].Conc);
+            //计算b值
+            double b = newPoint2[0].PMT - (newPoint[0].Conc * k);
+            //将主曲线浓度带入主曲线中计算发光值
+            List<Conc_PMT> CMainPoint = new List<Conc_PMT>();
+            foreach (Conc_PMT point in MainPoint)
+            {
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc =Math.Log10(point.Conc);
+                conc_PMT.PMT = GetPMT2(point.Conc, MainPoint, maincanshu);
+                CMainPoint.Add(conc_PMT);
+            }
+            //计算新的定标曲线
+            List<Conc_PMT> NewMainPoint = new List<Conc_PMT>();
+            foreach (Conc_PMT point in CMainPoint)
+            {
+                Conc_PMT conc_PMT = new Conc_PMT();
+                conc_PMT.Conc = point.Conc;
+                if (conc_PMT.Conc == 0)
+                    conc_PMT.Conc = 0.001;
+                conc_PMT.PMT = Math.Round(point.PMT * (k * conc_PMT.Conc + b) + point.PMT, 0);
+                NewMainPoint.Add(conc_PMT);
+            }
+            return NewMainPoint;
+        }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            button9_Click(sender,e);
+            List<Conc_PMT> ListwoPoint = new List<Conc_PMT>();
+            foreach (DataGridViewRow dr in dataGridView3.Rows) 
+            {
+                if (dr.Cells[0].Value != null && dr.Cells[1].Value != null)
+                {
+                    Conc_PMT point = new Conc_PMT();
+                    point.Conc = double.Parse(dr.Cells[0].Value.ToString());
+                    point.PMT  = double.Parse(dr.Cells[1].Value.ToString());
+                    ListwoPoint.Add(point);
+                }
+            }
+            List<Conc_PMT> NewPoint = null;
+            if (radioButton3.Checked)
+            {
+                NewPoint =  GetNewPoint(ListMainPoint2, ListwoPoint,0);
+            }
+            else if (radioButton4.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint2, ListwoPoint, 1);
+            }
+            else if (radioButton5.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint2, ListwoPoint, 2);
+            }
+            else if (radioButton6.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint2, ListwoPoint, 3);
+            }
+            if (NewPoint==null || NewPoint.Count < 6)
+                return;
+            
+            for (int i=0;i< NewPoint.Count;i++)
+            {
+                dataGridView4.Rows[i].Cells[0].Value = NewPoint[i].Conc;
+                dataGridView4.Rows[i].Cells[1].Value = NewPoint[i].PMT;
+                dataGridView4.Rows[i].Cells[2].Value = NewPoint[i].Conc;
+            }
+            double[] maincanshu = GetCanshu2(NewPoint);
+            richTextBox2.Text = "\n A= " + maincanshu[0] +
+               "\n B= " + maincanshu[1] +
+               "\n C= " + maincanshu[2] +
+               "\n D= " + maincanshu[3] +
+               " R^2 =" + maincanshu[4] * 0.999;
+            #region  发光值到浓度
+            if (rbtnPmtToConc2.Checked) //发光值到浓度
+            {
+                #region 预测
+                GetConnettion2(dataGridView4, zedGraphControl2, NewPoint, maincanshu);
+                #endregion
+            }
+            #endregion
+
+            #region 浓度到发光值
+            for (int i = 0; i < dataGridView4.Rows.Count; i++)//想要预测的数据
+            {
+                if (dataGridView4[0, i].Value == null && dataGridView4[1, i].Value == null && dataGridView4[2, i].Value != null)
+                {
+                    double conc = double.Parse(dataGridView4[i, 2].Value.ToString());
+                    if (conc == 0)
+                    {
+                        conc = 0.001;
+                    }
+                    double resultLine = GetPMT2(conc, NewPoint, maincanshu);
+                    if (NewPoint[0].Conc <= conc && conc < NewPoint[1].Conc)
+                    {
+                        dataGridView4[i, 1].Value = resultLine < NewPoint[0].Conc ? (NewPoint[0].Conc + 0.001) : resultLine;
+                    }
+                    else
+                    {
+                        dataGridView4[i, 1].Value = resultLine < NewPoint[0].PMT *1.2 ? ">" + NewPoint[0].PMT * 1.2 : NewPoint[0].PMT.ToString();
+                    }
+                }
+            }
+            #endregion
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            
+            List<Conc_PMT> NewPoint = new List<Conc_PMT>();
+            for(int i=0; i<dataGridView4.Rows.Count;i++)
+            {
+                Conc_PMT point = new Conc_PMT();
+                if (dataGridView4.Rows[i].Cells[0].Value !=null && dataGridView4.Rows[i].Cells[1].Value != null)
+                {
+                    point.Conc = double.Parse(dataGridView4.Rows[i].Cells[0].Value.ToString());
+                    point.PMT = double.Parse(dataGridView4.Rows[i].Cells[1].Value.ToString());
+                    NewPoint.Add(point);
+                }
+            }
+            if (NewPoint.Count < 6)
+            {
+                MessageBox.Show("定标点数量不足");
+                return;
+            }
+            double[] maincanshu = GetCanshu2(NewPoint);
+            richTextBox2.Text = "\n A= " + maincanshu[0] +
+               "\n B= " + maincanshu[1] +
+               "\n C= " + maincanshu[2] +
+               "\n D= " + maincanshu[3] +
+               " R^2 =" + maincanshu[4] * 0.999;
+            #region  发光值到浓度
+            if (rbtnPmtToConc2.Checked) //发光值到浓度
+            {
+                #region 预测
+                GetConnettion2(dataGridView4, zedGraphControl2, NewPoint, maincanshu);
+                #endregion
+            }
+            #endregion
+
+            #region 浓度到发光值
+            for (int i = 0; i < dataGridView4.Rows.Count; i++)//想要预测的数据
+            {
+                if (dataGridView4[0, i].Value == null && dataGridView4[1, i].Value == null && dataGridView4[2, i].Value != null)
+                {
+                    double conc = double.Parse(dataGridView4[i, 2].Value.ToString());
+                    if (conc == 0)
+                    {
+                        conc = 0.001;
+                    }
+                    double resultLine = GetPMT2(conc, NewPoint, maincanshu);
+                    if (NewPoint[0].Conc <= conc && conc < NewPoint[1].Conc)
+                    {
+                        dataGridView4[i, 1].Value = resultLine < NewPoint[0].Conc ? (NewPoint[0].Conc + 0.001) : resultLine;
+                    }
+                    else
+                    {
+                        dataGridView4[i, 1].Value = resultLine < NewPoint[0].PMT * 1.2 ? ">" + NewPoint[0].PMT * 1.2 : NewPoint[0].PMT.ToString();
+                    }
+                }
+            }
+            #endregion
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            for (int index = 0; index < dataGridView3.SelectedCells.Count; index++)
+            {
+                dataGridView3.SelectedCells[index].Value = null;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.dataGridView3.Rows.Count; i++)
+            {
+                for (int j = 0; j < this.dataGridView3.Columns.Count; j++)
+                {
+                    this.dataGridView3.Rows[i].Cells[j].Value = null;
+                }
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            for (int index = 0; index < dataGridView4.SelectedCells.Count; index++)
+            {
+                dataGridView4.SelectedCells[index].Value = null;
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.dataGridView4.Rows.Count; i++)
+            {
+                for (int j = 0; j < this.dataGridView4.Columns.Count; j++)
+                {
+                    this.dataGridView4.Rows[i].Cells[j].Value = null;
+                }
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(this.dataGridView4.GetClipboardContent());
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Paste(dataGridView4, "", 0, false);
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            button19_Click(sender,e);
+            List<Conc_PMT> ListwoPoint = new List<Conc_PMT>();
+            foreach (DataGridViewRow dr in dataGridView6.Rows)
+            {
+                if (dr.Cells[0].Value != null && dr.Cells[1].Value != null)
+                {
+                    Conc_PMT point = new Conc_PMT();
+                    point.Conc = double.Parse(dr.Cells[0].Value.ToString());
+                    point.PMT = double.Parse(dr.Cells[1].Value.ToString());
+                    ListwoPoint.Add(point);
+                }
+            }
+            List<Conc_PMT> NewPoint = null;
+            if (radioButton1.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint0, ListwoPoint, 0);
+            }
+            else if (radioButton2.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint0, ListwoPoint, 1);
+            }
+            else if (radioButton7.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint0, ListwoPoint, 2);
+            }
+            else if (radioButton8.Checked)
+            {
+                NewPoint = GetNewPoint(ListMainPoint0, ListwoPoint, 3);
+            }
+            if (NewPoint == null || NewPoint.Count < 6)
+                return;
+            for (int i = 0; i < NewPoint.Count; i++)
+            {
+                dataGridView5.Rows[i].Cells[0].Value = NewPoint[i].Conc;
+                dataGridView5.Rows[i].Cells[1].Value = NewPoint[i].PMT;
+                dataGridView5.Rows[i].Cells[2].Value = NewPoint[i].Conc;
+            }
+            button16_Click(sender, e);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            #region 计算代码
+            count = 0;
+            ltData = new List<Data_Value>();
+            CurveData = new List<Data_Value>();
+            CalculateFactory ft = new CalculateFactory();
+            Calculater er = null;
+            er = ft.getCaler(cmbFit.SelectedIndex);//取到公式
+            for (int i = 0; i < dataGridView5.Rows.Count; i++)//DataGridView中的数据
+            {
+                if (dataGridView5[0, i].Value != null && dataGridView5[1, i].Value != null)
+                    count++;
+            }
+            DataTable dt = new DataTable();
+            dt.Columns.Add("consistence", typeof(float));
+            dt.Columns.Add("absorbency", typeof(float));
+            for (int j = 0; j < count; j++)
+            {
+                try
+                {
+                    ltData.Add(new Data_Value() { Data = double.Parse(dataGridView5[0, j].Value.ToString()), DataValue = double.Parse(dataGridView5[1, j].Value.ToString()) });
+                    CurveData.Add(new Data_Value() { Data = double.Parse(dataGridView5[0, j].Value.ToString()), DataValue = double.Parse(dataGridView5[1, j].Value.ToString()) });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("请确保数据格式正确，错误信息：" + ex.Message);
+                }
+            }
+            //根据浓度值排序
+            ltData.Sort(new Data_ValueDataAsc());
+            CurveData.Sort(new Data_ValueDataAsc());
+            #region 去除重复数据
+            for (int i = ltData.Count - 2; i >= 0; i--)//去掉相同浓度
+            {
+                Data_Value v2 = ltData[i + 1];
+                Data_Value v1 = ltData[i];
+                if (v2.Data == v1.Data)
+                {
+                    v1.DataValue = (v1.DataValue + v2.DataValue) / 2;
+                    ltData.RemoveAt(i + 1);
+                }
+            }
+            for (int i = CurveData.Count - 2; i >= 0; i--)
+            {
+                Data_Value v2 = CurveData[i + 1];
+                Data_Value v1 = CurveData[i];
+                if (v2.Data == v1.Data)
+                {
+                    v1.DataValue = (v1.DataValue + v2.DataValue) / 2;
+                    CurveData.RemoveAt(i + 1);
+                }
+            }
+            #endregion          
+            if (ltData.Count > 0)//ltData标准品
+            {
+                #region 常规性对0 1 浓度处理
+                for (int i = 0; i < ltData.Count; i++)
+                {
+                    if (ltData[i].Data == 0)
+                    {
+                        ltData[i].Data = 0.0001;
+                    }
+                    if (ltData[i].Data == 1)
+                    {
+                        ltData[i].Data = 0.999999;
+                    }
+                    if (ltData[i].DataValue == 0)
+                    {
+                        ltData[i].DataValue = 0.0001;
+                    }
+                }
+                for (int i = 0; i < CurveData.Count; i++)
+                {
+                    if (CurveData[i].Data == 0)
+                    {
+                        CurveData[i].Data = 0.0001;
+                    }
+                    if (CurveData[i].Data == 1)
+                    {
+                        CurveData[i].Data = 0.999999;
+                    }
+                    if (CurveData[i].DataValue == 0)
+                    {
+                        CurveData[i].DataValue = 0.0001;
+                    }
+                }
+                #endregion
+                #region  曲线拟合，这部分可以忽略
+                foreach (Data_Value dv1 in CurveData)
+                {
+                    switch (cmbX.SelectedIndex)
+                    {
+                        case 1:
+                            if ((cmbFit.SelectedIndex == 4 || cmbFit.SelectedIndex == 5 || cmbFit.SelectedIndex == 6) && dv1.Data < 1)
+                                dv1.Data = 1.001;
+                            dv1.Data = Math.Log(dv1.Data, 2);
+                            break;
+                        case 2:
+                            if ((cmbFit.SelectedIndex == 4 || cmbFit.SelectedIndex == 5 || cmbFit.SelectedIndex == 6) && dv1.Data < 1)
+                                dv1.Data = 1.001;
+                            dv1.Data = Math.Log10(dv1.Data);
+                            break;
+                        case 3:
+                            if ((cmbFit.SelectedIndex == 4 || cmbFit.SelectedIndex == 5 || cmbFit.SelectedIndex == 6) && dv1.Data < 1)
+                                dv1.Data = 1.001;
+                            dv1.Data = Math.Log(dv1.Data, Math.E);
+                            break;
+                        case 4:
+                            dv1.Data *= dv1.Data;
+                            break;
+                        case 5:
+                            dv1.Data = Math.Sqrt(dv1.Data);
+                            break;
+                        case 6:
+                            dv1.Data = Math.Pow(Math.E, dv1.Data);
+                            break;
+                    }
+                    switch (cmbY.SelectedIndex)
+                    {
+                        case 1:
+                            dv1.DataValue = Math.Log(dv1.DataValue, 2);
+                            break;
+                        case 2:
+                            dv1.DataValue = Math.Log10(dv1.DataValue);
+                            break;
+                        case 3:
+                            dv1.DataValue = Math.Log(dv1.DataValue, Math.E);
+                            break;
+                        case 4:
+                            dv1.DataValue *= dv1.DataValue;
+                            break;
+                        case 5:
+                            dv1.DataValue = Math.Sqrt(dv1.DataValue);
+                            break;
+                        case 6:
+                            dv1.DataValue = Math.Pow(Math.E, dv1.DataValue);
+                            break;
+                    }
+                }
+                if (cmbFit.SelectedIndex == 4 && ltData[0].Data != 0.0001)
+                {
+                    MessageBox.Show("必须有一个或几个X值为0的点!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                foreach (Data_Value dv in ltData)
+                {
+                    switch (cmbX.SelectedIndex)
+                    {
+                        case 1:
+                            dv.Data = Math.Log(dv.Data, 2);
+                            break;
+                        case 2:
+                            dv.Data = Math.Log10(dv.Data);
+                            break;
+                        case 3:
+                            dv.Data = Math.Log(dv.Data, Math.E);
+                            break;
+                        case 4:
+                            dv.Data *= dv.Data;
+                            break;
+                        case 5:
+                            dv.Data = Math.Sqrt(dv.Data);
+                            break;
+                        case 6:
+                            dv.Data = Math.Pow(Math.E, dv.Data);
+                            break;
+                    }
+                    switch (cmbY.SelectedIndex)
+                    {
+                        case 1:
+                            dv.DataValue = Math.Log(dv.DataValue, 2);
+                            break;
+                        case 2:
+                            dv.DataValue = Math.Log10(dv.DataValue);
+                            break;
+                        case 3:
+                            dv.DataValue = Math.Log(dv.DataValue, Math.E);
+                            break;
+                        case 4:
+                            dv.DataValue *= dv.DataValue;
+                            break;
+                        case 5:
+                            dv.DataValue = Math.Sqrt(dv.DataValue);
+                            break;
+                        case 6:
+                            dv.DataValue = Math.Pow(Math.E, dv.DataValue);
+                            break;
+                    }
+                    dt.Rows.Add(dv.Data, dv.DataValue);
+                }
+                if (cmbFit.SelectedIndex == 4)
+                {
+                    dt.Rows.Clear();
+                    for (int i = 0; i < ltData.Count; i++)
+                    {
+                        if ((1 - ltData[i].DataValue / ltData[0].DataValue) < 0)
+                        {
+                            MessageBox.Show("必须有一个或几个X值为0的点，该点的Y值最大，才能使用Logit-Log直线回归模型", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        ltData[i].Data = Math.Log10(ltData[i].Data);
+                        ltData[i].DataValue = Math.Log((ltData[i].DataValue / ltData[0].DataValue) / (1 - ltData[i].DataValue / ltData[0].DataValue), Math.E);
+                        dt.Rows.Add(ltData[i].Data, ltData[i].DataValue);
+                    }
+                    ltData.RemoveAt(0);
+                }
+                for (int i = 0; i < ltData.Count; i++)
+                {
+                    if (double.IsNaN(ltData[i].Data) || double.IsNaN(ltData[i].DataValue) || double.IsNaN(CurveData[i].DataValue) || double.IsNaN(CurveData[i].Data))
+                    {
+                        MessageBox.Show("函数计算错误，可能该数据不适合此回归模型", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                #endregion
+                for (int i = 0; i < CurveData.Count; i++)
+                {
+                    er.AddData(CurveData);
+                    er.Fit();
+                }
+            }
+            foreach (double par in er._pars)
+            {
+                if (double.IsNaN(par) || double.IsInfinity(par))
+                {
+                    MessageBox.Show("回归计算时出现运算错误，可能该数据不适合此回归模型", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            EquationCurvet2(dataGridView5,er, dt, panel1);
+            //EquationCurvet(er, dt);
+            #endregion 
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            for (int index = 0; index < dataGridView6.SelectedCells.Count; index++)
+            {
+                dataGridView6.SelectedCells[index].Value = null;
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            dataGridView6.Rows.Clear();
+            dataGridView6.Rows.Add(500);
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            for (int index = 0; index < dataGridView5.SelectedCells.Count; index++)
+            {
+                dataGridView5.SelectedCells[index].Value = null;
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            dataGridView5.Rows.Clear();
+            dataGridView5.Rows.Add(500);
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(this.dataGridView5.GetClipboardContent());
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            Paste(dataGridView5, "", 0, false);
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(this.dataGridView3.GetClipboardContent());
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            Paste(dataGridView3, "", 0, false);
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+
+            Clipboard.SetDataObject(this.dataGridView6.GetClipboardContent());
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            Paste(dataGridView6, "", 0, false);
+        }
     }
 }
